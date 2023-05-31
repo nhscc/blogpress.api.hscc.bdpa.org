@@ -1,4 +1,5 @@
 import { ErrorMessage as NamedErrorMessage } from 'named-app-errors';
+import type { LiteralUnion } from 'type-fest';
 
 export * from 'named-app-errors';
 
@@ -56,15 +57,15 @@ export const ErrorMessage = {
     property: string,
     min: number | string,
     max: number | string | null,
-    syntax: 'string' | 'alphanumeric' | 'hexadecimal' | 'bytes',
+    syntax: LiteralUnion<'string' | 'alphanumeric' | 'hexadecimal' | 'bytes', string>,
     nullable = false,
     isArray = false
   ) =>
     `${isArray ? `each \`${property}\` element` : `\`${property}\``} must be a${
       syntax == 'alphanumeric'
         ? 'n alphanumeric'
-        : syntax == 'hexadecimal'
-        ? ' hexadecimal'
+        : syntax != 'bytes'
+        ? ` ${syntax}`
         : ''
     } ${
       max
