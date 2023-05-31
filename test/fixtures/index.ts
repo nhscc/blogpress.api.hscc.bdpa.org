@@ -1,31 +1,25 @@
+import { ObjectId } from 'mongodb';
 import { asMockedFunction } from '@xunnamius/jest-types';
 
 import {
-  applyVotesUpdateOperation,
   authAppUser,
-  createAnswer,
-  createComment,
-  createMessage,
-  createQuestion,
+  createPage,
   createUser,
-  deleteComment,
+  deleteSession,
+  deletePage,
   deleteUser,
   getAllUsers,
-  getAnswers,
-  getComments,
-  getQuestion,
+  getBlogPagesMetadata,
+  getBlog,
+  getInfo,
+  getPage,
+  getPageSessionsCount,
   getUser,
-  getUserAnswers,
-  getUserMessages,
-  getUserQuestions,
-  searchQuestions,
-  updateAnswer,
-  updateQuestion,
+  updatePage,
+  createSession,
   updateUser,
-  deleteAnswer,
-  deleteMessage,
-  deleteQuestion,
-  getHowUserVoted
+  updateBlog,
+  renewSession
 } from 'universe/backend';
 
 import V1EndpointUsers, {
@@ -33,113 +27,54 @@ import V1EndpointUsers, {
   metadata as V1MetadataUsers
 } from 'universe/pages/api/v1/users';
 
-import V1EndpointUsersUsername, {
-  config as V1ConfigUsersUsername,
-  metadata as V1MetadataUsersUsername
-} from 'universe/pages/api/v1/users/[username]';
+import V1EndpointUsersUsernameoremail, {
+  config as V1ConfigUsersUsernameoremail,
+  metadata as V1MetadataUsersUsernameoremail
+} from 'universe/pages/api/v1/users/[usernameOrEmail]';
 
-import V1EndpointUsersUsernameAuth, {
-  config as V1ConfigUsersUsernameAuth,
-  metadata as V1MetadataUsersUsernameAuth
-} from 'universe/pages/api/v1/users/[username]/auth';
+import V1EndpointUsersUsernameoremailAuth, {
+  config as V1ConfigUsersUsernameoremailAuth,
+  metadata as V1MetadataUsersUsernameoremailAuth
+} from 'universe/pages/api/v1/users/[usernameOrEmail]/auth';
 
-import V1EndpointUsersUsernameQuestions, {
-  config as V1ConfigUsersUsernameQuestions,
-  metadata as V1MetadataUsersUsernameQuestions
-} from 'universe/pages/api/v1/users/[username]/questions';
+import V1EndpointBlogsBlogname, {
+  config as V1ConfigBlogsBlogname,
+  metadata as V1MetadataBlogsBlogname
+} from 'universe/pages/api/v1/blogs/[blogName]';
 
-import V1EndpointUsersUsernameAnswers, {
-  config as V1ConfigUsersUsernameAnswers,
-  metadata as V1MetadataUsersUsernameAnswers
-} from 'universe/pages/api/v1/users/[username]/answers';
+import V1EndpointBlogsBlognamePages, {
+  config as V1ConfigBlogsBlognamePages,
+  metadata as V1MetadataBlogsBlognamePages
+} from 'universe/pages/api/v1/blogs/[blogName]/pages';
 
-import V1EndpointUsersUsernamePoints, {
-  config as V1ConfigUsersUsernamePoints,
-  metadata as V1MetadataUsersUsernamePoints
-} from 'universe/pages/api/v1/users/[username]/points';
+import V1EndpointBlogsBlognamePagesPagename, {
+  config as V1ConfigBlogsBlognamePagesPagename,
+  metadata as V1MetadataBlogsBlognamePagesPagename
+} from 'universe/pages/api/v1/blogs/[blogName]/pages/[pageName]';
 
-import V1EndpointMail, {
-  config as V1ConfigMail,
-  metadata as V1MetadataMail
-} from 'universe/pages/api/v1/mail';
+import V1EndpointBlogsBlognamePagesPagenameSessions, {
+  config as V1ConfigBlogsBlognamePagesPagenameSessions,
+  metadata as V1MetadataBlogsBlognamePagesPagenameSessions
+} from 'universe/pages/api/v1/blogs/[blogName]/pages/[pageName]/sessions';
 
-import V1EndpointMailUsername, {
-  config as V1ConfigMailUsername,
-  metadata as V1MetadataMailUsername
-} from 'universe/pages/api/v1/mail/[username]';
+import V1EndpointBlogsBlognamePagesPagenameSessionsSessionid, {
+  config as V1ConfigBlogsBlognamePagesPagenameSessionsSessionid,
+  metadata as V1MetadataBlogsBlognamePagesPagenameSessionsSessionid
+} from 'universe/pages/api/v1/blogs/[blogName]/pages/[pageName]/sessions/[session_id]';
 
-import V1EndpointQuestionsSearch, {
-  config as V1ConfigQuestionsSearch,
-  metadata as V1MetadataQuestionsSearch
-} from 'universe/pages/api/v1/questions/search';
-
-import V1EndpointQuestions, {
-  config as V1ConfigQuestions,
-  metadata as V1MetadataQuestions
-} from 'universe/pages/api/v1/questions';
-
-import V1EndpointQuestionsQuestionId, {
-  config as V1ConfigQuestionsQuestionId,
-  metadata as V1MetadataQuestionsQuestionId
-} from 'universe/pages/api/v1/questions/[question_id]';
-
-import V1EndpointQuestionsQuestionIdVoteUsername, {
-  config as V1ConfigQuestionsQuestionIdVoteUsername,
-  metadata as V1MetadataQuestionsQuestionIdVoteUsername
-} from 'universe/pages/api/v1/questions/[question_id]/vote/[username]';
-
-import V1EndpointQuestionsQuestionIdComments, {
-  config as V1ConfigQuestionsQuestionIdComments,
-  metadata as V1MetadataQuestionsQuestionIdComments
-} from 'universe/pages/api/v1/questions/[question_id]/comments';
-
-import V1EndpointQuestionsQuestionIdCommentsCommentId, {
-  config as V1ConfigQuestionsQuestionIdCommentsCommentId,
-  metadata as V1MetadataQuestionsQuestionIdCommentsCommentId
-} from 'universe/pages/api/v1/questions/[question_id]/comments/[comment_id]';
-
-import V1EndpointQuestionsQuestionIdCommentsCommentIdVoteUsername, {
-  config as V1ConfigQuestionsQuestionIdCommentsCommentIdVoteUsername,
-  metadata as V1MetadataQuestionsQuestionIdCommentsCommentIdVoteUsername
-} from 'universe/pages/api/v1/questions/[question_id]/comments/[comment_id]/vote/[username]';
-
-import V1EndpointQuestionsQuestionIdAnswers, {
-  config as V1ConfigQuestionsQuestionIdAnswers,
-  metadata as V1MetadataQuestionsQuestionIdAnswers
-} from 'universe/pages/api/v1/questions/[question_id]/answers';
-
-import V1EndpointQuestionsQuestionIdAnswersAnswerId, {
-  config as V1ConfigQuestionsQuestionIdAnswersAnswerId,
-  metadata as V1MetadataQuestionsQuestionIdAnswersAnswerId
-} from 'universe/pages/api/v1/questions/[question_id]/answers/[answer_id]';
-
-import V1EndpointQuestionsQuestionIdAnswersAnswerIdVoteUsername, {
-  config as V1ConfigQuestionsQuestionIdAnswersAnswerIdVoteUsername,
-  metadata as V1MetadataQuestionsQuestionIdAnswersAnswerIdVoteUsername
-} from 'universe/pages/api/v1/questions/[question_id]/answers/[answer_id]/vote/[username]';
-
-import V1EndpointQuestionsQuestionIdAnswersAnswerIdComments, {
-  config as V1ConfigQuestionsQuestionIdAnswersAnswerIdComments,
-  metadata as V1MetadataQuestionsQuestionIdAnswersAnswerIdComments
-} from 'universe/pages/api/v1/questions/[question_id]/answers/[answer_id]/comments';
-
-import V1EndpointQuestionsQuestionIdAnswersAnswerIdCommentsCommentId, {
-  config as V1ConfigQuestionsQuestionIdAnswersAnswerIdCommentsCommentId,
-  metadata as V1MetadataQuestionsQuestionIdAnswersAnswerIdCommentsCommentId
-} from 'universe/pages/api/v1/questions/[question_id]/answers/[answer_id]/comments/[comment_id]';
-
-import V1EndpointQuestionsQuestionIdAnswersAnswerIdCommentsCommentIdVoteUsername, {
-  config as V1ConfigQuestionsQuestionIdAnswersAnswerIdCommentsCommentIdVoteUsername,
-  metadata as V1MetadataQuestionsQuestionIdAnswersAnswerIdCommentsCommentIdVoteUsername
-} from 'universe/pages/api/v1/questions/[question_id]/answers/[answer_id]/comments/[comment_id]/vote/[username]';
+import V1EndpointInfo, {
+  config as V1ConfigInfo,
+  metadata as V1MetadataInfo
+} from 'universe/pages/api/v1/info';
 
 import type { NextApiHandler, PageConfig } from 'next';
-import {
-  PublicAnswer,
-  PublicComment,
-  PublicMail,
-  PublicQuestion,
-  PublicUser
+import type {
+  PublicBlog,
+  PublicInfo,
+  PublicPage,
+  PublicPageMetadata,
+  PublicUser,
+  SessionId
 } from 'universe/backend/db';
 
 export type NextApiHandlerMixin = NextApiHandler & {
@@ -147,106 +82,53 @@ export type NextApiHandlerMixin = NextApiHandler & {
   uri: string;
 };
 
+// TODO: make a package that automatically generates/regenerates this file
+
 /**
  * The entire live API topology gathered together into one convenient object.
  */
 export const api = {
   v1: {
     users: V1EndpointUsers as NextApiHandlerMixin,
-    usersUsername: V1EndpointUsersUsername as NextApiHandlerMixin,
-    usersUsernameAuth: V1EndpointUsersUsernameAuth as NextApiHandlerMixin,
-    usersUsernameQuestions: V1EndpointUsersUsernameQuestions as NextApiHandlerMixin,
-    usersUsernameAnswers: V1EndpointUsersUsernameAnswers as NextApiHandlerMixin,
-    usersUsernamePoints: V1EndpointUsersUsernamePoints as NextApiHandlerMixin,
-    mail: V1EndpointMail as NextApiHandlerMixin,
-    mailUsername: V1EndpointMailUsername as NextApiHandlerMixin,
-    questions: V1EndpointQuestions as NextApiHandlerMixin,
-    questionsSearch: V1EndpointQuestionsSearch as NextApiHandlerMixin,
-    questionsQuestionId: V1EndpointQuestionsQuestionId as NextApiHandlerMixin,
-    questionsQuestionIdVoteUsername:
-      V1EndpointQuestionsQuestionIdVoteUsername as NextApiHandlerMixin,
-    questionsQuestionIdComments:
-      V1EndpointQuestionsQuestionIdComments as NextApiHandlerMixin,
-    questionsQuestionIdCommentsCommentId:
-      V1EndpointQuestionsQuestionIdCommentsCommentId as NextApiHandlerMixin,
-    questionsQuestionIdCommentsCommentIdVoteUsername:
-      V1EndpointQuestionsQuestionIdCommentsCommentIdVoteUsername as NextApiHandlerMixin,
-    questionsQuestionIdAnswers:
-      V1EndpointQuestionsQuestionIdAnswers as NextApiHandlerMixin,
-    questionsQuestionIdAnswersAnswerId:
-      V1EndpointQuestionsQuestionIdAnswersAnswerId as NextApiHandlerMixin,
-    questionsQuestionIdAnswersAnswerIdVoteUsername:
-      V1EndpointQuestionsQuestionIdAnswersAnswerIdVoteUsername as NextApiHandlerMixin,
-    questionsQuestionIdAnswersAnswerIdComments:
-      V1EndpointQuestionsQuestionIdAnswersAnswerIdComments as NextApiHandlerMixin,
-    questionsQuestionIdAnswersAnswerIdCommentsCommentId:
-      V1EndpointQuestionsQuestionIdAnswersAnswerIdCommentsCommentId as NextApiHandlerMixin,
-    questionsQuestionIdAnswersAnswerIdCommentsCommentIdVoteUsername:
-      V1EndpointQuestionsQuestionIdAnswersAnswerIdCommentsCommentIdVoteUsername as NextApiHandlerMixin
+    usersUsernameoremail: V1EndpointUsersUsernameoremail as NextApiHandlerMixin,
+    usersUsernameoremailAuth:
+      V1EndpointUsersUsernameoremailAuth as NextApiHandlerMixin,
+    blogsBlogname: V1EndpointBlogsBlogname as NextApiHandlerMixin,
+    blogsBlognamePages: V1EndpointBlogsBlognamePages as NextApiHandlerMixin,
+    blogsBlognamePagesPagename:
+      V1EndpointBlogsBlognamePagesPagename as NextApiHandlerMixin,
+    blogsBlognamePagesPagenameSessions:
+      V1EndpointBlogsBlognamePagesPagenameSessions as NextApiHandlerMixin,
+    blogsBlognamePagesPagenameSessionsSessionid:
+      V1EndpointBlogsBlognamePagesPagenameSessionsSessionid as NextApiHandlerMixin,
+    info: V1EndpointInfo as NextApiHandlerMixin
   }
 };
 
 api.v1.users.config = V1ConfigUsers;
-api.v1.usersUsername.config = V1ConfigUsersUsername;
-api.v1.usersUsernameAuth.config = V1ConfigUsersUsernameAuth;
-api.v1.usersUsernameQuestions.config = V1ConfigUsersUsernameQuestions;
-api.v1.usersUsernameAnswers.config = V1ConfigUsersUsernameAnswers;
-api.v1.usersUsernamePoints.config = V1ConfigUsersUsernamePoints;
-api.v1.mail.config = V1ConfigMail;
-api.v1.mailUsername.config = V1ConfigMailUsername;
-api.v1.questions.config = V1ConfigQuestions;
-api.v1.questionsSearch.config = V1ConfigQuestionsSearch;
-api.v1.questionsQuestionId.config = V1ConfigQuestionsQuestionId;
-api.v1.questionsQuestionIdVoteUsername.config =
-  V1ConfigQuestionsQuestionIdVoteUsername;
-api.v1.questionsQuestionIdComments.config = V1ConfigQuestionsQuestionIdComments;
-api.v1.questionsQuestionIdCommentsCommentId.config =
-  V1ConfigQuestionsQuestionIdCommentsCommentId;
-api.v1.questionsQuestionIdCommentsCommentIdVoteUsername.config =
-  V1ConfigQuestionsQuestionIdCommentsCommentIdVoteUsername;
-api.v1.questionsQuestionIdAnswers.config = V1ConfigQuestionsQuestionIdAnswers;
-api.v1.questionsQuestionIdAnswersAnswerId.config =
-  V1ConfigQuestionsQuestionIdAnswersAnswerId;
-api.v1.questionsQuestionIdAnswersAnswerIdVoteUsername.config =
-  V1ConfigQuestionsQuestionIdAnswersAnswerIdVoteUsername;
-api.v1.questionsQuestionIdAnswersAnswerIdComments.config =
-  V1ConfigQuestionsQuestionIdAnswersAnswerIdComments;
-api.v1.questionsQuestionIdAnswersAnswerIdCommentsCommentId.config =
-  V1ConfigQuestionsQuestionIdAnswersAnswerIdCommentsCommentId;
-api.v1.questionsQuestionIdAnswersAnswerIdCommentsCommentIdVoteUsername.config =
-  V1ConfigQuestionsQuestionIdAnswersAnswerIdCommentsCommentIdVoteUsername;
+api.v1.usersUsernameoremail.config = V1ConfigUsersUsernameoremail;
+api.v1.usersUsernameoremailAuth.config = V1ConfigUsersUsernameoremailAuth;
+api.v1.blogsBlogname.config = V1ConfigBlogsBlogname;
+api.v1.blogsBlognamePages.config = V1ConfigBlogsBlognamePages;
+api.v1.blogsBlognamePagesPagename.config = V1ConfigBlogsBlognamePagesPagename;
+api.v1.blogsBlognamePagesPagenameSessions.config =
+  V1ConfigBlogsBlognamePagesPagenameSessions;
+api.v1.blogsBlognamePagesPagenameSessionsSessionid.config =
+  V1ConfigBlogsBlognamePagesPagenameSessionsSessionid;
+api.v1.info.config = V1ConfigInfo;
 
 api.v1.users.uri = V1MetadataUsers.descriptor;
-api.v1.usersUsername.uri = V1MetadataUsersUsername.descriptor;
-api.v1.usersUsernameAuth.uri = V1MetadataUsersUsernameAuth.descriptor;
-api.v1.usersUsernameQuestions.uri = V1MetadataUsersUsernameQuestions.descriptor;
-api.v1.usersUsernameAnswers.uri = V1MetadataUsersUsernameAnswers.descriptor;
-api.v1.usersUsernamePoints.uri = V1MetadataUsersUsernamePoints.descriptor;
-api.v1.mail.uri = V1MetadataMail.descriptor;
-api.v1.mailUsername.uri = V1MetadataMailUsername.descriptor;
-api.v1.questions.uri = V1MetadataQuestions.descriptor;
-api.v1.questionsSearch.uri = V1MetadataQuestionsSearch.descriptor;
-api.v1.questionsQuestionId.uri = V1MetadataQuestionsQuestionId.descriptor;
-api.v1.questionsQuestionIdVoteUsername.uri =
-  V1MetadataQuestionsQuestionIdVoteUsername.descriptor;
-api.v1.questionsQuestionIdComments.uri =
-  V1MetadataQuestionsQuestionIdComments.descriptor;
-api.v1.questionsQuestionIdCommentsCommentId.uri =
-  V1MetadataQuestionsQuestionIdCommentsCommentId.descriptor;
-api.v1.questionsQuestionIdCommentsCommentIdVoteUsername.uri =
-  V1MetadataQuestionsQuestionIdCommentsCommentIdVoteUsername.descriptor;
-api.v1.questionsQuestionIdAnswers.uri =
-  V1MetadataQuestionsQuestionIdAnswers.descriptor;
-api.v1.questionsQuestionIdAnswersAnswerId.uri =
-  V1MetadataQuestionsQuestionIdAnswersAnswerId.descriptor;
-api.v1.questionsQuestionIdAnswersAnswerIdVoteUsername.uri =
-  V1MetadataQuestionsQuestionIdAnswersAnswerIdVoteUsername.descriptor;
-api.v1.questionsQuestionIdAnswersAnswerIdComments.uri =
-  V1MetadataQuestionsQuestionIdAnswersAnswerIdComments.descriptor;
-api.v1.questionsQuestionIdAnswersAnswerIdCommentsCommentId.uri =
-  V1MetadataQuestionsQuestionIdAnswersAnswerIdCommentsCommentId.descriptor;
-api.v1.questionsQuestionIdAnswersAnswerIdCommentsCommentIdVoteUsername.uri =
-  V1MetadataQuestionsQuestionIdAnswersAnswerIdCommentsCommentIdVoteUsername.descriptor;
+api.v1.usersUsernameoremail.uri = V1MetadataUsersUsernameoremail.descriptor;
+api.v1.usersUsernameoremailAuth.uri = V1MetadataUsersUsernameoremailAuth.descriptor;
+api.v1.blogsBlogname.uri = V1MetadataBlogsBlogname.descriptor;
+api.v1.blogsBlognamePages.uri = V1MetadataBlogsBlognamePages.descriptor;
+api.v1.blogsBlognamePagesPagename.uri =
+  V1MetadataBlogsBlognamePagesPagename.descriptor;
+api.v1.blogsBlognamePagesPagenameSessions.uri =
+  V1MetadataBlogsBlognamePagesPagenameSessions.descriptor;
+api.v1.blogsBlognamePagesPagenameSessionsSessionid.uri =
+  V1MetadataBlogsBlognamePagesPagenameSessionsSessionid.descriptor;
+api.v1.info.uri = V1MetadataInfo.descriptor;
 
 /**
  * A convenience function that mocks the entire backend and returns the mock
@@ -256,85 +138,66 @@ api.v1.questionsQuestionIdAnswersAnswerIdCommentsCommentIdVoteUsername.uri =
  * function!**
  */
 export function setupMockBackend() {
-  const mockedApplyVotesUpdateOperation = asMockedFunction(applyVotesUpdateOperation);
   const mockedAuthAppUser = asMockedFunction(authAppUser);
-  const mockedCreateAnswer = asMockedFunction(createAnswer);
-  const mockedCreateComment = asMockedFunction(createComment);
-  const mockedCreateMessage = asMockedFunction(createMessage);
-  const mockedCreateQuestion = asMockedFunction(createQuestion);
+  const mockedCreatePage = asMockedFunction(createPage);
   const mockedCreateUser = asMockedFunction(createUser);
-  const mockedDeleteComment = asMockedFunction(deleteComment);
+  const mockedDeleteSession = asMockedFunction(deleteSession);
+  const mockedDeletePage = asMockedFunction(deletePage);
   const mockedDeleteUser = asMockedFunction(deleteUser);
   const mockedGetAllUsers = asMockedFunction(getAllUsers);
-  const mockedGetAnswers = asMockedFunction(getAnswers);
-  const mockedGetComments = asMockedFunction(getComments);
-  const mockedGetQuestion = asMockedFunction(getQuestion);
+  const mockedGetBlogPagesMetadata = asMockedFunction(getBlogPagesMetadata);
+  const mockedGetBlog = asMockedFunction(getBlog);
+  const mockedGetInfo = asMockedFunction(getInfo);
+  const mockedGetPage = asMockedFunction(getPage);
+  const mockedGetPageSessionCount = asMockedFunction(getPageSessionsCount);
   const mockedGetUser = asMockedFunction(getUser);
-  const mockedGetUserAnswers = asMockedFunction(getUserAnswers);
-  const mockedGetUserMessages = asMockedFunction(getUserMessages);
-  const mockedGetUserQuestions = asMockedFunction(getUserQuestions);
-  const mockedSearchQuestions = asMockedFunction(searchQuestions);
-  const mockedUpdateAnswer = asMockedFunction(updateAnswer);
-  const mockedUpdateQuestion = asMockedFunction(updateQuestion);
+  const mockedUpdatePage = asMockedFunction(updatePage);
+  const mockedCreateSession = asMockedFunction(createSession);
   const mockedUpdateUser = asMockedFunction(updateUser);
-  const mockedDeleteAnswer = asMockedFunction(deleteAnswer);
-  const mockedDeleteMessage = asMockedFunction(deleteMessage);
-  const mockedDeleteQuestion = asMockedFunction(deleteQuestion);
-  const mockedGetHowUserVoted = asMockedFunction(getHowUserVoted);
+  const mockedUpdateBlog = asMockedFunction(updateBlog);
+  const mockedRenewSession = asMockedFunction(renewSession);
 
   beforeEach(() => {
-    mockedApplyVotesUpdateOperation.mockReturnValue(Promise.resolve());
     mockedAuthAppUser.mockReturnValue(Promise.resolve(false));
-    mockedCreateAnswer.mockReturnValue(Promise.resolve({} as PublicAnswer));
-    mockedCreateComment.mockReturnValue(Promise.resolve({} as PublicComment));
-    mockedCreateMessage.mockReturnValue(Promise.resolve({} as PublicMail));
-    mockedCreateQuestion.mockReturnValue(Promise.resolve({} as PublicQuestion));
+    mockedCreatePage.mockReturnValue(Promise.resolve({} as PublicPage));
     mockedCreateUser.mockReturnValue(Promise.resolve({} as PublicUser));
-    mockedDeleteComment.mockReturnValue(Promise.resolve());
+    mockedDeleteSession.mockReturnValue(Promise.resolve());
+    mockedDeletePage.mockReturnValue(Promise.resolve());
     mockedDeleteUser.mockReturnValue(Promise.resolve());
-    mockedGetAllUsers.mockReturnValue(Promise.resolve([]));
-    mockedGetAnswers.mockReturnValue(Promise.resolve([]));
-    mockedGetComments.mockReturnValue(Promise.resolve([]));
-    mockedGetQuestion.mockReturnValue(Promise.resolve({} as PublicQuestion));
+    mockedGetAllUsers.mockReturnValue(Promise.resolve([] as PublicUser[]));
+    mockedGetBlogPagesMetadata.mockReturnValue(
+      Promise.resolve([] as PublicPageMetadata[])
+    );
+    mockedGetBlog.mockReturnValue(Promise.resolve({} as PublicBlog));
+    mockedGetInfo.mockReturnValue(Promise.resolve({} as PublicInfo));
+    mockedGetPage.mockReturnValue(Promise.resolve({} as PublicPage));
+    mockedGetPageSessionCount.mockReturnValue(Promise.resolve(0));
     mockedGetUser.mockReturnValue(Promise.resolve({} as PublicUser));
-    mockedGetUserAnswers.mockReturnValue(Promise.resolve([]));
-    mockedGetUserMessages.mockReturnValue(Promise.resolve([]));
-    mockedGetUserQuestions.mockReturnValue(Promise.resolve([]));
-    mockedSearchQuestions.mockReturnValue(Promise.resolve([]));
-    mockedUpdateAnswer.mockReturnValue(Promise.resolve());
-    mockedUpdateQuestion.mockReturnValue(Promise.resolve());
+    mockedUpdatePage.mockReturnValue(Promise.resolve());
+    mockedCreateSession.mockReturnValue(Promise.resolve(new ObjectId() as SessionId));
     mockedUpdateUser.mockReturnValue(Promise.resolve());
-    mockedDeleteAnswer.mockReturnValue(Promise.resolve());
-    mockedDeleteMessage.mockReturnValue(Promise.resolve());
-    mockedDeleteQuestion.mockReturnValue(Promise.resolve());
-    mockedGetHowUserVoted.mockReturnValue(Promise.resolve(null));
+    mockedUpdateBlog.mockReturnValue(Promise.resolve());
+    mockedRenewSession.mockReturnValue(Promise.resolve());
   });
 
   return {
-    mockedApplyVotesUpdateOperation,
     mockedAuthAppUser,
-    mockedCreateAnswer,
-    mockedCreateComment,
-    mockedCreateMessage,
-    mockedCreateQuestion,
+    mockedCreatePage,
     mockedCreateUser,
-    mockedDeleteComment,
+    mockedCreateSession,
+    mockedDeleteSession,
+    mockedDeletePage,
     mockedDeleteUser,
     mockedGetAllUsers,
-    mockedGetAnswers,
-    mockedGetComments,
-    mockedGetQuestion,
+    mockedGetBlogPagesMetadata,
+    mockedGetBlog,
+    mockedGetInfo,
+    mockedGetPage,
+    mockedGetPageSessionCount,
     mockedGetUser,
-    mockedGetUserAnswers,
-    mockedGetUserMessages,
-    mockedGetUserQuestions,
-    mockedSearchQuestions,
-    mockedUpdateAnswer,
-    mockedUpdateQuestion,
+    mockedUpdatePage,
     mockedUpdateUser,
-    mockedDeleteAnswer,
-    mockedDeleteMessage,
-    mockedDeleteQuestion,
-    mockedGetHowUserVoted
+    mockedUpdateBlog,
+    mockedRenewSession
   };
 }
