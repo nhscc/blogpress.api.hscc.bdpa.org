@@ -13,7 +13,7 @@ export const ErrorMessage = {
     `an item with that "${property}" already exists`,
   InvalidFieldValue: (
     property: string,
-    value?: string,
+    value?: string | null,
     validValues?: readonly string[]
   ) =>
     `\`${property}\` field has ${
