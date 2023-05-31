@@ -45,7 +45,7 @@ module.exports = {
     '!**/*.test.*'
   ],
   // ? Make sure jest-haste-map doesn't try to parse and cache fixtures
-  modulePathIgnorePatterns: ['<rootDir>/test/fixtures'],
+  modulePathIgnorePatterns: ['<rootDir>/test/fixtures/(?!(index\\.|integration\\.))'],
   // ? Transform specific third-party ESM packages into CJS using babel
   transformIgnorePatterns: ['node_modules/(?!(dot-prop|unfetch)/)']
 };
