@@ -4,27 +4,15 @@ import { InvalidAppEnvironmentError } from 'universe/error';
 
 import type { Environment } from 'multiverse/next-env';
 
+// TODO: replace validation logic with zod instead (including defaults) and
+// TODO: integrate that logic with expect-env (also zod-based)
+
 /**
  * Returns an object representing the application's runtime environment.
  */
 // eslint-disable-next-line @typescript-eslint/ban-types
 export function getEnv<T extends Environment = Environment>() {
   const env = getDefaultEnv({
-    STACKAPPS_INTERVAL_PERIOD_MS: Number(
-      process.env.STACKAPPS_INTERVAL_PERIOD_MS || 0
-    ),
-    STACKAPPS_MAX_REQUESTS_PER_INTERVAL:
-      Number(process.env.STACKAPPS_MAX_REQUESTS_PER_INTERVAL) || null,
-    STACKAPPS_TOTAL_API_GENERATED_QUESTIONS:
-      Number(process.env.STACKAPPS_TOTAL_API_GENERATED_QUESTIONS) || null,
-    STACKAPPS_COLLECTALL_QUESTION_ANSWERS:
-      Number(process.env.STACKAPPS_COLLECTALL_QUESTION_ANSWERS) || null,
-    STACKAPPS_COLLECTALL_QUESTION_COMMENTS:
-      Number(process.env.STACKAPPS_COLLECTALL_QUESTION_COMMENTS) || null,
-    STACKAPPS_COLLECTALL_FIRST_ANSWER_COMMENTS:
-      Number(process.env.STACKAPPS_COLLECTALL_FIRST_ANSWER_COMMENTS) || null,
-    STACKAPPS_MAX_PAGE_SIZE: Number(process.env.STACKAPPS_MAX_PAGE_SIZE) || null,
-    STACKAPPS_AUTH_KEY: process.env.STACKAPPS_AUTH_KEY || null,
     MAX_PARAMS_PER_REQUEST: Number(process.env.MAX_PARAMS_PER_REQUEST) || 100,
     MIN_USER_NAME_LENGTH: Number(process.env.MIN_USER_NAME_LENGTH) || 4,
     MAX_USER_NAME_LENGTH: Number(process.env.MAX_USER_NAME_LENGTH) || 16,
@@ -32,21 +20,22 @@ export function getEnv<T extends Environment = Environment>() {
     MAX_USER_EMAIL_LENGTH: Number(process.env.MAX_USER_EMAIL_LENGTH) || 75,
     USER_SALT_LENGTH: Number(process.env.USER_SALT_LENGTH) || 32,
     USER_KEY_LENGTH: Number(process.env.USER_KEY_LENGTH) || 128,
-    MAX_COMMENT_LENGTH: Number(process.env.MAX_COMMENT_LENGTH) || 150,
-    MAX_QUESTION_TITLE_LENGTH: Number(process.env.MAX_QUESTION_TITLE_LENGTH) || 150,
-    MAX_QUESTION_BODY_LENGTH_BYTES:
-      parseAsBytes(process.env.MAX_QUESTION_BODY_LENGTH_BYTES ?? '-Infinity') || 3000,
-    MAX_ANSWER_BODY_LENGTH_BYTES:
-      parseAsBytes(process.env.MAX_ANSWER_BODY_LENGTH_BYTES ?? '-Infinity') || 3000,
-    MAX_MAIL_SUBJECT_LENGTH:
-      parseAsBytes(process.env.MAX_MAIL_SUBJECT_LENGTH ?? '-Infinity') || 75,
-    MAX_MAIL_BODY_LENGTH_BYTES:
-      parseAsBytes(process.env.MAX_MAIL_BODY_LENGTH_BYTES ?? '-Infinity') || 512,
 
-    PRUNE_DATA_MAX_MAIL_BYTES:
-      parseAsBytes(process.env.PRUNE_DATA_MAX_MAIL_BYTES ?? '-Infinity') || null,
-    PRUNE_DATA_MAX_QUESTIONS_BYTES:
-      parseAsBytes(process.env.PRUNE_DATA_MAX_QUESTIONS_BYTES ?? '-Infinity') || null,
+    MAX_USER_BLOG_PAGES: Number(process.env.MAX_USER_BLOG_PAGES) || 100,
+    MAX_BLOG_NAME_LENGTH: Number(process.env.MAX_BLOG_NAME_LENGTH) || 100,
+    MAX_NAV_LINK_HREF_LENGTH: Number(process.env.MAX_NAV_LINK_HREF_LENGTH) || 150,
+    MAX_NAV_LINK_TEXT_LENGTH: Number(process.env.MAX_NAV_LINK_TEXT_LENGTH) || 50,
+    MAX_BLOG_PAGE_NAME_LENGTH: Number(process.env.MAX_BLOG_PAGE_NAME_LENGTH) || 100,
+    MAX_BLOG_PAGE_CONTENTS_LENGTH_BYTES:
+      parseAsBytes(process.env.MAX_BLOG_PAGE_CONTENTS_LENGTH_BYTES ?? '-Infinity') ||
+      3072,
+    SESSION_EXPIRE_AFTER_SECONDS:
+      Number(process.env.SESSION_EXPIRE_AFTER_SECONDS) || 30,
+
+    PRUNE_DATA_MAX_PAGES_BYTES:
+      parseAsBytes(process.env.PRUNE_DATA_MAX_PAGES_BYTES ?? '-Infinity') || null,
+    PRUNE_DATA_MAX_SESSIONS_BYTES:
+      parseAsBytes(process.env.PRUNE_DATA_MAX_SESSIONS_BYTES ?? '-Infinity') || null,
     PRUNE_DATA_MAX_USERS_BYTES:
       parseAsBytes(process.env.PRUNE_DATA_MAX_USERS_BYTES ?? '-Infinity') || null
   });
@@ -64,16 +53,20 @@ export function getEnv<T extends Environment = Environment>() {
     (
       [
         'MAX_PARAMS_PER_REQUEST',
+        'MIN_USER_NAME_LENGTH',
         'MAX_USER_NAME_LENGTH',
-        'MAX_USER_EMAIL_LENGTH',
         'MIN_USER_EMAIL_LENGTH',
+        'MAX_USER_EMAIL_LENGTH',
         'USER_SALT_LENGTH',
         'USER_KEY_LENGTH',
-        'MAX_COMMENT_LENGTH',
-        'MAX_QUESTION_TITLE_LENGTH',
-        'MAX_QUESTION_BODY_LENGTH_BYTES',
-        'MAX_ANSWER_BODY_LENGTH_BYTES',
-        'MAX_MAIL_BODY_LENGTH_BYTES'
+
+        'MAX_USER_BLOG_PAGES',
+        'MAX_BLOG_NAME_LENGTH',
+        'MAX_NAV_LINK_HREF_LENGTH',
+        'MAX_NAV_LINK_TEXT_LENGTH',
+        'MAX_BLOG_PAGE_NAME_LENGTH',
+        'MAX_BLOG_PAGE_CONTENTS_LENGTH_BYTES',
+        'SESSION_EXPIRE_AFTER_SECONDS'
       ] as (keyof typeof env)[]
     ).forEach((name) => {
       const value = env[name];
