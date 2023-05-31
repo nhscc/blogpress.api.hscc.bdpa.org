@@ -1,5 +1,5 @@
 import { withMiddleware } from 'universe/backend/middleware';
-import { createUser, getAllUsers } from 'universe/backend';
+import { createSession, getBlogPagesMetadata } from 'universe/backend';
 import { authorizationHeaderToOwnerAttribute } from 'universe/backend/api';
 import { sendHttpOk } from 'multiverse/next-api-respond';
 
@@ -7,28 +7,32 @@ import { sendHttpOk } from 'multiverse/next-api-respond';
 export { defaultConfig as config } from 'universe/backend/api';
 
 export const metadata = {
-  descriptor: '/users'
+  descriptor: '/blogs/:blogName/pages/:pageName/sessions'
 };
 
 export default withMiddleware(
   async (req, res) => {
+    const blogName = req.query.blogName?.toString();
+    const pageName = req.query.pageName?.toString();
+
     switch (req.method) {
       case 'GET': {
         sendHttpOk(res, {
-          users: await getAllUsers({ after_id: req.query.after?.toString() })
+          active: await getBlogPagesMetadata({ blogName })
         });
         break;
       }
 
       case 'POST': {
-        sendHttpOk(res, {
-          user: await createUser({
-            data: req.body,
-            $provenance: await authorizationHeaderToOwnerAttribute(
-              req.headers.authorization
-            )
-          })
+        const session_id = await createSession({
+          blogName,
+          pageName,
+          $provenance: await authorizationHeaderToOwnerAttribute(
+            req.headers.authorization
+          )
         });
+
+        sendHttpOk(res, { session_id });
         break;
       }
     }

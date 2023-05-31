@@ -1,32 +1,31 @@
 import { withMiddleware } from 'universe/backend/middleware';
-import { createUser, getAllUsers } from 'universe/backend';
-import { authorizationHeaderToOwnerAttribute } from 'universe/backend/api';
+import { getBlogPagesMetadata, updateBlog } from 'universe/backend';
 import { sendHttpOk } from 'multiverse/next-api-respond';
 
 // ? This is a NextJS special "config" export
 export { defaultConfig as config } from 'universe/backend/api';
 
 export const metadata = {
-  descriptor: '/users'
+  descriptor: '/blogs/:blogName'
 };
 
 export default withMiddleware(
   async (req, res) => {
+    const blogName = req.query.blogName?.toString();
+
     switch (req.method) {
       case 'GET': {
         sendHttpOk(res, {
-          users: await getAllUsers({ after_id: req.query.after?.toString() })
+          blog: await getBlogPagesMetadata({ blogName })
         });
         break;
       }
 
-      case 'POST': {
+      case 'PATCH': {
         sendHttpOk(res, {
-          user: await createUser({
-            data: req.body,
-            $provenance: await authorizationHeaderToOwnerAttribute(
-              req.headers.authorization
-            )
+          page: await updateBlog({
+            blogName,
+            data: req.body
           })
         });
         break;
@@ -35,6 +34,6 @@ export default withMiddleware(
   },
   {
     descriptor: metadata.descriptor,
-    options: { allowedMethods: ['GET', 'POST'], apiVersion: '1' }
+    options: { allowedMethods: ['GET', 'PATCH'], apiVersion: '1' }
   }
 );

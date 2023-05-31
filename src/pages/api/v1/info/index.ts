@@ -1,23 +1,22 @@
 import { withMiddleware } from 'universe/backend/middleware';
+import { getInfo } from 'universe/backend';
 import { sendHttpOk } from 'multiverse/next-api-respond';
-import { getUserAnswers } from 'universe/backend';
 
 // ? This is a NextJS special "config" export
 export { defaultConfig as config } from 'universe/backend/api';
 
 export const metadata = {
-  descriptor: '/users/:username/answers'
+  descriptor: '/info'
 };
 
 export default withMiddleware(
   async (req, res) => {
-    // * GET
-    sendHttpOk(res, {
-      answers: await getUserAnswers({
-        username: req.query.username?.toString(),
-        after_id: req.query.after?.toString()
-      })
-    });
+    switch (req.method) {
+      case 'GET': {
+        sendHttpOk(res, { info: await getInfo() });
+        break;
+      }
+    }
   },
   {
     descriptor: metadata.descriptor,
