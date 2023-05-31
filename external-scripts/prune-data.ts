@@ -29,6 +29,9 @@ type DataLimit = {
   deleteFn?: (thresholdEntry: WithId<Document>) => Promisable<number>;
 };
 
+// TODO: PRUNE_DATA_MAX_SESSIONS_BYTES
+// TODO: PRUNE_DATA_MAX_PAGES_BYTES
+
 // eslint-disable-next-line no-console
 log.log = console.info.bind(console);
 
