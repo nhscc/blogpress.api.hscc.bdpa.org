@@ -236,9 +236,7 @@ module.exports = {
   ignorePatterns: [
     'coverage',
     'dist',
-    'test/fixtures/**',
-    '!test/fixtures/index.*',
-    '!test/fixtures/integration.*',
+    'test/fixtures',
     '__fixtures__',
     '__snapshots__',
     'test/integration/assets',

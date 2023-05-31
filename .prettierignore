@@ -6,9 +6,7 @@ node_modules
 dist
 coverage
 package-lock.json
-test/fixtures/*
-!test/fixtures/index.*
-!test/fixtures/integration.*
+test/fixtures
 docs
 CHANGELOG.md
 bundle-stats.ignore.json
