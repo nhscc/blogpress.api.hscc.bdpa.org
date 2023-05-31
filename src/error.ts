@@ -84,27 +84,6 @@ export const ErrorMessage = {
     }specifier value type (must be ${type})`,
   InvalidRegexString: (property: string) =>
     `\`${property}\` has invalid or illegal regex value`,
-  InvalidMatcher: (property: string) => `invalid \`${property}\`: must be object`,
-  InvalidOrSpecifier: () =>
-    'invalid "$or" sub-specifier: must be array with exactly two elements',
-  InvalidOrSpecifierNonObject: (index: number) =>
-    `invalid "$or" sub-specifier at index ${index}: all array elements must be objects`,
-  InvalidOrSpecifierBadLength: (index: number) =>
-    `invalid "$or" sub-specifier at index ${index}: only one sub-specifier allowed per array element`,
-  InvalidOrSpecifierInvalidKey: (index: number, key: string) =>
-    `invalid "$or" sub-specifier at index ${index}: invalid sub-key "${key}"`,
-  InvalidOrSpecifierInvalidValueType: (index: number, key: string) =>
-    `invalid "$or" sub-specifier at index ${index}: sub-key "${key}" has invalid value type (must be number)`,
-  UserAlreadyAnswered: () => 'cannot answer the same question more than once',
-  QuestionAlreadyAcceptedAnswer: () => 'question already has an accepted answer',
-  DuplicateIncrementOperation: () =>
-    'cannot execute duplicate increment without preceding decrement',
-  InvalidDecrementOperation: () =>
-    'cannot execute decrement on this target without preceding increment',
-  MultipleIncrementTargets: () =>
-    'cannot execute increment without preceding decrement on other target',
-  MultitargetDecrement: () =>
-    'cannot execute decrement while other target is incremented',
   IllegalOperation: () =>
     'this user is not authorized to execute operations on this item'
 };
