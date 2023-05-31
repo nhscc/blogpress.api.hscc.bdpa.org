@@ -17,7 +17,7 @@ const browserTargets =
 //const targets = '>1% in US and not ie 11';
 
 // ? Next.js-specific Babel settings
-const nextBabelPreset = [
+const nextBabelPresetAndConfig = [
   'next/babel',
   {
     'preset-env': {
@@ -81,13 +81,13 @@ module.exports = {
     // * Used by Vercel, `npm start`, and `npm run build`
     production: {
       // ? Source maps are handled by Next.js and Webpack
-      presets: [nextBabelPreset]
+      presets: [nextBabelPresetAndConfig]
       // ? Minification is handled by Webpack
     },
     // * Used by `npm run dev`; is also the default environment
     development: {
       // ? Source maps are handled by Next.js and Webpack
-      presets: [nextBabelPreset],
+      presets: [nextBabelPresetAndConfig],
       // ? https://reactjs.org/docs/error-boundaries.html#how-about-event-handlers
       plugins: ['@babel/plugin-transform-react-jsx-source']
       // ? We don't care about minification
