@@ -86,5 +86,7 @@ export const ErrorMessage = {
   InvalidRegexString: (property: string) =>
     `\`${property}\` has invalid or illegal regex value`,
   IllegalOperation: () =>
-    'this user is not authorized to execute operations on this item'
+    'this user is not authorized to execute operations on this item',
+  TooManyPages: () =>
+    'this user has reached the maximum allowed number of pages and cannot create more'
 };
