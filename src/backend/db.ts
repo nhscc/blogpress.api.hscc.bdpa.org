@@ -1,15 +1,12 @@
-import { GuruMeditationError } from 'named-app-errors';
+import assert from 'node:assert';
 
+import { getEnv } from 'universe/backend/env';
 import { getCommonSchemaConfig } from 'multiverse/mongo-common';
-import { type DbSchema, getDb } from 'multiverse/mongo-schema';
 
-import type { Document, ObjectId, WithId, WithoutId } from 'mongodb';
+import type { TokenAttributes } from 'multiverse/next-auth';
+import type { DbSchema } from 'multiverse/mongo-schema';
+import type { ObjectId, WithId, WithoutId } from 'mongodb';
 import type { UnixEpochMs } from '@xunnamius/types';
-
-/**
- * A generic projection specification.
- */
-export type Projection = { [key in keyof InternalAnswer]?: unknown } & Document;
 
 /**
  * A JSON representation of the backend Mongo database structure. This is used
@@ -29,46 +26,42 @@ export function getSchemaConfig(): DbSchema {
             indices: [
               { spec: 'key' },
               {
-                spec: 'username',
-                options: { unique: true }
+                spec: 'username'
+                // * Uniqueness is handled at the application level since
+                // * usernames are nullable
               },
               {
                 spec: 'email',
                 options: { unique: true }
+              },
+              {
+                spec: 'blogName'
+                // * Uniqueness is handled at the application level since
+                // * blogName could be undefined
+              },
+              // ? Lets us filter out account types for more optimal operations
+              { spec: 'type' }
+            ]
+          },
+          {
+            name: 'pages',
+            // * Order matters because blog_id is queried alone sometimes
+            indices: [{ spec: ['blog_id', 'name'], options: { unique: true } }]
+          },
+          {
+            name: 'sessions',
+            indices: [
+              {
+                // * Order matters because this is the comparison order
+                spec: ['blog_id', 'page_id']
+              },
+              {
+                spec: 'lastRenewedDate',
+                options: { expireAfterSeconds: getEnv().SESSION_EXPIRE_AFTER_SECONDS }
               }
             ]
           },
-          {
-            name: 'mail',
-            indices: [{ spec: 'sender' }, { spec: 'receiver' }]
-          },
-          {
-            name: 'questions',
-            indices: [
-              { spec: 'creator' },
-              { spec: 'title-lowercase' },
-              { spec: 'createdAt' },
-              { spec: 'status' },
-              { spec: 'upvotes' },
-              { spec: 'upvoterUsernames' },
-              { spec: 'downvotes' },
-              { spec: 'downvoterUsernames' },
-              { spec: 'answers' },
-              { spec: 'answerItems._id' },
-              { spec: 'answerItems.upvoterUsernames' },
-              { spec: 'answerItems.downvoterUsernames' },
-              { spec: 'answerItems.commentItems._id' },
-              { spec: 'answerItems.commentItems.upvoterUsernames' },
-              { spec: 'answerItems.commentItems.downvoterUsernames' },
-              { spec: 'comments' },
-              { spec: 'commentItems._id' },
-              { spec: 'commentItems.upvoterUsernames' },
-              { spec: 'commentItems.downvoterUsernames' },
-              { spec: 'views' },
-              { spec: 'sorter.uvc' },
-              { spec: 'sorter.uvac' }
-            ]
-          }
+          { name: 'info' }
         ]
       }
     },
@@ -79,367 +72,262 @@ export function getSchemaConfig(): DbSchema {
 }
 
 export type Username = string;
+export type Email = string;
+export type MaybeUsernameOrEmail = Username | Email | undefined;
+export type TokenAttributeOwner = TokenAttributes['owner'];
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface UserId extends ObjectId {}
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface MailId extends ObjectId {}
+export interface PageId extends ObjectId {}
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface QuestionId extends ObjectId {}
+export interface SessionId extends ObjectId {}
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface AnswerId extends ObjectId {}
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface CommentId extends ObjectId {}
+export type BlogId = UserId;
 
 /**
- * The shape of an update operation on a question's views total.
+ * An array of valid authenticated user types.
  */
-export type ViewsUpdateOperation = 'increment';
+export const userTypes = ['blogger', 'administrator'] as const;
 
 /**
- * The shape of an update operation on a question or comment's
- * upvotes/downvotes.
+ * Represents the type of authenticated user.
  */
-export type VotesUpdateOperation = {
-  op: 'increment' | 'decrement';
-  target: 'upvotes' | 'downvotes';
-};
+export type UserType = (typeof userTypes)[number];
 
 /**
- * The shape of an update operation on a user's points total.
+ * The shape of a navigation link.
  */
-export type PointsUpdateOperation = {
-  op: 'increment' | 'decrement';
-  amount: number;
-};
+export type NavigationLink = { href: string; text: string };
+
+/**
+ * The shape of a public blog page metadata object.
+ */
+export type PublicPageMetadata = Pick<
+  InternalPage,
+  'name' | 'createdAt' | 'totalViews'
+>;
 
 /**
  * The shape of an internal application user.
  */
 export type InternalUser = WithId<{
-  username: Username;
+  $provenance: TokenAttributeOwner;
+  username: Username | null;
   salt: string;
   email: string;
   key: string;
-  points: number;
-  questionIds: QuestionId[];
-  answerIds: [questionId: QuestionId, answerId: AnswerId][];
-}>;
+  type: UserType;
+}> &
+  (
+    | {
+        type: 'blogger';
+        createdAt: UnixEpochMs;
+        blogName: string;
+        blogRootPage: string;
+        banned: boolean;
+        navLinks: NavigationLink[];
+      }
+    | {
+        type: 'administrator';
+        createdAt?: never;
+        blogName?: never;
+        blogRootPage?: never;
+        banned?: never;
+        navLinks?: never;
+      }
+  );
 
 /**
  * The shape of a public application user.
  */
-export type PublicUser = Omit<
-  WithoutId<InternalUser>,
-  'key' | 'questionIds' | 'answerIds'
+export type PublicUser = PublicUserAdministrator | PublicUserBlogger;
+
+/**
+ * The shape of a public application administrator user.
+ */
+export type PublicUserAdministrator = Pick<
+  InternalUser,
+  'username' | 'salt' | 'email'
 > & {
   user_id: string;
-  questions: number;
-  answers: number;
+  type: 'administrator';
+  blogName?: never;
+  banned?: never;
+};
+
+/**
+ * The shape of a public application user.
+ */
+export type PublicUserBlogger = Pick<InternalUser, 'username' | 'salt' | 'email'> & {
+  user_id: string;
+  type: 'blogger';
+  blogName: InternalUser['blogName'];
+  banned: InternalUser['banned'];
 };
 
 /**
  * The shape of a new application user.
  */
 export type NewUser = Partial<
-  Omit<WithoutId<InternalUser>, 'points' | 'questionIds' | 'answerIds'>
+  Pick<InternalUser, 'username' | 'salt' | 'email' | 'key' | 'type' | 'blogName'>
 >;
 
 /**
  * The shape of a patch application user.
  */
 export type PatchUser = Partial<
-  Omit<
-    WithoutId<InternalUser>,
-    'username' | 'questionIds' | 'answerIds' | 'points'
-  > & {
-    points:
-      | InternalUser['points']
-      | {
-          [key in keyof PointsUpdateOperation]?: PointsUpdateOperation[key] extends string
-            ? string
-            : PointsUpdateOperation[key];
-        };
+  Pick<InternalUser, 'salt' | 'email' | 'key' | 'banned'>
+>;
+
+/**
+ * The shape of a public blog.
+ */
+export type PublicBlog = Required<Pick<InternalUser, 'navLinks' | 'createdAt'>> & {
+  name: NonNullable<InternalUser['blogName']>;
+  rootPage: NonNullable<InternalUser['blogRootPage']>;
+};
+
+/**
+ * The shape of a patch blog.
+ */
+export type PatchBlog = Partial<
+  Pick<InternalUser, 'navLinks'> & {
+    name: NonNullable<InternalUser['blogName']>;
+    rootPage: NonNullable<InternalUser['blogRootPage']>;
   }
 >;
 
 /**
- * The shape of internal mail.
+ * The shape of an internal blog page.
  */
-export type InternalMail = WithId<{
-  sender: Username;
-  receiver: Username;
+export type InternalPage = WithId<{
+  $provenance: TokenAttributeOwner;
+  blog_id: BlogId;
   createdAt: UnixEpochMs;
-  subject: string;
-  text: string;
+  name: string;
+  totalViews: number;
+  contents: string;
 }>;
 
 /**
- * The shape of public mail.
+ * The shape of a public blog page.
  */
-export type PublicMail = WithoutId<InternalMail> & {
-  mail_id: string;
+export type PublicPage = Pick<
+  InternalPage,
+  'contents' | 'createdAt' | 'name' | 'totalViews'
+>;
+
+/**
+ * The shape of a new blog page.
+ */
+export type NewPage = Partial<Pick<InternalPage, 'name' | 'contents'>>;
+
+/**
+ * The shape of a patch blog page.
+ */
+export type PatchPage = Partial<Pick<InternalPage, 'contents'>> & {
+  totalViews?: 'increment';
 };
 
 /**
- * The shape of new mail.
+ * The shape of an internal active user entry.
  */
-export type NewMail = Partial<Omit<WithoutId<InternalMail>, 'createdAt'>>;
-
-/**
- * Valid internal question statuses.
- */
-export const questionStatuses = ['open', 'closed', 'protected'] as const;
-
-/**
- * The shape of an internal question.
- */
-export type InternalQuestion = WithId<{
-  creator: Username;
-  title: string;
-  'title-lowercase': string;
-  createdAt: UnixEpochMs;
-  text: string;
-  status: (typeof questionStatuses)[number];
-  hasAcceptedAnswer: boolean;
-  upvotes: number;
-  upvoterUsernames: Username[];
-  downvotes: number;
-  downvoterUsernames: Username[];
-  answers: number;
-  answerItems: InternalAnswer[];
-  views: number;
-  comments: number;
-  commentItems: InternalComment[];
-  sorter: {
-    uvc: number;
-    uvac: number;
-  };
+export type InternalSession = WithId<{
+  $provenance: TokenAttributeOwner;
+  page_id: PageId;
+  blog_id: BlogId;
+  lastRenewedDate: Date;
 }>;
 
 /**
- * The shape of a public question.
+ * The shape of internal info.
  */
-export type PublicQuestion = Omit<
-  WithoutId<InternalQuestion>,
-  | 'title-lowercase'
-  | 'upvoterUsernames'
-  | 'downvoterUsernames'
-  | 'answerItems'
-  | 'commentItems'
-  | 'sorter'
-> & {
-  question_id: string;
-};
-
-/**
- * The shape of a new question.
- */
-export type NewQuestion = Omit<
-  WithoutId<InternalQuestion>,
-  | 'createdAt'
-  | 'title-lowercase'
-  | 'createdAt'
-  | 'status'
-  | 'hasAcceptedAnswer'
-  | 'upvotes'
-  | 'upvoterUsernames'
-  | 'downvotes'
-  | 'downvoterUsernames'
-  | 'answers'
-  | 'answerItems'
-  | 'comments'
-  | 'commentItems'
-  | 'views'
-  | 'sorter'
->;
-
-/**
- * The shape of a patch question.
- */
-export type PatchQuestion = Partial<
-  Omit<
-    WithoutId<InternalQuestion>,
-    | 'creator'
-    | 'title-lowercase'
-    | 'createdAt'
-    | 'hasAcceptedAnswer'
-    | 'upvoterUsernames'
-    | 'downvoterUsernames'
-    | 'answers'
-    | 'answerItems'
-    | 'comments'
-    | 'commentItems'
-    | 'views'
-    | 'sorter'
-  > & { views: InternalQuestion['views'] | ViewsUpdateOperation }
->;
-
-/**
- * The shape of an internal answer.
- */
-export type InternalAnswer = WithId<{
-  creator: Username;
-  createdAt: UnixEpochMs;
-  text: string;
-  accepted: boolean;
-  upvotes: number;
-  upvoterUsernames: Username[];
-  downvotes: number;
-  downvoterUsernames: Username[];
-  commentItems: InternalComment[];
+export type InternalInfo = WithId<{
+  blogs: number;
+  pages: number;
+  users: number;
 }>;
 
 /**
- * The shape of a public answer.
+ * The shape of public info.
  */
-export type PublicAnswer = Omit<
-  WithoutId<InternalAnswer>,
-  'upvoterUsernames' | 'downvoterUsernames' | 'commentItems'
-> & {
-  answer_id: string;
-  question_id: string;
-  comments: number;
-};
-
-/**
- * The shape of a new answer.
- */
-export type NewAnswer = Omit<
-  WithoutId<InternalAnswer>,
-  | 'createdAt'
-  | 'accepted'
-  | 'upvotes'
-  | 'upvoterUsernames'
-  | 'downvotes'
-  | 'downvoterUsernames'
-  | 'commentItems'
->;
-
-/**
- * The shape of a patch answer.
- */
-export type PatchAnswer = Partial<
-  Omit<
-    WithoutId<InternalAnswer>,
-    | 'creator'
-    | 'createdAt'
-    | 'upvoterUsernames'
-    | 'downvoterUsernames'
-    | 'commentItems'
-  >
->;
-
-/**
- * The shape of an internal comment.
- */
-export type InternalComment = WithId<{
-  creator: Username;
-  createdAt: UnixEpochMs;
-  text: string;
-  upvotes: number;
-  upvoterUsernames: Username[];
-  downvotes: number;
-  downvoterUsernames: Username[];
-}>;
-
-/**
- * The shape of a public comment.
- */
-export type PublicComment = Omit<
-  WithoutId<InternalComment>,
-  'upvoterUsernames' | 'downvoterUsernames'
-> & {
-  comment_id: string;
-};
-
-/**
- * The shape of a new comment.
- */
-export type NewComment = Omit<
-  WithoutId<InternalComment>,
-  'createdAt' | 'upvotes' | 'upvoterUsernames' | 'downvotes' | 'downvoterUsernames'
->;
+export type PublicInfo = WithoutId<InternalInfo>;
 
 /**
  * Transforms an internal user into a public user.
  */
 export function toPublicUser(internalUser: InternalUser): PublicUser {
-  return {
+  const partialPublicUser: Pick<
+    PublicUser,
+    'user_id' | 'username' | 'email' | 'salt'
+  > = {
     user_id: internalUser._id.toString(),
     username: internalUser.username,
     email: internalUser.email,
-    salt: internalUser.salt,
-    points: internalUser.points,
-    answers: internalUser.answerIds.length,
-    questions: internalUser.questionIds.length
+    salt: internalUser.salt
+  };
+
+  return internalUser.type === 'blogger'
+    ? /* ( */ {
+        ...partialPublicUser,
+        type: 'blogger',
+        banned: internalUser.banned,
+        blogName: internalUser.blogName
+      } /* satisfies PublicUserBlogger) */
+    : /* ( */ {
+        ...partialPublicUser,
+        type: 'administrator'
+      } /* satisfies PublicUserAdministrator) */;
+}
+
+/**
+ * Transforms an internal user into a public user.
+ */
+export function toPublicBlog({
+  blogName,
+  blogRootPage,
+  navLinks,
+  createdAt,
+  type
+}: InternalUser): PublicBlog {
+  assert(type === 'blogger');
+  return {
+    name: blogName,
+    rootPage: blogRootPage,
+    navLinks,
+    createdAt
   };
 }
 
 /**
- * Transforms internal mail into a public mail.
+ * Transforms an internal user into a public user.
  */
-export function toPublicMail(internalMail: InternalMail): PublicMail {
+export function toPublicPage({
+  contents,
+  createdAt,
+  name,
+  totalViews
+}: InternalPage): PublicPage {
   return {
-    mail_id: internalMail._id.toString(),
-    sender: internalMail.sender,
-    receiver: internalMail.receiver,
-    createdAt: internalMail.createdAt,
-    subject: internalMail.subject,
-    text: internalMail.text
+    name,
+    createdAt,
+    totalViews,
+    contents
   };
 }
 
 /**
- * Transforms an internal question into a public question.
+ * Transforms an internal user into a public user.
  */
-export function toPublicQuestion(internalQuestion: InternalQuestion): PublicQuestion {
+export function toPublicPageMetadata({
+  createdAt,
+  name,
+  totalViews
+}: InternalPage): PublicPageMetadata {
   return {
-    question_id: internalQuestion._id.toString(),
-    creator: internalQuestion.creator,
-    createdAt: internalQuestion.createdAt,
-    title: internalQuestion.title,
-    text: internalQuestion.text,
-    status: internalQuestion.status,
-    answers: internalQuestion.answerItems.length,
-    comments: internalQuestion.commentItems.length,
-    upvotes: internalQuestion.upvotes,
-    downvotes: internalQuestion.downvotes,
-    views: internalQuestion.views,
-    hasAcceptedAnswer: internalQuestion.hasAcceptedAnswer
-  };
-}
-
-/**
- * Transforms an internal answer into a public answer.
- */
-export function toPublicAnswer(
-  internalAnswer: InternalAnswer,
-  questionId: QuestionId
-): PublicAnswer {
-  return {
-    answer_id: internalAnswer._id.toString(),
-    question_id: questionId.toString(),
-    creator: internalAnswer.creator,
-    createdAt: internalAnswer.createdAt,
-    accepted: internalAnswer.accepted,
-    text: internalAnswer.text,
-    upvotes: internalAnswer.upvotes,
-    downvotes: internalAnswer.downvotes,
-    comments: internalAnswer.commentItems.length
-  };
-}
-
-/**
- * Transforms an internal comment into a public comment.
- */
-export function toPublicComment(internalComment: InternalComment): PublicComment {
-  return {
-    comment_id: internalComment._id.toString(),
-    creator: internalComment.creator,
-    createdAt: internalComment.createdAt,
-    text: internalComment.text,
-    upvotes: internalComment.upvotes,
-    downvotes: internalComment.downvotes
+    name,
+    createdAt,
+    totalViews
   };
 }
 
@@ -450,462 +338,45 @@ export function toPublicComment(internalComment: InternalComment): PublicComment
 export const publicUserProjection = {
   _id: false,
   user_id: { $toString: '$_id' },
-  username: true,
   salt: true,
+  username: true,
   email: true,
-  points: true,
-  answers: { $size: '$answerIds' },
-  questions: { $size: '$questionIds' }
+  blogName: true,
+  type: true,
+  banned: true
 } as const;
 
 /**
- * A MongoDB cursor projection that transforms internal mail into public mail.
+ * A MongoDB cursor projection that transforms an internal user into a public
+ * user.
  */
-export const publicMailProjection = {
+export const publicBlogProjection = {
   _id: false,
-  mail_id: { $toString: '$_id' },
-  sender: true,
-  receiver: true,
+  name: true,
   createdAt: true,
-  subject: true,
-  text: true
+  totalViews: true,
+  contents: true
 } as const;
 
 /**
- * A MongoDB cursor projection that transforms an internal question into a
- * public question.
+ * A MongoDB cursor projection that transforms an internal user into a public
+ * user.
  */
-export const publicQuestionProjection = {
+export const publicPageProjection = {
   _id: false,
-  question_id: { $toString: '$_id' },
-  creator: true,
+  name: true,
   createdAt: true,
-  title: true,
-  text: true,
-  status: true,
-  answers: true,
-  comments: true,
-  upvotes: true,
-  downvotes: true,
-  views: true,
-  hasAcceptedAnswer: true
+  totalViews: true,
+  contents: true
 } as const;
 
 /**
- * A MongoDB cursor projection that transforms an internal answer into a public
- * answer.
+ * A MongoDB cursor projection that transforms an internal user into a public
+ * user.
  */
-export const publicAnswerProjection = (questionId: QuestionId) =>
-  ({
-    _id: false,
-    answer_id: { $toString: '$_id' },
-    question_id: questionId.toString(),
-    creator: true,
-    createdAt: true,
-    accepted: true,
-    text: true,
-    upvotes: true,
-    downvotes: true,
-    comments: { $size: '$commentItems' }
-  } as const);
-
-/**
- * A MongoDB aggregation expression that maps an internal answer into a public
- * answer.
- */
-export const publicAnswerMap = (variable: string, questionId: QuestionId) =>
-  ({
-    answer_id: { $toString: `$$${variable}._id` },
-    question_id: questionId.toString(),
-    creator: `$$${variable}.creator`,
-    createdAt: `$$${variable}.createdAt`,
-    accepted: `$$${variable}.accepted`,
-    text: `$$${variable}.text`,
-    upvotes: `$$${variable}.upvotes`,
-    downvotes: `$$${variable}.downvotes`,
-    comments: { $size: `$$${variable}.commentItems` }
-  } as const);
-
-/**
- * A MongoDB cursor projection that transforms an internal comment into a public
- * comment.
- */
-export const publicCommentProjection = {
+export const publicPageMetadataProjection = {
   _id: false,
-  comment_id: { $toString: '$_id' },
-  creator: true,
+  name: true,
   createdAt: true,
-  text: true,
-  upvotes: true,
-  downvotes: true
+  totalViews: true
 } as const;
-
-/**
- * A MongoDB aggregation expression that maps an internal comment into a public
- * comment.
- */
-export const publicCommentMap = (variable: string) =>
-  ({
-    comment_id: { $toString: `$$${variable}._id` },
-    creator: `$$${variable}.creator`,
-    createdAt: `$$${variable}.createdAt`,
-    text: `$$${variable}.text`,
-    upvotes: `$$${variable}.upvotes`,
-    downvotes: `$$${variable}.downvotes`
-  } as const);
-
-/**
- * A meaningless MongoDB cursor projection used for existence checking without
- * wasting the bandwidth to pull down all of the data that might be embedded
- * within an object's fields.
- */
-export const vacuousProjection = { exists: { $literal: true } };
-
-/**
- * A type representing how a user voted on a question, answer, or comment.
- */
-export type VoterStatus = 'upvoted' | 'downvoted' | null;
-
-/**
- * A type representing the result of applying the voterStatusProjection output
- * via cursor projection.
- */
-export type VoterStatusResult = { voterStatus: VoterStatus } | null;
-
-/**
- * A MongoDB cursor projection that evaluates an internal question, answer, or
- * comment and returns how the specified user voted on said item.
- */
-export function voterStatusProjection(username: Username) {
-  return {
-    _id: false,
-    voterStatus: {
-      $switch: {
-        branches: [
-          {
-            case: { $in: [username, '$upvoterUsernames'] },
-            // eslint-disable-next-line unicorn/no-thenable
-            then: 'upvoted'
-          },
-          {
-            case: { $in: [username, '$downvoterUsernames'] },
-            // eslint-disable-next-line unicorn/no-thenable
-            then: 'downvoted'
-          }
-        ],
-        default: null
-      }
-    }
-  };
-}
-
-/**
- * The shape of vote count update operation authorization information.
- */
-export type SelectResult =
-  | (NonNullable<VoterStatusResult> & {
-      isCreator: boolean;
-    })
-  | null;
-
-/**
- * A MongoDB cursor projection that returns select information about an internal
- * question, answer, or comment for the purpose of vote update operation
- * authorization.
- */
-export function selectResultProjection(username: Username) {
-  return {
-    ...voterStatusProjection(username),
-    isCreator: { $eq: [username, '$creator'] }
-  };
-}
-
-async function genericSelectAggregation<T>({
-  questionId,
-  answerId,
-  answer_creator,
-  commentId,
-  projection
-}: {
-  questionId: QuestionId | undefined;
-  answerId: AnswerId | undefined;
-  answer_creator?: Username | undefined;
-  commentId: CommentId | undefined;
-  projection: Projection | undefined;
-}): Promise<T> {
-  /* istanbul ignore next */
-  if ((!answerId && !answer_creator && !commentId) || (answerId && answer_creator)) {
-    throw new GuruMeditationError('illegal parameter combination');
-  }
-
-  return (await getDb({ name: 'app' }))
-    .collection<InternalQuestion>('questions')
-    .aggregate([
-      { $match: { _id: questionId } },
-      ...(answerId || answer_creator
-        ? [
-            {
-              $project: {
-                answer: {
-                  $first: {
-                    $filter: {
-                      input: '$answerItems',
-                      as: 'answer',
-                      cond: answer_creator
-                        ? { $eq: ['$$answer.creator', answer_creator] }
-                        : { $eq: ['$$answer._id', answerId] }
-                    }
-                  }
-                }
-              }
-            },
-            {
-              $replaceWith: '$answer'
-            }
-          ]
-        : []),
-      ...(commentId
-        ? [
-            {
-              $project: {
-                comment: {
-                  $first: {
-                    $filter: {
-                      input: '$commentItems',
-                      as: 'comment',
-                      cond: { $eq: ['$$comment._id', commentId] }
-                    }
-                  }
-                }
-              }
-            },
-            {
-              $replaceWith: '$comment'
-            }
-          ]
-        : []),
-      ...(projection ? [{ $project: projection }] : /* istanbul ignore next */ [])
-    ])
-    .next() as Promise<T>;
-}
-
-/**
- * Returns a nested answer object via aggregation pipeline, optionally applying
- * a projection to the result.
- */
-export async function selectAnswerFromDb<T = InternalAnswer | null>({
-  questionId,
-  answerId,
-  answer_creator,
-  projection
-}: {
-  questionId: QuestionId;
-  answerId?: AnswerId;
-  answer_creator?: Username;
-  projection?: Projection;
-}): Promise<T> {
-  return genericSelectAggregation<T>({
-    questionId: questionId,
-    answerId: answerId,
-    answer_creator,
-    commentId: undefined,
-    projection
-  });
-}
-
-/**
- * Returns a nested comment object via aggregation pipeline, optionally applying
- * a projection to the result.
- */
-export async function selectCommentFromDb<T = InternalComment | null>({
-  questionId,
-  answerId,
-  commentId,
-  projection
-}: {
-  questionId: QuestionId;
-  answerId?: AnswerId;
-  commentId: CommentId;
-  projection?: Projection;
-}): Promise<T> {
-  return genericSelectAggregation<T>({
-    questionId: questionId,
-    answerId: answerId,
-    commentId: commentId,
-    projection
-  });
-}
-
-/**
- * Adds a nested answer object to a question document.
- */
-export async function addAnswerToDb({
-  questionId,
-  answer
-}: {
-  questionId: QuestionId;
-  answer: InternalAnswer;
-}) {
-  return (await getDb({ name: 'app' }))
-    .collection<InternalQuestion>('questions')
-    .updateOne(
-      { _id: questionId },
-      {
-        $inc: { answers: 1, 'sorter.uvac': 1 },
-        $push: { answerItems: answer }
-      }
-    );
-}
-
-/**
- * Adds a nested comment object to a question document.
- */
-export async function addCommentToDb({
-  questionId,
-  answerId,
-  comment
-}: {
-  questionId: QuestionId;
-  answerId?: AnswerId;
-  comment: InternalComment;
-}) {
-  const db = (await getDb({ name: 'app' })).collection<InternalQuestion>('questions');
-
-  return answerId
-    ? db.updateOne(
-        { _id: questionId },
-        { $push: { 'answerItems.$[answer].commentItems': comment } },
-        { arrayFilters: [{ 'answer._id': answerId }] }
-      )
-    : db.updateOne(
-        { _id: questionId },
-        {
-          $inc: { comments: 1, 'sorter.uvc': 1, 'sorter.uvac': 1 },
-          $push: { commentItems: comment }
-        }
-      );
-}
-
-/**
- * Helper function that flattens an update specification for a sub-object so
- * that it may be used in a MongoDB update function.
- *
- * `updateOps` must be a valid MongoDB update document, e.g. `{ $set: ... }`.
- */
-function translateToFlatUpdateOps(updateOps: Document, predicate: string) {
-  return Object.fromEntries(
-    Object.entries(updateOps).map(([updateOp, opSpec]) => {
-      return [
-        updateOp,
-        Object.fromEntries(
-          Object.entries(opSpec).map(([targetField, updateVal]) => {
-            return [`${predicate}.${targetField}`, updateVal];
-          })
-        )
-      ];
-    })
-  );
-}
-
-/**
- * Patches a nested answer object in a question document.
- */
-export async function patchAnswerInDb({
-  questionId,
-  answerId,
-  updateOps
-}: {
-  questionId: QuestionId;
-  answerId: AnswerId;
-  updateOps: Document;
-}) {
-  return (await getDb({ name: 'app' }))
-    .collection<InternalQuestion>('questions')
-    .updateOne(
-      { _id: questionId },
-      translateToFlatUpdateOps(updateOps, 'answerItems.$[answer]'),
-      { arrayFilters: [{ 'answer._id': answerId }] }
-    );
-}
-
-/**
- * Patches a nested comment object in a question document.
- */
-export async function patchCommentInDb({
-  questionId,
-  answerId,
-  commentId,
-  updateOps
-}: {
-  questionId: QuestionId;
-  answerId?: AnswerId;
-  commentId: CommentId;
-  updateOps: Document;
-}) {
-  const db = (await getDb({ name: 'app' })).collection<InternalQuestion>('questions');
-
-  return answerId
-    ? db.updateOne(
-        { _id: questionId },
-        translateToFlatUpdateOps(
-          updateOps,
-          'answerItems.$[answer].commentItems.$[comment]'
-        ),
-        { arrayFilters: [{ 'answer._id': answerId }, { 'comment._id': commentId }] }
-      )
-    : db.updateOne(
-        { _id: questionId },
-        translateToFlatUpdateOps(updateOps, 'commentItems.$[comment]'),
-        { arrayFilters: [{ 'comment._id': commentId }] }
-      );
-}
-
-/**
- * Deletes a nested answer object from a question document.
- */
-export async function removeAnswerFromDb({
-  questionId,
-  answerId
-}: {
-  questionId: QuestionId;
-  answerId: AnswerId;
-}) {
-  return (await getDb({ name: 'app' }))
-    .collection<InternalQuestion>('questions')
-    .updateOne(
-      { _id: questionId },
-      {
-        $inc: { answers: -1, 'sorter.uvac': -1 },
-        $pull: { answerItems: { _id: answerId } }
-      }
-    );
-}
-
-/**
- * Deletes a nested comment object from a question document.
- */
-export async function removeCommentFromDb({
-  questionId,
-  answerId,
-  commentId
-}: {
-  questionId: QuestionId;
-  answerId?: AnswerId;
-  commentId: CommentId;
-}) {
-  const db = (await getDb({ name: 'app' })).collection<InternalQuestion>('questions');
-
-  return answerId
-    ? db.updateOne(
-        { _id: questionId },
-        { $pull: { 'answerItems.$[answer].commentItems': { _id: commentId } } },
-        { arrayFilters: [{ 'answer._id': answerId }] }
-      )
-    : db.updateOne(
-        { _id: questionId },
-        {
-          $inc: { comments: -1, 'sorter.uvc': -1, 'sorter.uvac': -1 },
-          $pull: { commentItems: { _id: commentId } }
-        }
-      );
-}
