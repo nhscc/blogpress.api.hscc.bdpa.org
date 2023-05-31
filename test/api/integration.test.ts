@@ -2,15 +2,16 @@
 import { testApiHandler } from 'next-test-api-route-handler';
 import { getProperty as dotPath } from 'dot-prop';
 import { toss } from 'toss-expression';
-import { GuruMeditationError } from 'universe/error';
-import { mockEnvFactory } from 'testverse/setup';
-import { setupMemoryServerOverride } from 'multiverse/mongo-test';
-import { getFixtures } from 'testverse/fixtures/integration';
-import { BANNED_BEARER_TOKEN, DUMMY_BEARER_TOKEN } from 'multiverse/next-auth';
-import { api } from 'testverse/fixtures';
-import { getDb } from 'multiverse/mongo-schema';
 
-import type { TestResultset, TestResult } from 'testverse/fixtures/integration';
+import { GuruMeditationError } from 'universe/error';
+import { setupMemoryServerOverride } from 'multiverse/mongo-test';
+import { BANNED_BEARER_TOKEN, DUMMY_BEARER_TOKEN } from 'multiverse/next-auth';
+import { getDb } from 'multiverse/mongo-schema';
+import { api } from 'testverse/util';
+import { getFixtures } from 'testverse/integration';
+import { mockEnvFactory } from 'testverse/setup';
+
+import type { TestResultset, TestResult } from 'testverse/integration';
 
 setupMemoryServerOverride({
   // ? Ensure all tests share the same database state

@@ -22,7 +22,7 @@ import AuthUnbanEndpoint, {
   config as AuthUnbanConfig
 } from 'universe/pages/api/sys/auth/unban';
 
-import type { NextApiHandlerMixin } from 'testverse/fixtures';
+import type { NextApiHandlerMixin } from 'testverse/util';
 import type { InternalLimitedLogEntry } from 'multiverse/next-limit';
 
 setupMemoryServerOverride();

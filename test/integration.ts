@@ -14,7 +14,7 @@ import type { Promisable } from 'type-fest';
 
 import type { NewUser, PatchUser, PublicUser } from 'universe/backend/db';
 
-import type { NextApiHandlerMixin } from 'testverse/fixtures';
+import type { NextApiHandlerMixin } from 'testverse/util';
 
 // TODO: XXX: turn a lot of this into some kind of package; needs to be generic
 // TODO: XXX: enough to handle various use cases though :) Maybe
@@ -152,9 +152,7 @@ export type TestFixture = {
   };
 };
 
-export function getFixtures(
-  api: typeof import('testverse/fixtures').api
-): TestFixture[] {
+export function getFixtures(api: typeof import('testverse/util').api): TestFixture[] {
   const runOnly = process.env.RUN_ONLY?.split(',')
     .flatMap((n) => {
       const range = n
@@ -1166,7 +1164,7 @@ export function getFixtures(
 
   // TODO: XXX: ability to specify "depends" via index or name/id
 
-  const willSkipFixture = (fixture: typeof fixtures[number]) => {
+  const willSkipFixture = (fixture: (typeof fixtures)[number]) => {
     const shouldSkip =
       !fixture.subject ||
       !fixture.handler ||

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { testApiHandler } from 'next-test-api-route-handler';
-import { api, setupMockBackend } from 'testverse/fixtures';
+import { api, setupMockBackend } from 'testverse/util';
 
 jest.mock('universe/backend');
 jest.mock(
