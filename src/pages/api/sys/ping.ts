@@ -11,7 +11,7 @@ export default withSysMiddleware(
   async (req, res) => {
     const { name = 'Mr. World' } = req.query;
     sendHttpOk(res, {
-      message: `Hello to ${name} at ${new Date().toLocaleString()}`
+      message: `Hello to ${name} at ${new Date(Date.now()).toLocaleString()}`
     });
   },
   {
