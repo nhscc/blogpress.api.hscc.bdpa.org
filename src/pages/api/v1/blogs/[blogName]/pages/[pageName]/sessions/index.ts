@@ -1,5 +1,5 @@
 import { withMiddleware } from 'universe/backend/middleware';
-import { createSession, getBlogPagesMetadata } from 'universe/backend';
+import { createSession, getPageSessionsCount } from 'universe/backend';
 import { authorizationHeaderToOwnerAttribute } from 'universe/backend/api';
 import { sendHttpOk } from 'multiverse/next-api-respond';
 
@@ -18,7 +18,7 @@ export default withMiddleware(
     switch (req.method) {
       case 'GET': {
         sendHttpOk(res, {
-          active: await getBlogPagesMetadata({ blogName })
+          active: await getPageSessionsCount({ blogName, pageName })
         });
         break;
       }
@@ -39,6 +39,10 @@ export default withMiddleware(
   },
   {
     descriptor: metadata.descriptor,
-    options: { allowedMethods: ['GET', 'POST'], apiVersion: '1' }
+    options: {
+      allowedContentTypes: { POST: ['application/json', 'none'], GET: 'none' },
+      allowedMethods: ['GET', 'POST'],
+      apiVersion: '1'
+    }
   }
 );

@@ -1,5 +1,5 @@
 import { withMiddleware } from 'universe/backend/middleware';
-import { getBlogPagesMetadata, updateBlog } from 'universe/backend';
+import { getBlog, updateBlog } from 'universe/backend';
 import { sendHttpOk } from 'multiverse/next-api-respond';
 
 // ? This is a NextJS special "config" export
@@ -16,7 +16,7 @@ export default withMiddleware(
     switch (req.method) {
       case 'GET': {
         sendHttpOk(res, {
-          blog: await getBlogPagesMetadata({ blogName })
+          blog: await getBlog({ blogName })
         });
         break;
       }

@@ -16,13 +16,13 @@ export default withMiddleware(
 
     switch (req.method) {
       case 'PUT': {
-        await renewSession({ session_id });
+        await renewSession({ sessionId: session_id });
         sendHttpOk(res);
         break;
       }
 
       case 'DELETE': {
-        await deleteSession({ session_id });
+        await deleteSession({ sessionId: session_id });
         sendHttpOk(res);
         break;
       }
@@ -30,6 +30,10 @@ export default withMiddleware(
   },
   {
     descriptor: metadata.descriptor,
-    options: { allowedMethods: ['PUT', 'DELETE'], apiVersion: '1' }
+    options: {
+      allowedContentTypes: { PUT: ['application/json', 'none'], DELETE: 'none' },
+      allowedMethods: ['PUT', 'DELETE'],
+      apiVersion: '1'
+    }
   }
 );

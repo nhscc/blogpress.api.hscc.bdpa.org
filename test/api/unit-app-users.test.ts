@@ -3,6 +3,13 @@ import { testApiHandler } from 'next-test-api-route-handler';
 import { api, setupMockBackend } from 'testverse/util';
 
 jest.mock('universe/backend');
+jest.mock('universe/backend/api', (): typeof import('universe/backend/api') => {
+  return {
+    ...jest.requireActual('universe/backend/api'),
+    authorizationHeaderToOwnerAttribute: jest.fn(() => Promise.resolve('mock-owner'))
+  };
+});
+
 jest.mock(
   'universe/backend/middleware',
   (): typeof import('universe/backend/middleware') => {
@@ -65,7 +72,7 @@ describe('api/v1/users', () => {
       expect.hasAssertions();
 
       await testApiHandler({
-        handler: api.v1.usersUsername,
+        handler: api.v1.usersUsernameoremail,
         params: { username: 'User1' },
         test: async ({ fetch }) => {
           const [status, json] = await fetch({ method: 'GET' }).then(
@@ -86,7 +93,7 @@ describe('api/v1/users', () => {
       expect.hasAssertions();
 
       await testApiHandler({
-        handler: api.v1.usersUsername,
+        handler: api.v1.usersUsernameoremail,
         params: { username: 'User1' },
         test: async ({ fetch }) => {
           const [status, json] = await fetch({ method: 'PATCH' }).then(
@@ -106,7 +113,7 @@ describe('api/v1/users', () => {
       expect.hasAssertions();
 
       await testApiHandler({
-        handler: api.v1.usersUsername,
+        handler: api.v1.usersUsernameoremail,
         params: { username: 'User1' },
         test: async ({ fetch }) => {
           const [status, json] = await fetch({ method: 'DELETE' }).then(
@@ -126,7 +133,7 @@ describe('api/v1/users', () => {
       expect.hasAssertions();
 
       await testApiHandler({
-        handler: api.v1.usersUsernameAuth,
+        handler: api.v1.usersUsernameoremailAuth,
         params: { username: 'User1' },
         test: async ({ fetch }) => {
           const [status, json] = await fetch({ method: 'POST' }).then(
@@ -143,72 +150,10 @@ describe('api/v1/users', () => {
       mockedAuthAppUser.mockReturnValue(Promise.resolve(true));
 
       await testApiHandler({
-        handler: api.v1.usersUsernameAuth,
+        handler: api.v1.usersUsernameoremailAuth,
         params: { username: 'User1' },
         test: async ({ fetch }) => {
           const [status, json] = await fetch({ method: 'POST' }).then(
-            async (r) => [r.status, await r.json()] as [status: number, json: any]
-          );
-
-          expect(status).toBe(200);
-          expect(json.success).toBeTrue();
-          expect(Object.keys(json)).toHaveLength(1);
-        }
-      });
-    });
-  });
-
-  describe('/:username/questions [GET]', () => {
-    it('accepts GET requests', async () => {
-      expect.hasAssertions();
-
-      await testApiHandler({
-        handler: api.v1.usersUsernameQuestions,
-        params: { username: 'User1' },
-        test: async ({ fetch }) => {
-          const [status, json] = await fetch({ method: 'GET' }).then(
-            async (r) => [r.status, await r.json()] as [status: number, json: any]
-          );
-
-          expect(status).toBe(200);
-          expect(json.success).toBeTrue();
-          expect(json.questions).toBeArray();
-          expect(Object.keys(json)).toHaveLength(2);
-        }
-      });
-    });
-  });
-
-  describe('/:username/answers [GET]', () => {
-    it('accepts GET requests', async () => {
-      expect.hasAssertions();
-
-      await testApiHandler({
-        handler: api.v1.usersUsernameAnswers,
-        params: { username: 'User1' },
-        test: async ({ fetch }) => {
-          const [status, json] = await fetch({ method: 'GET' }).then(
-            async (r) => [r.status, await r.json()] as [status: number, json: any]
-          );
-
-          expect(status).toBe(200);
-          expect(json.success).toBeTrue();
-          expect(json.answers).toBeArray();
-          expect(Object.keys(json)).toHaveLength(2);
-        }
-      });
-    });
-  });
-
-  describe('/:username/points [PATCH]', () => {
-    it('accepts PATCH requests', async () => {
-      expect.hasAssertions();
-
-      await testApiHandler({
-        handler: api.v1.usersUsernamePoints,
-        params: { username: 'User1' },
-        test: async ({ fetch }) => {
-          const [status, json] = await fetch({ method: 'PATCH' }).then(
             async (r) => [r.status, await r.json()] as [status: number, json: any]
           );
 
