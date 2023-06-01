@@ -153,24 +153,21 @@ export function itemToObjectId<T extends ObjectId>(
               ? new ObjectId(index)
               : index?._id instanceof ObjectId
               ? index._id
-              : toss(
-                  new GuruMeditationError(
-                    `encountered irreducible sub-item: ${index}`
-                  )
-                )
+              : toss(new TypeError(`unable to reduce sub-item to id: ${index}`))
           ) as T;
         })
       : typeof item == 'string'
       ? ((_id = item), new ObjectId(item) as T)
       : item?._id instanceof ObjectId
       ? (item._id as T)
-      : toss(new GuruMeditationError(`encountered irreducible item: ${item}`));
+      : toss(new TypeError(`unable to reduce item to id: ${item}`));
   } catch (error) {
     if (
       isError(error) &&
       error.name.startsWith('BSON') &&
       error.name.endsWith('Error')
     ) {
+      // TODO: add to named-app-error ErrorMessage global package
       throw new ValidationError(`invalid id "${_id}"`);
     }
 
