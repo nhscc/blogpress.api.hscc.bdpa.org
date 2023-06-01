@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { version as pkgVersion } from 'package';
 import { getEnv } from 'universe/backend/env';
+//import { hydrateDb } from 'multiverse/mongo-test';
 
 export async function getServerSideProps() {
   const env = getEnv();
+  //await hydrateDb({ name: 'app' });
 
   return {
     props: {
