@@ -26,29 +26,16 @@ import { hydrateDb } from 'multiverse/mongo-test';
 
 import { dummyAppData } from 'testverse/db';
 
-import { getApi } from 'externals/initialize-data/api';
-//import { dummyRequestInspector } from 'externals/initialize-data/api-test';
 import { deriveKeyFromPassword } from 'externals/initialize-data/crypto';
 
 import type {
-  AnswerId,
-  InternalAnswer,
-  InternalComment,
-  InternalMail,
-  InternalQuestion,
   InternalUser,
-  QuestionId
+  InternalInfo,
+  InternalPage,
+  InternalSession
 } from 'universe/backend/db';
 
-import type {
-  StackExchangeAnswer,
-  StackExchangeApiResponse,
-  StackExchangeComment,
-  StackExchangeQuestion
-} from 'types/stackexchange-api';
-
 const debugNamespace = `${namespace}:initialize-data`;
-const cachePath = `${__dirname}/initialize-data-cache.json`;
 
 const log = debugFactory(debugNamespace);
 const debug = debugFactory(`${debugNamespace}:debug`);
@@ -60,23 +47,6 @@ const logOrDebug = () => {
  * Represents one second in milliseconds.
  */
 const oneSecondInMs = 1000;
-
-/**
- * Maximum number of times to retry certain failed requests.
- */
-const maxRequestRetries = 10;
-
-/**
- * Delay (in ms) after a rate limit is detected.
- */
-const delayAfterRequestRateLimitMs =
-  (process.env.NODE_ENV == 'test' ? 0.1 : 180) * oneSecondInMs;
-
-/**
- * Delay (in ms) after a server error is detected.
- */
-const delayAfterRequestErrorMs =
-  (process.env.NODE_ENV == 'test' ? 0.1 : 60) * oneSecondInMs;
 
 // eslint-disable-next-line no-console
 log.log = console.info.bind(console);
@@ -113,172 +83,6 @@ const getPrompter = (testPrompterParams?: string): { prompt: PromptModule } => {
     : inquirer;
 };
 
-/**
- * Transforms a positive, negative, or zero net score into upvotes and
- * downvotes.
- */
-const getUpvotesDownvotesFromScore = (score: number) => {
-  const aVotes = Math.floor(
-    Math.random() * score +
-      (score == 0 ? Math.random() * 10 ** (Math.random() * 4) : 0)
-  );
-  const bVotes = score + aVotes;
-  return [Math.abs(Math.max(aVotes, bVotes)), Math.abs(Math.min(aVotes, bVotes))] as [
-    upvotes: number,
-    downvotes: number
-  ];
-};
-
-/**
- * Writes out cache data to a well-known location on disk.
- */
-const cacheDataToDisk = async (data: Data | null) => {
-  if (!data) {
-    throw new GuruMeditationError('cannot cache null data');
-  }
-
-  logOrDebug()(
-    `writing out cache keys (${Object.keys(data).join(', ')}) to ${cachePath}`
-  );
-
-  await jsonFile.writeFile(cachePath, data, { spaces: 2 });
-};
-
-/**
- * Reports statistics about the cached data.
- */
-const getDataStats = (data: Data | null) => {
-  if (!data) {
-    throw new GuruMeditationError('cannot generate stats from null data');
-  }
-
-  let questionsDataSizeBytes = 0;
-  let userDataSizeBytes = 0;
-  let totalAnswers = 0;
-  let totalComments = 0;
-
-  data.questions.forEach((question) => {
-    questionsDataSizeBytes += Buffer.byteLength(JSON.stringify(question), 'utf8');
-    totalComments += question.commentItems.length;
-    question.answerItems.forEach((answer) => {
-      totalAnswers++;
-      totalComments += answer.commentItems.length;
-    });
-  });
-
-  data.users.forEach((user) => {
-    userDataSizeBytes += Buffer.byteLength(JSON.stringify(user), 'utf8');
-  });
-
-  return {
-    cacheMetadata: data.cache,
-    totalQuestions: data.questions.length,
-    totalAnswers,
-    totalComments,
-    totalUsers: data.users.length,
-    dataSizesInBytes: {
-      questions: questionsDataSizeBytes,
-      users: userDataSizeBytes
-    }
-  };
-};
-
-const commitApiDataToDb = async (data: Data | null) => {
-  if (!data) {
-    throw new GuruMeditationError('cannot commit null data');
-  }
-
-  logOrDebug()('committing StackExchange API data to database');
-
-  const appDb = await getDb({ name: 'app' });
-
-  const [mailResult, questionsResult, usersResult] = await Promise.all([
-    data.users.length && dummyAppData.mail.length
-      ? appDb.collection<InternalMail>('mail').insertMany(
-          data.users
-            .slice(0, Math.min(data.users.length, dummyAppData.mail.length * 2))
-            .map((user, ndx, users) => {
-              return ndx % 2 == 0
-                ? {
-                    _id: new ObjectId(),
-                    createdAt: Date.now(),
-                    sender: user.username,
-                    receiver: users[ndx + 1]?.username || user.username,
-                    subject: dummyAppData.mail[ndx / 2]?.subject || 'no subject',
-                    text:
-                      dummyAppData.mail[ndx / 2]?.text ||
-                      'I could not think of a message...'
-                  }
-                : null;
-            })
-            .filter<InternalMail>((value): value is InternalMail => Boolean(value))
-        )
-      : { insertedCount: '0 (empty)' },
-    data.questions.length
-      ? appDb.collection<InternalQuestion>('questions').insertMany(
-          data.questions.map((question) => {
-            const decodedTitle = decodeEntities(question.title);
-
-            return {
-              ...question,
-              commentItems: question.commentItems.map((comment) => {
-                return {
-                  ...comment,
-                  text: decodeEntities(comment.text)
-                };
-              }),
-              answerItems: question.answerItems.map((answer) => {
-                return {
-                  ...answer,
-                  commentItems: answer.commentItems.map((comment) => {
-                    return {
-                      ...comment,
-                      text: decodeEntities(comment.text)
-                    };
-                  })
-                };
-              }),
-              title: decodeEntities(question.title),
-              'title-lowercase': decodedTitle.toLowerCase()
-            };
-          })
-        )
-      : { insertedCount: '0 (empty)' },
-    data.users.length
-      ? appDb.collection<InternalUser>('users').bulkWrite(
-          data.users.map<AnyBulkWriteOperation<InternalUser>>((user) => {
-            return {
-              updateOne: {
-                filter: { username: user.username },
-                update: {
-                  $addToSet: {
-                    questionIds: { $each: user.questionIds },
-                    answerIds: { $each: user.answerIds }
-                  },
-                  $setOnInsert: {
-                    _id: user._id,
-                    username: user.username,
-                    email: user.email,
-                    key: user.key,
-                    salt: user.salt,
-                    points: user.points
-                  }
-                },
-                upsert: true
-              }
-            };
-          })
-        )
-      : { nUpserted: '0 (empty)', nModified: '0 (empty)' }
-  ]);
-
-  logOrDebug()(`inserted ${mailResult.insertedCount} mail documents`);
-  logOrDebug()(`inserted ${questionsResult.insertedCount} question documents`);
-  logOrDebug()(
-    `upserted ${usersResult.nUpserted}, updated ${usersResult.nModified} user documents`
-  );
-};
-
 const commitRootDataToDb = async (data: Data | null) => {
   if (!data) {
     throw new GuruMeditationError('cannot commit null data');
@@ -294,113 +98,13 @@ const commitRootDataToDb = async (data: Data | null) => {
  * not already exist) and populating them with a large amount of data. Suitable
  * for initializing local machines or production instances alike.
  *
- * This function is idempotent (can be called multiple times without changing
- * anything) and data-preserving (all actions are non-destructive: data is never
- * overwritten or deleted)
+ * This function is data-preserving (all actions are non-destructive: data is
+ * never overwritten or deleted)
  */
 const invoked = async () => {
-  try {
-    const {
-      MAX_ANSWER_BODY_LENGTH_BYTES: maxAnswerLength,
-      MAX_COMMENT_LENGTH: maxCommentLength,
-      MAX_QUESTION_BODY_LENGTH_BYTES: maxQuestionBodyLength,
-      MAX_QUESTION_TITLE_LENGTH: maxQuestionTitleLength,
-      STACKAPPS_INTERVAL_PERIOD_MS: intervalPeriodMs,
-      STACKAPPS_MAX_REQUESTS_PER_INTERVAL: maxRequestsPerInterval,
-      STACKAPPS_TOTAL_API_GENERATED_QUESTIONS: desiredApiGeneratedQuestionsCount,
-      STACKAPPS_COLLECTALL_QUESTION_ANSWERS: collectAllQuestionAnswersCount,
-      STACKAPPS_COLLECTALL_QUESTION_COMMENTS: collectAllQuestionCommentsCount,
-      STACKAPPS_COLLECTALL_FIRST_ANSWER_COMMENTS: collectAllFirstAnswerCommentsCount,
-      STACKAPPS_MAX_PAGE_SIZE: maxPageSize,
-      STACKAPPS_AUTH_KEY: stackExAuthKey
-    } = getEnv();
-
-    if (typeof intervalPeriodMs != 'number' || !(intervalPeriodMs >= 0)) {
-      throw new InvalidAppEnvironmentError(
-        'STACKAPPS_INTERVAL_PERIOD_MS must be greater than or equal to 0'
-      );
-    }
-
-    if (!maxRequestsPerInterval || !(maxRequestsPerInterval > 0)) {
-      throw new InvalidAppEnvironmentError(
-        'STACKAPPS_MAX_REQUESTS_PER_INTERVAL must be greater than zero'
-      );
-    }
-
-    if (
-      !desiredApiGeneratedQuestionsCount ||
-      !(desiredApiGeneratedQuestionsCount > 0)
-    ) {
-      throw new InvalidAppEnvironmentError(
-        'STACKAPPS_TOTAL_API_GENERATED_QUESTIONS must be greater than zero'
-      );
-    }
-
-    if (!collectAllQuestionAnswersCount || !(collectAllQuestionAnswersCount > 0)) {
-      throw new InvalidAppEnvironmentError(
-        'STACKAPPS_COLLECTALL_QUESTION_ANSWERS must be greater than zero'
-      );
-    }
-
-    if (!collectAllQuestionCommentsCount || !(collectAllQuestionCommentsCount > 0)) {
-      throw new InvalidAppEnvironmentError(
-        'STACKAPPS_COLLECTALL_QUESTION_COMMENTS must be greater than zero'
-      );
-    }
-
-    if (
-      !collectAllFirstAnswerCommentsCount ||
-      !(collectAllFirstAnswerCommentsCount > 0)
-    ) {
-      throw new InvalidAppEnvironmentError(
-        'STACKAPPS_COLLECTALL_FIRST_ANSWER_COMMENTS must be greater than zero'
-      );
-    }
-
-    if (!maxPageSize || !(maxPageSize > 0) || !(maxPageSize <= 100)) {
-      throw new InvalidAppEnvironmentError(
-        'STACKAPPS_MAX_PAGE_SIZE must be greater than zero and less than or equal to 100'
-      );
-    }
-
-    if (!stackExAuthKey) {
-      throw new InvalidAppEnvironmentError('STACKAPPS_AUTH_KEY must be provided');
-    }
-
-    let interrogateApi = true;
-    let usedStackExAuthKey = stackExAuthKey;
-    let data: Data | null = null;
-
-    try {
-      debug(
-        process.env.TEST_SKIP_REQUESTS
-          ? 'saw debug env var TEST_SKIP_REQUESTS. No cache read performed'
-          : `reading in results from cache at ${cachePath}`
-      );
-
-      data = process.env.TEST_SKIP_REQUESTS
-        ? null
-        : await jsonFile.readFile(cachePath, {
-            reviver(key, value) {
-              return key == '_id' ? itemToObjectId(value) : value;
-            }
-          });
-    } catch {
-      data = null;
-    }
-
-    debug(`found cached results: ${data ? 'yes' : 'no'}`);
-
-    debug(
-      `cached data is: ${
-        typeof data?.cache.complete != 'boolean'
-          ? 'non-existent'
-          : data?.cache.complete
-          ? 'complete'
-          : 'incomplete'
-      }`
-    );
-
+    // TODO: logOrDebug()(`inserted ${mailResult.insertedCount} mail documents`);
+    // TODO: logOrDebug()(`inserted ${questionsResult.insertedCount} question documents`);
+    // TODO: logOrDebug()(`upserted ${usersResult.nUpserted}, updated ${usersResult.nModified} user documents`);
     await getPrompter(process.env.TEST_PROMPTER_INITIALIZER)
       .prompt<{ action: string; token: string }>([
         {
