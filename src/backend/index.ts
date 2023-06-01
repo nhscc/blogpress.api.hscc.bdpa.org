@@ -33,6 +33,7 @@ import {
   type PublicInfo,
   type PublicPageMetadata,
   type TokenAttributeOwner,
+  type NavigationLink,
   userTypes,
   toPublicUser,
   toPublicPage,
@@ -94,7 +95,7 @@ function validateGenericUserData(
         'email',
         MIN_USER_EMAIL_LENGTH,
         MAX_USER_EMAIL_LENGTH,
-        'string'
+        'valid email address'
       )
     );
   }
@@ -139,11 +140,12 @@ function validatePatchBlogData(
   } = getEnv();
 
   if (
-    !data.name ||
-    typeof data.name !== 'string' ||
-    data.name.length < 1 ||
-    data.name.length > MAX_BLOG_PAGE_NAME_LENGTH ||
-    !alphanumericRegex.test(data.name)
+    data.name !== undefined &&
+    (!data.name ||
+      typeof data.name !== 'string' ||
+      data.name.length < 1 ||
+      data.name.length > MAX_BLOG_PAGE_NAME_LENGTH ||
+      !alphanumericRegex.test(data.name))
   ) {
     throw new ValidationError(
       ErrorMessage.InvalidStringLength(
@@ -156,11 +158,12 @@ function validatePatchBlogData(
   }
 
   if (
-    !data.rootPage ||
-    typeof data.rootPage !== 'string' ||
-    data.rootPage.length < 1 ||
-    data.rootPage.length > MAX_BLOG_PAGE_NAME_LENGTH ||
-    !alphanumericRegex.test(data.rootPage)
+    data.rootPage !== undefined &&
+    (!data.rootPage ||
+      typeof data.rootPage !== 'string' ||
+      data.rootPage.length < 1 ||
+      data.rootPage.length > MAX_BLOG_PAGE_NAME_LENGTH ||
+      !alphanumericRegex.test(data.rootPage))
   ) {
     throw new ValidationError(
       ErrorMessage.InvalidStringLength(
@@ -172,36 +175,42 @@ function validatePatchBlogData(
     );
   }
 
-  if (!data.navLinks || !Array.isArray(data.navLinks)) {
-    throw new ValidationError(ErrorMessage.InvalidFieldValue('navLinks'));
-  }
-
-  for (const link of data.navLinks) {
-    if (!link || !isPlainObject(data.navLinks) || Object.keys(link).length !== 2) {
-      throw new ValidationError(
-        ErrorMessage.InvalidArrayValue('navLinks', data.navLinks.toString())
-      );
+  if (data.navLinks !== undefined) {
+    if (!data.navLinks || !Array.isArray(data.navLinks)) {
+      throw new ValidationError(ErrorMessage.InvalidFieldValue('navLinks'));
     }
 
-    if (
-      typeof link.href !== 'string' ||
-      !link.href ||
-      link.href.length > MAX_NAV_LINK_HREF_LENGTH ||
-      !hrefRegex.test(link.href)
-    ) {
-      throw new ValidationError(
-        ErrorMessage.InvalidObjectKeyValue('navLink.href', link.href)
-      );
+    if (data.navLinks.length > navLinkUpperLimit) {
+      throw new ValidationError(ErrorMessage.TooMany('navLinks', navLinkUpperLimit));
     }
 
-    if (
-      typeof link.text !== 'string' ||
-      !link.text ||
-      link.text.length > MAX_NAV_LINK_TEXT_LENGTH
-    ) {
-      throw new ValidationError(
-        ErrorMessage.InvalidObjectKeyValue('navLink.text', link.text)
-      );
+    for (const link of data.navLinks) {
+      if (!link || !isPlainObject(link) || Object.keys(link).length !== 2) {
+        throw new ValidationError(
+          ErrorMessage.InvalidArrayValue('navLinks', JSON.stringify(link))
+        );
+      }
+
+      if (
+        typeof link.href !== 'string' ||
+        !link.href ||
+        link.href.length > MAX_NAV_LINK_HREF_LENGTH ||
+        !hrefRegex.test(link.href)
+      ) {
+        throw new ValidationError(
+          ErrorMessage.InvalidObjectKeyValue('navLink.href', link.href)
+        );
+      }
+
+      if (
+        typeof link.text !== 'string' ||
+        !link.text ||
+        link.text.length > MAX_NAV_LINK_TEXT_LENGTH
+      ) {
+        throw new ValidationError(
+          ErrorMessage.InvalidObjectKeyValue('navLink.text', link.text)
+        );
+      }
     }
   }
 }
@@ -230,7 +239,7 @@ function validateGenericPageData(
         'contents',
         0,
         maxBlogPageContentsLengthBytes,
-        'string'
+        'bytes'
       )
     );
   }
@@ -254,9 +263,9 @@ async function usernameOrEmailParamToUser<
   }
 
   const db = await getDb({ name: 'app' });
-  const userDb = db.collection<InternalUser>('users');
+  const usersDb = db.collection<InternalUser>('users');
 
-  const user = await userDb.findOne<T>(
+  const user = await usersDb.findOne<T>(
     {
       $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }]
     },
@@ -286,8 +295,8 @@ async function blogNameToUser<T extends InternalUser | PublicUser | PublicBlog>(
   }
 
   const db = await getDb({ name: 'app' });
-  const userDb = db.collection<InternalUser>('users');
-  const user = await userDb.findOne<T>({ blogName }, { projection });
+  const usersDb = db.collection<InternalUser>('users');
+  const user = await usersDb.findOne<T>({ blogName }, { projection });
 
   if (!user) {
     throw new ItemNotFoundError(blogName, 'blog');
@@ -313,8 +322,8 @@ async function pageNameToPage<
   }
 
   const db = await getDb({ name: 'app' });
-  const pageDb = db.collection<InternalPage>('pages');
-  const page = await pageDb.findOne<T>({ blog_id, name: pageName }, { projection });
+  const pagesDb = db.collection<InternalPage>('pages');
+  const page = await pagesDb.findOne<T>({ blog_id, name: pageName }, { projection });
 
   if (!page) {
     throw new ItemNotFoundError(pageName, 'page');
@@ -323,21 +332,40 @@ async function pageNameToPage<
   return page;
 }
 
+/**
+ * The maximum amount of navLinks that can be associated with a blog. This is a
+ * hardcoded limit.
+ */
+export const navLinkUpperLimit = 5 as const;
+
+/**
+ * The default `navLinks` value for newly created blogs (users).
+ */
+export const defaultNavLinks: NavigationLink[] = [{ href: 'home', text: 'home' }];
+
+/**
+ * The default home page for newly created blogs (users).
+ */
+export const defaultHomePage: Required<NewPage> = {
+  name: 'home',
+  contents: '# Hello World\n\nWelcome **to** _BlogPress!_'
+};
+
 export async function getAllUsers({
   after_id
 }: {
   after_id: string | undefined;
 }): Promise<PublicUser[]> {
   const db = await getDb({ name: 'app' });
-  const userDb = db.collection<InternalUser>('users');
+  const usersDb = db.collection<InternalUser>('users');
   const afterId = after_id ? itemToObjectId<UserId>(after_id) : undefined;
 
-  if (afterId && !(await itemExists(userDb, afterId))) {
+  if (afterId && !(await itemExists(usersDb, afterId))) {
     throw new ItemNotFoundError(after_id, 'user_id');
   }
 
   return (
-    userDb
+    usersDb
       // eslint-disable-next-line unicorn/no-array-callback-reference, unicorn/no-array-method-this-argument
       .find<PublicUser>(afterId ? { _id: { $lt: afterId } } : {}, {
         projection: publicUserProjection,
@@ -354,10 +382,10 @@ export async function getBlogPagesMetadata({
   blogName: string | undefined;
 }): Promise<PublicPageMetadata[]> {
   const db = await getDb({ name: 'app' });
-  const pageDb = db.collection<InternalPage>('pages');
+  const pagesDb = db.collection<InternalPage>('pages');
   const { _id: blog_id } = await blogNameToUser(blogName);
 
-  return pageDb
+  return pagesDb
     .find<PublicPage>(
       { blog_id },
       {
@@ -420,18 +448,24 @@ export async function getPageSessionsCount({
   const sessionDb = db.collection<InternalSession>('sessions');
 
   return sessionDb.countDocuments({
-    blog_id,
-    page_id
+    page_id,
+    lastRenewedDate: {
+      $gt: new Date(Date.now() - getEnv().SESSION_EXPIRE_AFTER_SECONDS * 1000)
+    }
   });
 }
 
 export async function createUser({
   data,
-  $provenance
+  __provenance
 }: {
   data: NewUser | undefined;
-  $provenance: TokenAttributeOwner;
+  __provenance: TokenAttributeOwner;
 }): Promise<PublicUser> {
+  if (typeof __provenance !== 'string') {
+    throw new GuruMeditationError('invalid provenance token attribute owner');
+  }
+
   validateGenericUserData(data, { required: true });
 
   if (!data.type || !userTypes.includes(data.type)) {
@@ -482,20 +516,20 @@ export async function createUser({
   }
 
   const db = await getDb({ name: 'app' });
-  const userDb = db.collection<InternalUser>('users');
+  const usersDb = db.collection<InternalUser>('users');
 
-  if (username && (await itemExists(userDb, { key: 'username', id: username }))) {
+  if (username && (await itemExists(usersDb, { key: 'username', id: username }))) {
     throw new ValidationError(ErrorMessage.DuplicateFieldValue('username'));
   }
 
-  if (blogName && (await itemExists(userDb, { key: 'blogName', id: blogName }))) {
+  if (blogName && (await itemExists(usersDb, { key: 'blogName', id: blogName }))) {
     throw new ValidationError(ErrorMessage.DuplicateFieldValue('blogName'));
   }
 
   const newUser: InternalUser = Object.assign(
     {
       _id: new ObjectId(),
-      $provenance,
+      __provenance,
       username,
       salt: salt.toLowerCase(),
       email,
@@ -509,13 +543,33 @@ export async function createUser({
           blogName,
           blogRootPage: 'home',
           banned: false,
-          navLinks: [{ href: 'home', text: 'home' }]
+          navLinks: defaultNavLinks
         }
   );
 
   // * At this point, we can finally trust this data is valid and not malicious
   try {
-    await userDb.insertOne(newUser);
+    const infoDb = db.collection<InternalInfo>('info');
+    const pagesDb = db.collection<InternalPage>('pages');
+
+    await usersDb.insertOne(newUser);
+    const promisedUpdate = infoDb.updateOne({}, { $inc: { users: 1 } });
+
+    if (data.type === 'blogger') {
+      await Promise.all([
+        infoDb.updateOne({}, { $inc: { blogs: 1, pages: 1 } }),
+        pagesDb.insertOne({
+          __provenance,
+          _id: new ObjectId(),
+          blog_id: newUser._id,
+          createdAt: Date.now(),
+          totalViews: 0,
+          ...defaultHomePage
+        })
+      ]);
+    }
+
+    await promisedUpdate;
   } catch (error) {
     /* istanbul ignore else */
     if (
@@ -536,12 +590,16 @@ export async function createUser({
 export async function createPage({
   blogName,
   data,
-  $provenance
+  __provenance
 }: {
   blogName: string | undefined;
   data: NewPage | undefined;
-  $provenance: TokenAttributeOwner;
+  __provenance: TokenAttributeOwner;
 }): Promise<PublicPage> {
+  if (typeof __provenance !== 'string') {
+    throw new GuruMeditationError('invalid provenance token attribute owner');
+  }
+
   validateGenericPageData(data, { required: true });
 
   const { MAX_BLOG_PAGE_NAME_LENGTH, MAX_USER_BLOG_PAGES } = getEnv();
@@ -571,17 +629,17 @@ export async function createPage({
   }
 
   const db = await getDb({ name: 'app' });
-  const pageDb = db.collection<InternalPage>('pages');
+  const pagesDb = db.collection<InternalPage>('pages');
   const { _id: blog_id } = await blogNameToUser(blogName);
-  const numOfPages = await pageDb.countDocuments({ blog_id });
+  const numOfPages = await pagesDb.countDocuments({ blog_id });
 
   if (numOfPages >= MAX_USER_BLOG_PAGES) {
-    throw new ValidationError(ErrorMessage.TooManyPages());
+    throw new ValidationError(ErrorMessage.TooMany('pages', MAX_USER_BLOG_PAGES));
   }
 
   const newPage: InternalPage = {
     _id: new ObjectId(),
-    $provenance,
+    __provenance,
     blog_id,
     name,
     contents,
@@ -591,11 +649,16 @@ export async function createPage({
 
   // * At this point, we can finally trust this data is valid and not malicious
   try {
-    await pageDb.insertOne(newPage);
+    const infoDb = db.collection<InternalInfo>('info');
+
+    await Promise.all([
+      infoDb.updateOne({}, { $inc: { pages: 1 } }),
+      pagesDb.insertOne(newPage)
+    ]);
   } catch (error) {
     /* istanbul ignore else */
     if (error instanceof MongoServerError && error.code == 11_000) {
-      throw new ValidationError(ErrorMessage.DuplicateFieldValue('name'));
+      throw new ValidationError(ErrorMessage.DuplicateFieldValue('pageName'));
     }
 
     /* istanbul ignore next */
@@ -608,12 +671,16 @@ export async function createPage({
 export async function createSession({
   blogName,
   pageName,
-  $provenance
+  __provenance
 }: {
   blogName: string | undefined;
   pageName: string | undefined;
-  $provenance: TokenAttributeOwner;
+  __provenance: TokenAttributeOwner;
 }): Promise<SessionId> {
+  if (typeof __provenance !== 'string') {
+    throw new GuruMeditationError('invalid provenance token attribute owner');
+  }
+
   const db = await getDb({ name: 'app' });
   const sessionDb = db.collection<InternalSession>('sessions');
   const { _id: blog_id } = await blogNameToUser(blogName);
@@ -621,10 +688,10 @@ export async function createSession({
 
   const newSession: InternalSession = {
     _id: new ObjectId(),
-    $provenance,
-    blog_id,
+    __provenance,
     page_id,
-    lastRenewedDate: new Date()
+    // ? Using Date.now ensures we pick up Date mocking when testing
+    lastRenewedDate: new Date(Date.now())
   };
 
   // * At this point, we can finally trust this data is valid and not malicious
@@ -641,8 +708,9 @@ export async function updateUser({
 }): Promise<void> {
   const { _id: user_id, type } = await usernameOrEmailParamToUser(usernameOrEmail);
 
-  // ? Optimization
-  if (data && !Object.keys(data).length) return;
+  if (data && !Object.keys(data).length) {
+    throw new ValidationError(ErrorMessage.EmptyJSONBody());
+  }
 
   validateGenericUserData(data, { required: false });
 
@@ -664,12 +732,12 @@ export async function updateUser({
   }
 
   const db = await getDb({ name: 'app' });
-  const userDb = db.collection<InternalUser>('users');
+  const usersDb = db.collection<InternalUser>('users');
 
   // * At this point, we can finally trust this data is not malicious, but not
   // * necessarily valid...
   try {
-    const result = await userDb.updateOne(
+    const result = await usersDb.updateOne(
       { _id: user_id },
       {
         $set: {
@@ -681,7 +749,10 @@ export async function updateUser({
       }
     );
 
-    assert(result.matchedCount === 1);
+    assert(
+      result.matchedCount === 1,
+      `expected 1 affected document, ${result.matchedCount} were affected`
+    );
   } catch (error) {
     if (
       error instanceof MongoServerError &&
@@ -704,8 +775,9 @@ export async function updateBlog({
 }): Promise<void> {
   const { _id: blog_id } = await blogNameToUser(blogName);
 
-  // ? Optimization
-  if (data && !Object.keys(data).length) return;
+  if (data && !Object.keys(data).length) {
+    throw new ValidationError(ErrorMessage.EmptyJSONBody());
+  }
 
   validatePatchBlogData(data);
 
@@ -717,19 +789,28 @@ export async function updateBlog({
   }
 
   const db = await getDb({ name: 'app' });
-  const userDb = db.collection<InternalUser>('users');
+  const usersDb = db.collection<InternalUser>('users');
+
+  if (name && (await itemExists(usersDb, { key: 'blogName', id: name }))) {
+    throw new ValidationError(ErrorMessage.DuplicateFieldValue('blogName'));
+  }
 
   // * At this point, we can finally trust this data is valid and not malicious
-  const result = await userDb.updateOne(
+  const result = await usersDb.updateOne(
     { _id: blog_id },
     {
-      ...(name ? { $set: { blogName: name } } : {}),
-      ...(rootPage ? { $set: { blogRootPage: rootPage } } : {}),
-      ...(navLinks ? { $set: { navLinks } } : {})
+      $set: {
+        ...(name ? { blogName: name } : {}),
+        ...(rootPage ? { blogRootPage: rootPage } : {}),
+        ...(navLinks ? { navLinks } : {})
+      }
     }
   );
 
-  assert(result.matchedCount === 1);
+  assert(
+    result.matchedCount === 1,
+    `expected 1 affected document, ${result.matchedCount} were affected`
+  );
 }
 
 export async function updatePage({
@@ -744,8 +825,9 @@ export async function updatePage({
   const { _id: blog_id } = await blogNameToUser(blogName);
   const { _id: page_id } = await pageNameToPage(pageName, blog_id);
 
-  // ? Optimization
-  if (data && !Object.keys(data).length) return;
+  if (data && !Object.keys(data).length) {
+    throw new ValidationError(ErrorMessage.EmptyJSONBody());
+  }
 
   validateGenericPageData(data, { required: false });
 
@@ -763,10 +845,10 @@ export async function updatePage({
   }
 
   const db = await getDb({ name: 'app' });
-  const pageDb = db.collection<InternalPage>('pages');
+  const pagesDb = db.collection<InternalPage>('pages');
 
   // * At this point, we can finally trust this data is valid and not malicious
-  const result = await pageDb.updateOne(
+  const result = await pagesDb.updateOne(
     { _id: page_id },
     {
       ...(contents !== undefined ? { $set: { contents } } : {}),
@@ -774,25 +856,28 @@ export async function updatePage({
     }
   );
 
-  assert(result.matchedCount === 1);
+  assert(
+    result.matchedCount === 1,
+    `expected 1 affected document, ${result.matchedCount} were affected`
+  );
 }
 
 export async function renewSession({
-  session_id
+  sessionId
 }: {
-  session_id: string | undefined;
+  sessionId: string | undefined;
 }): Promise<void> {
   const db = await getDb({ name: 'app' });
   const sessionDb = db.collection<InternalSession>('sessions');
 
   // * At this point, we can finally trust this data is valid and not malicious
   const result = await sessionDb.updateOne(
-    { _id: itemToObjectId(session_id) },
-    { $set: { lastRenewedDate: new Date() } }
+    { _id: itemToObjectId(String(sessionId)) },
+    { $set: { lastRenewedDate: new Date(Date.now()) } }
   );
 
   if (result.matchedCount !== 1) {
-    throw new ItemNotFoundError(session_id, 'session');
+    throw new ItemNotFoundError(sessionId, 'session');
   }
 }
 
@@ -801,13 +886,31 @@ export async function deleteUser({
 }: {
   usernameOrEmail: Username | Email | undefined;
 }): Promise<void> {
-  const { _id: user_id } = await usernameOrEmailParamToUser(usernameOrEmail);
+  const { _id: user_id, type } = await usernameOrEmailParamToUser(usernameOrEmail);
 
   const db = await getDb({ name: 'app' });
-  const userDb = db.collection<InternalUser>('users');
-  const result = await userDb.deleteOne({ _id: user_id });
+  const usersDb = db.collection<InternalUser>('users');
+  const pagesDb = db.collection<InternalPage>('pages');
+  const infoDb = db.collection<InternalInfo>('info');
 
-  assert(result.deletedCount === 1);
+  const [deleteUserResult, deletePagesResult] = await Promise.all([
+    usersDb.deleteOne({ _id: user_id }),
+    pagesDb.deleteMany({ blog_id: user_id }),
+    infoDb.updateOne({}, { $inc: { users: -1 } })
+  ]);
+
+  if (type === 'blogger') {
+    await infoDb.updateOne(
+      {},
+      { $inc: { blogs: -1, pages: -1 * deletePagesResult.deletedCount } }
+    );
+  }
+  // ? We already do the existence check when we get the user_id. This is just a
+  // ? sanity check at this point.
+  assert(
+    deleteUserResult.deletedCount === 1,
+    `expected 1 affected document, ${deleteUserResult.deletedCount} were affected`
+  );
 }
 
 export async function deletePage({
@@ -821,22 +924,36 @@ export async function deletePage({
   const { _id: page_id } = await pageNameToPage(pageName, blog_id);
 
   const db = await getDb({ name: 'app' });
-  const pageDb = db.collection<InternalPage>('pages');
-  const result = await pageDb.deleteOne({ _id: page_id });
+  const pagesDb = db.collection<InternalPage>('pages');
+  const infoDb = db.collection<InternalInfo>('info');
 
-  assert(result.deletedCount === 1);
+  const [deletePagesResult] = await Promise.all([
+    pagesDb.deleteOne({ _id: page_id }),
+    infoDb.updateOne({}, { $inc: { pages: -1 } })
+  ]);
+
+  // ? We already do the existence check when we get the page_id. This is just a
+  // ? sanity check at this point.
+  assert(
+    deletePagesResult.deletedCount === 1,
+    `expected 1 affected document, ${deletePagesResult.deletedCount} were affected`
+  );
 }
 
 export async function deleteSession({
-  session_id
+  sessionId
 }: {
-  session_id: string | undefined;
+  sessionId: string | undefined;
 }): Promise<void> {
   const db = await getDb({ name: 'app' });
   const sessionDb = db.collection<InternalSession>('sessions');
-  const result = await sessionDb.deleteOne({ _id: itemToObjectId(session_id) });
+  const result = await sessionDb.deleteOne({
+    _id: itemToObjectId(String(sessionId))
+  });
 
-  assert(result.deletedCount === 1);
+  if (result.deletedCount !== 1) {
+    throw new ItemNotFoundError(sessionId, 'session');
+  }
 }
 
 export async function authAppUser({
@@ -849,9 +966,9 @@ export async function authAppUser({
   if (!key || !usernameOrEmail) return false;
 
   const db = await getDb({ name: 'app' });
-  const userDb = db.collection<InternalUser>('users');
+  const usersDb = db.collection<InternalUser>('users');
 
-  return !!(await userDb.countDocuments({
+  return !!(await usersDb.countDocuments({
     $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
     key
   }));

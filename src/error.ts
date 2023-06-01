@@ -40,6 +40,7 @@ export const ErrorMessage = {
         : 'a missing, invalid, or illegal value'
     }${validValues ? `. Valid values: ${validValues.join(', ')}` : ''}`,
   InvalidJSON: () => 'encountered invalid JSON',
+  EmptyJSONBody: () => 'encountered unexpectedly empty JSON object in request body',
   InvalidNumberValue: (
     property: string,
     min: number | string,
@@ -87,6 +88,10 @@ export const ErrorMessage = {
     `\`${property}\` has invalid or illegal regex value`,
   IllegalOperation: () =>
     'this user is not authorized to execute operations on this item',
-  TooManyPages: () =>
-    'this user has reached the maximum allowed number of pages and cannot create more'
+  // 'navLinks', 0, 5, 'navigation links'
+  TooMany: (resource?: string, max?: number | string) => {
+    return `resource limit reached${resource ? `: ${resource}` : ''}${
+      max !== undefined ? ` (exceeded maximum of ${max})` : ''
+    }`;
+  }
 };

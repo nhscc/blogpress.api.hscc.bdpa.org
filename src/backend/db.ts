@@ -57,7 +57,10 @@ export function getSchemaConfig(): DbSchema {
               },
               {
                 spec: 'lastRenewedDate',
-                options: { expireAfterSeconds: getEnv().SESSION_EXPIRE_AFTER_SECONDS }
+                // ? When stepping through code, don't expire stuff out of db
+                options: process.env.VSCODE_INSPECTOR_OPTIONS
+                  ? {}
+                  : { expireAfterSeconds: getEnv().SESSION_EXPIRE_AFTER_SECONDS }
               }
             ]
           },
@@ -111,7 +114,7 @@ export type PublicPageMetadata = Pick<
  * The shape of an internal application user.
  */
 export type InternalUser = WithId<{
-  $provenance: TokenAttributeOwner;
+  __provenance: TokenAttributeOwner;
   username: Username | null;
   salt: string;
   email: string;
@@ -201,7 +204,7 @@ export type PatchBlog = Partial<
  * The shape of an internal blog page.
  */
 export type InternalPage = WithId<{
-  $provenance: TokenAttributeOwner;
+  __provenance: TokenAttributeOwner;
   blog_id: BlogId;
   createdAt: UnixEpochMs;
   name: string;
@@ -233,9 +236,8 @@ export type PatchPage = Partial<Pick<InternalPage, 'contents'>> & {
  * The shape of an internal active user entry.
  */
 export type InternalSession = WithId<{
-  $provenance: TokenAttributeOwner;
+  __provenance: TokenAttributeOwner;
   page_id: PageId;
-  blog_id: BlogId;
   lastRenewedDate: Date;
 }>;
 
@@ -290,7 +292,7 @@ export function toPublicBlog({
   createdAt,
   type
 }: InternalUser): PublicBlog {
-  assert(type === 'blogger');
+  assert(type === 'blogger', 'expected type of user to be "blogger"');
   return {
     name: blogName,
     rootPage: blogRootPage,
@@ -352,22 +354,10 @@ export const publicUserProjection = {
  */
 export const publicBlogProjection = {
   _id: false,
-  name: true,
-  createdAt: true,
-  totalViews: true,
-  contents: true
-} as const;
-
-/**
- * A MongoDB cursor projection that transforms an internal user into a public
- * user.
- */
-export const publicPageProjection = {
-  _id: false,
-  name: true,
-  createdAt: true,
-  totalViews: true,
-  contents: true
+  name: '$blogName',
+  rootPage: '$blogRootPage',
+  navLinks: true,
+  createdAt: true
 } as const;
 
 /**
@@ -379,4 +369,13 @@ export const publicPageMetadataProjection = {
   name: true,
   createdAt: true,
   totalViews: true
+} as const;
+
+/**
+ * A MongoDB cursor projection that transforms an internal user into a public
+ * user.
+ */
+export const publicPageProjection = {
+  ...publicPageMetadataProjection,
+  contents: true
 } as const;

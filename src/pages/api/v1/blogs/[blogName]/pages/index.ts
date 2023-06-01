@@ -27,7 +27,7 @@ export default withMiddleware(
           page: await createPage({
             blogName,
             data: req.body,
-            $provenance: await authorizationHeaderToOwnerAttribute(
+            __provenance: await authorizationHeaderToOwnerAttribute(
               req.headers.authorization
             )
           })

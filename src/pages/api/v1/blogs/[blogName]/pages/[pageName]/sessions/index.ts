@@ -27,7 +27,7 @@ export default withMiddleware(
         const session_id = await createSession({
           blogName,
           pageName,
-          $provenance: await authorizationHeaderToOwnerAttribute(
+          __provenance: await authorizationHeaderToOwnerAttribute(
             req.headers.authorization
           )
         });

@@ -24,7 +24,7 @@ export default withMiddleware(
         sendHttpOk(res, {
           user: await createUser({
             data: req.body,
-            $provenance: await authorizationHeaderToOwnerAttribute(
+            __provenance: await authorizationHeaderToOwnerAttribute(
               req.headers.authorization
             )
           })
