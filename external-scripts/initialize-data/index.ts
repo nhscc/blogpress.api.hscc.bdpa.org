@@ -1,7 +1,7 @@
 /* eslint-disable unicorn/no-process-exit */
 /* eslint-disable no-await-in-loop */
+import { ObjectId } from 'mongodb';
 import { AppError } from 'named-app-errors';
-
 import inquirer, { type PromptModule } from 'inquirer';
 
 import { debugNamespace as namespace } from 'universe/constants';
@@ -9,6 +9,8 @@ import { getEnv } from 'universe/backend/env';
 
 import { debugFactory } from 'multiverse/debug-extended';
 import { getDb } from 'multiverse/mongo-schema';
+
+import type { InternalInfo } from 'universe/backend/db';
 
 const debugNamespace = `${namespace}:initialize-data`;
 
@@ -87,7 +89,19 @@ const invoked = async () => {
       }
 
       case 'commit': {
-        await Promise.all([getDb({ name: 'root' }), getDb({ name: 'app' })]);
+        const [, infoDb] = await Promise.all([
+          getDb({ name: 'root' }),
+          (await getDb({ name: 'app' })).collection<InternalInfo>('info')
+        ]);
+
+        if ((await infoDb.countDocuments()) === 0) {
+          await infoDb.insertOne({
+            _id: new ObjectId(),
+            blogs: 0,
+            pages: 0,
+            users: 0
+          });
+        }
 
         await getPrompter(process.env.TEST_PROMPTER_FINALIZER).prompt<{
           action: string;
