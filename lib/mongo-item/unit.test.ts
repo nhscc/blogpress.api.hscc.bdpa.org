@@ -173,14 +173,20 @@ describe('::itemToObjectId', () => {
   it('throws if an item is irreducible or invalid', async () => {
     expect.hasAssertions();
 
-    expect(() => itemToObjectId(null)).toThrow('irreducible');
-    expect(() => itemToObjectId(undefined)).toThrow('irreducible');
-    expect(() => itemToObjectId([null])).toThrow('irreducible');
-    expect(() => itemToObjectId([undefined])).toThrow('irreducible');
+    expect(() => itemToObjectId(null)).toThrow('unable to reduce item to id: null');
+    expect(() => itemToObjectId(undefined)).toThrow(
+      'unable to reduce item to id: undefined'
+    );
+    expect(() => itemToObjectId([null])).toThrow(
+      'unable to reduce sub-item to id: null'
+    );
+    expect(() => itemToObjectId([undefined])).toThrow(
+      'unable to reduce sub-item to id: undefined'
+    );
     // @ts-expect-error: bad param
-    expect(() => itemToObjectId({})).toThrow('irreducible');
+    expect(() => itemToObjectId({})).toThrow('unable to reduce item to id');
     // @ts-expect-error: bad param
-    expect(() => itemToObjectId([{}])).toThrow('irreducible');
+    expect(() => itemToObjectId([{}])).toThrow('unable to reduce sub-item to id');
     expect(() => itemToObjectId('bad')).toThrow('invalid id "bad"');
     expect(() => itemToObjectId(['bad'])).toThrow('invalid id "bad"');
     expect(() => itemToObjectId([new ObjectId(), 'bad'])).toThrow('invalid id "bad"');
@@ -219,14 +225,20 @@ describe('::itemToStringId', () => {
   it('throws if item is irreducible', async () => {
     expect.hasAssertions();
 
-    expect(() => itemToStringId(null)).toThrow('irreducible');
-    expect(() => itemToStringId(undefined)).toThrow('irreducible');
-    expect(() => itemToStringId([null])).toThrow('irreducible');
-    expect(() => itemToStringId([undefined])).toThrow('irreducible');
+    expect(() => itemToStringId(null)).toThrow('unable to reduce item to id: null');
+    expect(() => itemToStringId(undefined)).toThrow(
+      'unable to reduce item to id: undefined'
+    );
+    expect(() => itemToStringId([null])).toThrow(
+      'unable to reduce sub-item to id: null'
+    );
+    expect(() => itemToStringId([undefined])).toThrow(
+      'unable to reduce sub-item to id: undefined'
+    );
     // @ts-expect-error: bad param
-    expect(() => itemToStringId({})).toThrow('irreducible');
+    expect(() => itemToStringId({})).toThrow('unable to reduce item to id');
     // @ts-expect-error: bad param
-    expect(() => itemToStringId([{}])).toThrow('irreducible');
+    expect(() => itemToStringId([{}])).toThrow('unable to reduce sub-item to id');
     expect(() => itemToStringId('bad')).toThrow('invalid id "bad"');
     expect(() => itemToStringId(['bad'])).toThrow('invalid id "bad"');
     expect(() => itemToStringId([new ObjectId(), 'bad'])).toThrow('invalid id "bad"');

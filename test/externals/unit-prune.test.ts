@@ -22,16 +22,14 @@ jest.mock('multiverse/mongo-schema', (): typeof import('multiverse/mongo-schema'
 // const testCollectionsMap = {
 //   'root.request-log': dummyRootData['request-log'].length,
 //   'root.limited-log': dummyRootData['limited-log'].length,
-//   'app.mail': dummyAppData['mail'].length,
-//   'app.questions': dummyAppData['questions'].length,
-//   'app.users': dummyAppData['users'].length
+//   ...
 // };
 
 const testCollections = [
   'root.request-log',
   'root.limited-log',
-  'app.mail',
-  'app.questions',
+  'app.pages',
+  'app.sessions',
   'app.users'
 ] as const;
 
@@ -41,9 +39,9 @@ const withMockedEnv = mockEnvFactory({
   PRUNE_DATA_MAX_LOGS_BYTES: '50mb',
   PRUNE_DATA_MAX_BANNED_BYTES: '10mb',
   // * Step 2: Add new env var default values here
-  PRUNE_DATA_MAX_MAIL_BYTES: '50mb',
-  PRUNE_DATA_MAX_QUESTIONS_BYTES: '250mb',
-  PRUNE_DATA_MAX_USERS_BYTES: '75mb'
+  PRUNE_DATA_MAX_PAGES_BYTES: '300mb',
+  PRUNE_DATA_MAX_SESSIONS_BYTES: '20mb',
+  PRUNE_DATA_MAX_USERS_BYTES: '50mb'
 });
 
 const importPruneData = protectedImportFactory<
@@ -131,7 +129,9 @@ it('is verbose when no DEBUG environment variable set and compiled NODE_ENV is n
       OVERRIDE_EXPECT_ENV: 'force-no-check'
     });
 
-    expect(infoSpy).toBeCalledWith(expect.stringContaining('execution complete'));
+    expect(infoSpy.mock.calls.at(-1)?.[0]).toStrictEqual(
+      expect.stringContaining('execution complete')
+    );
   });
 
   await withMockedOutput(async ({ infoSpy }) => {
@@ -151,8 +151,8 @@ it('rejects on bad environment', async () => {
   await withMockedEnv(() => importPruneData({ expectedExitCode: 2 }), {
     PRUNE_DATA_MAX_LOGS_BYTES: '',
     PRUNE_DATA_MAX_BANNED_BYTES: '',
-    PRUNE_DATA_MAX_MAIL_BYTES: '',
-    PRUNE_DATA_MAX_QUESTIONS_BYTES: '',
+    PRUNE_DATA_MAX_PAGES_BYTES: '',
+    PRUNE_DATA_MAX_SESSIONS_BYTES: '',
     PRUNE_DATA_MAX_USERS_BYTES: ''
   });
 
@@ -165,11 +165,11 @@ it('rejects on bad environment', async () => {
   });
 
   await withMockedEnv(() => importPruneData({ expectedExitCode: 2 }), {
-    PRUNE_DATA_MAX_MAIL_BYTES: ''
+    PRUNE_DATA_MAX_PAGES_BYTES: ''
   });
 
   await withMockedEnv(() => importPruneData({ expectedExitCode: 2 }), {
-    PRUNE_DATA_MAX_QUESTIONS_BYTES: ''
+    PRUNE_DATA_MAX_SESSIONS_BYTES: ''
   });
 
   await withMockedEnv(() => importPruneData({ expectedExitCode: 2 }), {
@@ -188,16 +188,16 @@ it('respects the limits imposed by PRUNE_DATA_MAX_X environment variables', asyn
   const expectedSizes = {
     'root.request-log': initialSizes['root.request-log'] / 2,
     'root.limited-log': initialSizes['root.limited-log'] / 2,
-    'app.mail': initialSizes['app.mail'] / 2,
-    'app.questions': initialSizes['app.questions'] / 2,
+    'app.pages': initialSizes['app.pages'] / 2,
+    'app.sessions': initialSizes['app.sessions'] / 2,
     'app.users': initialSizes['app.users'] / 2
   };
 
   await withMockedEnv(() => importPruneData({ expectedExitCode: 0 }), {
     PRUNE_DATA_MAX_LOGS_BYTES: String(expectedSizes['root.request-log']),
     PRUNE_DATA_MAX_BANNED_BYTES: String(expectedSizes['root.limited-log']),
-    PRUNE_DATA_MAX_MAIL_BYTES: String(expectedSizes['app.mail']),
-    PRUNE_DATA_MAX_QUESTIONS_BYTES: String(expectedSizes['app.questions']),
+    PRUNE_DATA_MAX_PAGES_BYTES: String(expectedSizes['app.pages']),
+    PRUNE_DATA_MAX_SESSIONS_BYTES: String(expectedSizes['app.sessions']),
     PRUNE_DATA_MAX_USERS_BYTES: String(expectedSizes['app.users'])
   });
 
@@ -211,19 +211,15 @@ it('respects the limits imposed by PRUNE_DATA_MAX_X environment variables', asyn
     expectedSizes['root.limited-log']
   );
 
-  expect(newSizes['app.mail']).toBeLessThanOrEqual(expectedSizes['app.mail']);
-
-  expect(newSizes['app.questions']).toBeLessThanOrEqual(
-    expectedSizes['app.questions']
-  );
-
+  expect(newSizes['app.pages']).toBeLessThanOrEqual(expectedSizes['app.pages']);
+  expect(newSizes['app.sessions']).toBeLessThanOrEqual(expectedSizes['app.sessions']);
   expect(newSizes['app.users']).toBeLessThanOrEqual(expectedSizes['app.users']);
 
   await withMockedEnv(() => importPruneData({ expectedExitCode: 0 }), {
     PRUNE_DATA_MAX_LOGS_BYTES: '1',
     PRUNE_DATA_MAX_BANNED_BYTES: '1',
-    PRUNE_DATA_MAX_MAIL_BYTES: '1',
-    PRUNE_DATA_MAX_QUESTIONS_BYTES: '1',
+    PRUNE_DATA_MAX_PAGES_BYTES: '1',
+    PRUNE_DATA_MAX_SESSIONS_BYTES: '1',
     PRUNE_DATA_MAX_USERS_BYTES: '1'
   });
 
@@ -231,8 +227,8 @@ it('respects the limits imposed by PRUNE_DATA_MAX_X environment variables', asyn
 
   expect(latestSizes['root.request-log']).toBe(0);
   expect(latestSizes['root.limited-log']).toBe(0);
-  expect(latestSizes['app.mail']).toBe(0);
-  expect(latestSizes['app.questions']).toBe(0);
+  expect(latestSizes['app.pages']).toBe(0);
+  expect(latestSizes['app.sessions']).toBe(0);
   expect(latestSizes['app.users']).toBe(0);
 });
 
@@ -246,8 +242,8 @@ it('only deletes entries if necessary', async () => {
     PRUNE_DATA_MAX_LOGS_BYTES: '100gb',
     PRUNE_DATA_MAX_BANNED_BYTES: '100gb',
     // * Step 5: Add new env vars high-prune-threshold values here
-    PRUNE_DATA_MAX_MAIL_BYTES: '100gb',
-    PRUNE_DATA_MAX_QUESTIONS_BYTES: '100gb',
+    PRUNE_DATA_MAX_PAGES_BYTES: '100gb',
+    PRUNE_DATA_MAX_SESSIONS_BYTES: '100gb',
     PRUNE_DATA_MAX_USERS_BYTES: '100gb'
   });
 
@@ -256,9 +252,7 @@ it('only deletes entries if necessary', async () => {
   expect(newSizes['root.request-log']).toBe(initialSizes['root.request-log']);
   expect(newSizes['root.limited-log']).toBe(initialSizes['root.limited-log']);
 
-  expect(newSizes['app.mail']).toBe(initialSizes['app.mail']);
-
-  expect(newSizes['app.questions']).toBe(initialSizes['app.questions']);
-
+  expect(newSizes['app.pages']).toBe(initialSizes['app.pages']);
+  expect(newSizes['app.sessions']).toBe(initialSizes['app.sessions']);
   expect(newSizes['app.users']).toBe(initialSizes['app.users']);
 });
