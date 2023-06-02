@@ -40,7 +40,7 @@ export default withMiddleware(
   {
     descriptor: metadata.descriptor,
     options: {
-      allowedContentTypes: { POST: ['application/json', 'none'], GET: 'none' },
+      allowedContentTypes: ['application/json', 'none'],
       allowedMethods: ['GET', 'POST'],
       apiVersion: '1'
     }

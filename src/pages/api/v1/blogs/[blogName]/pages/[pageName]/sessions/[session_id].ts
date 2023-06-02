@@ -31,7 +31,7 @@ export default withMiddleware(
   {
     descriptor: metadata.descriptor,
     options: {
-      allowedContentTypes: { PUT: ['application/json', 'none'], DELETE: 'none' },
+      allowedContentTypes: ['application/json', 'none'],
       allowedMethods: ['PUT', 'DELETE'],
       apiVersion: '1'
     }

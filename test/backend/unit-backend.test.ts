@@ -702,6 +702,7 @@ describe('::createUser', () => {
         {
           email: 'valid@email.address',
           salt: '0'.repeat(saltLength),
+          // * Not hexadecimal
           key: 'x'.repeat(keyLength)
         },
         ErrorMessage.InvalidStringLength('key', keyLength, null, 'hexadecimal')
@@ -1417,7 +1418,18 @@ describe('::updateUser', () => {
         ErrorMessage.InvalidStringLength('key', keyLength, null, 'hexadecimal')
       ],
       [
+        // * Not hexadecimal
         { key: 'x'.repeat(keyLength) },
+        ErrorMessage.InvalidStringLength('key', keyLength, null, 'hexadecimal')
+      ],
+      // * Key must always be paired with salt and vice-versa
+      [
+        { key: 'a'.repeat(keyLength) },
+        ErrorMessage.InvalidStringLength('salt', saltLength, null, 'hexadecimal')
+      ],
+      // * Key must always be paired with salt and vice-versa
+      [
+        { salt: 'a'.repeat(saltLength) },
         ErrorMessage.InvalidStringLength('key', keyLength, null, 'hexadecimal')
       ],
       [{ banned: 'true' as unknown as boolean }, ErrorMessage.UnknownField('banned')],

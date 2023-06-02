@@ -549,27 +549,7 @@ export async function createUser({
 
   // * At this point, we can finally trust this data is valid and not malicious
   try {
-    const infoDb = db.collection<InternalInfo>('info');
-    const pagesDb = db.collection<InternalPage>('pages');
-
     await usersDb.insertOne(newUser);
-    const promisedUpdate = infoDb.updateOne({}, { $inc: { users: 1 } });
-
-    if (data.type === 'blogger') {
-      await Promise.all([
-        infoDb.updateOne({}, { $inc: { blogs: 1, pages: 1 } }),
-        pagesDb.insertOne({
-          __provenance,
-          _id: new ObjectId(),
-          blog_id: newUser._id,
-          createdAt: Date.now(),
-          totalViews: 0,
-          ...defaultHomePage
-        })
-      ]);
-    }
-
-    await promisedUpdate;
   } catch (error) {
     /* istanbul ignore else */
     if (
@@ -584,6 +564,25 @@ export async function createUser({
     throw error;
   }
 
+  const infoDb = db.collection<InternalInfo>('info');
+  const promises: Promise<unknown>[] = [infoDb.updateOne({}, { $inc: { users: 1 } })];
+
+  // TODO: this should be implemented as a transaction
+  if (data.type === 'blogger') {
+    promises.push(
+      infoDb.updateOne({}, { $inc: { blogs: 1, pages: 1 } }),
+      db.collection<InternalPage>('pages').insertOne({
+        __provenance,
+        _id: new ObjectId(),
+        blog_id: newUser._id,
+        createdAt: Date.now(),
+        totalViews: 0,
+        ...defaultHomePage
+      })
+    );
+  }
+
+  await Promise.all(promises);
   return toPublicUser(newUser);
 }
 
@@ -649,12 +648,7 @@ export async function createPage({
 
   // * At this point, we can finally trust this data is valid and not malicious
   try {
-    const infoDb = db.collection<InternalInfo>('info');
-
-    await Promise.all([
-      infoDb.updateOne({}, { $inc: { pages: 1 } }),
-      pagesDb.insertOne(newPage)
-    ]);
+    await pagesDb.insertOne(newPage);
   } catch (error) {
     /* istanbul ignore else */
     if (error instanceof MongoServerError && error.code == 11_000) {
@@ -665,6 +659,7 @@ export async function createPage({
     throw error;
   }
 
+  await db.collection<InternalInfo>('info').updateOne({}, { $inc: { pages: 1 } });
   return toPublicPage(newPage);
 }
 
@@ -729,6 +724,21 @@ export async function updateUser({
 
   if (restKeys.length != 0) {
     throw new ValidationError(ErrorMessage.UnknownField(restKeys[0]));
+  }
+
+  // ? Key update requires salt update and vice-versa
+  if (!!key !== !!salt) {
+    const { USER_SALT_LENGTH: maxSaltLength, USER_KEY_LENGTH: maxKeyLength } =
+      getEnv();
+
+    throw new ValidationError(
+      ErrorMessage.InvalidStringLength(
+        !!key ? 'salt' : 'key',
+        !!key ? maxSaltLength : maxKeyLength,
+        null,
+        'hexadecimal'
+      )
+    );
   }
 
   const db = await getDb({ name: 'app' });
