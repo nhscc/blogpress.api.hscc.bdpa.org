@@ -119,7 +119,7 @@ ___
 
 #### Defined in
 
-[lib/debug-extended/index.ts:17](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/debug-extended/index.ts#L17)
+[lib/debug-extended/index.ts:17](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/debug-extended/index.ts#L17)
 
 ___
 
@@ -147,7 +147,7 @@ ___
 
 #### Defined in
 
-[lib/debug-extended/index.ts:19](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/debug-extended/index.ts#L19)
+[lib/debug-extended/index.ts:19](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/debug-extended/index.ts#L19)
 
 ___
 
@@ -199,4 +199,4 @@ ___
 
 #### Defined in
 
-[lib/debug-extended/index.ts:18](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/debug-extended/index.ts#L18)
+[lib/debug-extended/index.ts:18](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/debug-extended/index.ts#L18)

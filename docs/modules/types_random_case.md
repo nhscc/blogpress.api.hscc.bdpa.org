@@ -26,4 +26,4 @@
 
 #### Defined in
 
-[types/random-case.d.ts:2](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/types/random-case.d.ts#L2)
+[types/random-case.d.ts:2](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/types/random-case.d.ts#L2)

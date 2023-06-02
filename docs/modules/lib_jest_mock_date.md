@@ -22,7 +22,7 @@ The mock Date.now() value returned after calling `useMockDateNow`.
 
 #### Defined in
 
-[lib/jest-mock-date/index.ts:4](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/jest-mock-date/index.ts#L4)
+[lib/jest-mock-date/index.ts:4](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/jest-mock-date/index.ts#L4)
 
 ## Functions
 
@@ -51,4 +51,4 @@ derived from the current time (i.e. unix epoch).
 
 #### Defined in
 
-[lib/jest-mock-date/index.ts:15](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/jest-mock-date/index.ts#L15)
+[lib/jest-mock-date/index.ts:15](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/jest-mock-date/index.ts#L15)

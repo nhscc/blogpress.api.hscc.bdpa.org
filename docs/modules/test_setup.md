@@ -92,7 +92,7 @@
 
 #### Defined in
 
-[test/setup.ts:808](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L808)
+[test/setup.ts:809](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L809)
 
 ___
 
@@ -108,7 +108,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:224](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L224)
+[test/setup.ts:224](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L224)
 
 ___
 
@@ -124,7 +124,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:234](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L234)
+[test/setup.ts:234](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L234)
 
 ___
 
@@ -154,7 +154,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:813](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L813)
+[test/setup.ts:814](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L814)
 
 ## Variables
 
@@ -175,7 +175,7 @@ Contains the expected shapes of the gzipped tar archives under
 
 #### Defined in
 
-[test/setup.ts:69](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L69)
+[test/setup.ts:69](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L69)
 
 ## Functions
 
@@ -189,7 +189,7 @@ Contains the expected shapes of the gzipped tar archives under
 
 #### Defined in
 
-[test/setup.ts:1062](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L1062)
+[test/setup.ts:1063](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L1063)
 
 ___
 
@@ -203,7 +203,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:1015](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L1015)
+[test/setup.ts:1016](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L1016)
 
 ___
 
@@ -217,7 +217,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:1036](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L1036)
+[test/setup.ts:1037](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L1037)
 
 ___
 
@@ -231,7 +231,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:847](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L847)
+[test/setup.ts:848](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L848)
 
 ___
 
@@ -245,7 +245,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:988](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L988)
+[test/setup.ts:989](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L989)
 
 ___
 
@@ -282,7 +282,7 @@ test to hang unexpectedly, even when all tests pass.
 
 #### Defined in
 
-[test/setup.ts:352](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L352)
+[test/setup.ts:353](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L353)
 
 ___
 
@@ -316,7 +316,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:390](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L390)
+[test/setup.ts:391](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L391)
 
 ___
 
@@ -342,7 +342,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:173](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L173)
+[test/setup.ts:173](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L173)
 
 ___
 
@@ -377,7 +377,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:265](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L265)
+[test/setup.ts:265](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L265)
 
 ___
 
@@ -412,7 +412,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:306](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L306)
+[test/setup.ts:307](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L307)
 
 ___
 
@@ -452,7 +452,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:1197](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L1197)
+[test/setup.ts:1198](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L1198)
 
 ___
 
@@ -499,7 +499,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:633](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L633)
+[test/setup.ts:634](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L634)
 
 ___
 
@@ -513,7 +513,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:951](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L951)
+[test/setup.ts:952](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L952)
 
 ___
 
@@ -537,7 +537,7 @@ status code.
 
 #### Defined in
 
-[test/setup.ts:51](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L51)
+[test/setup.ts:51](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L51)
 
 ___
 
@@ -551,7 +551,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:872](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L872)
+[test/setup.ts:873](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L873)
 
 ___
 
@@ -585,7 +585,7 @@ IIFE modules such as CLI entry points an externals.
 
 #### Defined in
 
-[test/setup.ts:415](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L415)
+[test/setup.ts:416](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L416)
 
 ___
 
@@ -627,7 +627,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:464](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L464)
+[test/setup.ts:465](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L465)
 
 ___
 
@@ -641,7 +641,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:826](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L826)
+[test/setup.ts:827](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L827)
 
 ___
 
@@ -663,7 +663,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:732](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L732)
+[test/setup.ts:733](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L733)
 
 ___
 
@@ -698,7 +698,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:744](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L744)
+[test/setup.ts:745](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L745)
 
 ___
 
@@ -712,7 +712,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:887](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L887)
+[test/setup.ts:888](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L888)
 
 ___
 
@@ -732,7 +732,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:328](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L328)
+[test/setup.ts:329](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L329)
 
 ___
 
@@ -754,7 +754,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:245](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L245)
+[test/setup.ts:245](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L245)
 
 ___
 
@@ -776,7 +776,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:282](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L282)
+[test/setup.ts:282](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L282)
 
 ___
 
@@ -796,7 +796,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:519](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L519)
+[test/setup.ts:520](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L520)
 
 ___
 
@@ -826,7 +826,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:1076](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L1076)
+[test/setup.ts:1077](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L1077)
 
 ___
 
@@ -860,7 +860,7 @@ desired, use the `passthrough` option to prevent this.
 
 #### Defined in
 
-[test/setup.ts:553](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L553)
+[test/setup.ts:554](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L554)
 
 ___
 
@@ -901,4 +901,4 @@ the default (or a custom) API configuration object.
 
 #### Defined in
 
-[test/setup.ts:59](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L59)
+[test/setup.ts:59](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L59)

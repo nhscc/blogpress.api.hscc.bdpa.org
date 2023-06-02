@@ -94,7 +94,7 @@ methods are auto-bound.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:217](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L217)
+[lib/throttled-fetch/index.ts:217](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L217)
 
 ## Properties
 
@@ -106,7 +106,7 @@ A counter used only in debug and stats output.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:206](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L206)
+[lib/throttled-fetch/index.ts:206](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L206)
 
 ___
 
@@ -118,7 +118,7 @@ A counter used only in debug and stats output.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:201](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L201)
+[lib/throttled-fetch/index.ts:201](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L201)
 
 ___
 
@@ -130,7 +130,7 @@ A counter used only in debug and stats output.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:211](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L211)
+[lib/throttled-fetch/index.ts:211](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L211)
 
 ___
 
@@ -142,7 +142,7 @@ Default request initialization parameters sent along with every request.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:165](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L165)
+[lib/throttled-fetch/index.ts:165](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L165)
 
 ___
 
@@ -155,7 +155,7 @@ transpired.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:120](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L120)
+[lib/throttled-fetch/index.ts:120](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L120)
 
 ___
 
@@ -168,7 +168,7 @@ rejects.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:160](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L160)
+[lib/throttled-fetch/index.ts:160](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L160)
 
 ___
 
@@ -180,7 +180,7 @@ The number of milliseconds between intervals.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:186](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L186)
+[lib/throttled-fetch/index.ts:186](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L186)
 
 ___
 
@@ -193,7 +193,7 @@ Once this is set to false and requestQueue is empty,
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:126](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L126)
+[lib/throttled-fetch/index.ts:126](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L126)
 
 ___
 
@@ -205,7 +205,7 @@ The maximum number of requests processed in a single interval.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:181](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L181)
+[lib/throttled-fetch/index.ts:181](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L181)
 
 ___
 
@@ -219,7 +219,7 @@ queue is empty.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:133](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L133)
+[lib/throttled-fetch/index.ts:133](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L133)
 
 ___
 
@@ -231,7 +231,7 @@ Used to facilitate "waiting" for the queue to stop processing requests.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:170](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L170)
+[lib/throttled-fetch/index.ts:170](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L170)
 
 ___
 
@@ -251,7 +251,7 @@ Used to facilitate "waiting" for the queue to stop processing requests.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:176](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L176)
+[lib/throttled-fetch/index.ts:176](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L176)
 
 ___
 
@@ -263,7 +263,7 @@ A function used to individual requests based on feedback from request data.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:148](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L148)
+[lib/throttled-fetch/index.ts:148](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L148)
 
 ___
 
@@ -276,7 +276,7 @@ returned via the `resolve` function.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:192](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L192)
+[lib/throttled-fetch/index.ts:192](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L192)
 
 ___
 
@@ -289,7 +289,7 @@ response data.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:154](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L154)
+[lib/throttled-fetch/index.ts:154](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L154)
 
 ___
 
@@ -301,7 +301,7 @@ Used to immediately end the delaying period.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:143](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L143)
+[lib/throttled-fetch/index.ts:143](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L143)
 
 ___
 
@@ -313,7 +313,7 @@ Used to abort the request queue processor.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:138](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L138)
+[lib/throttled-fetch/index.ts:138](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L138)
 
 ## Accessors
 
@@ -329,7 +329,7 @@ Default request initialization parameters sent along with every request.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:449](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L449)
+[lib/throttled-fetch/index.ts:449](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L449)
 
 • `set` **defaultRequestInit**(`init`): `void`
 
@@ -345,7 +345,7 @@ Default request initialization parameters sent along with every request.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:453](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L453)
+[lib/throttled-fetch/index.ts:453](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L453)
 
 ___
 
@@ -383,7 +383,7 @@ defaultFetchErrorInspector (see export)
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:437](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L437)
+[lib/throttled-fetch/index.ts:437](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L437)
 
 • `set` **fetchErrorInspector**(`inspector`): `void`
 
@@ -399,7 +399,7 @@ defaultFetchErrorInspector (see export)
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:441](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L441)
+[lib/throttled-fetch/index.ts:441](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L441)
 
 ___
 
@@ -416,7 +416,7 @@ A maximum of `maxRequestsPerInterval` requests will be processed every
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:475](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L475)
+[lib/throttled-fetch/index.ts:475](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L475)
 
 • `set` **intervalPeriodMs**(`period`): `void`
 
@@ -432,7 +432,7 @@ A maximum of `maxRequestsPerInterval` requests will be processed every
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:479](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L479)
+[lib/throttled-fetch/index.ts:479](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L479)
 
 ___
 
@@ -449,7 +449,7 @@ otherwise.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:340](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L340)
+[lib/throttled-fetch/index.ts:340](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L340)
 
 ___
 
@@ -466,7 +466,7 @@ A maximum of `maxRequestsPerInterval` requests will be processed every
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:462](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L462)
+[lib/throttled-fetch/index.ts:462](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L462)
 
 • `set` **maxRequestsPerInterval**(`count`): `void`
 
@@ -482,7 +482,7 @@ A maximum of `maxRequestsPerInterval` requests will be processed every
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:466](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L466)
+[lib/throttled-fetch/index.ts:466](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L466)
 
 ___
 
@@ -527,7 +527,7 @@ defaultRequestInspector (see export)
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:382](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L382)
+[lib/throttled-fetch/index.ts:382](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L382)
 
 • `set` **requestInspector**(`inspector`): `void`
 
@@ -543,7 +543,7 @@ defaultRequestInspector (see export)
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:386](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L386)
+[lib/throttled-fetch/index.ts:386](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L386)
 
 ___
 
@@ -562,7 +562,7 @@ context.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:350](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L350)
+[lib/throttled-fetch/index.ts:350](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L350)
 
 ___
 
@@ -595,7 +595,7 @@ defaultResponseInspector (see export)
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:407](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L407)
+[lib/throttled-fetch/index.ts:407](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L407)
 
 • `set` **responseInspector**(`inspector`): `void`
 
@@ -611,7 +611,7 @@ defaultResponseInspector (see export)
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:411](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L411)
+[lib/throttled-fetch/index.ts:411](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L411)
 
 ## Methods
 
@@ -625,7 +625,7 @@ defaultResponseInspector (see export)
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:498](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L498)
+[lib/throttled-fetch/index.ts:498](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L498)
 
 ___
 
@@ -642,7 +642,7 @@ respect to constraints available in the response data.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:511](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L511)
+[lib/throttled-fetch/index.ts:511](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L511)
 
 ___
 
@@ -656,7 +656,7 @@ ___
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:484](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L484)
+[lib/throttled-fetch/index.ts:484](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L484)
 
 ___
 
@@ -686,7 +686,7 @@ will resolve with the request's response data as determined by
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:714](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L714)
+[lib/throttled-fetch/index.ts:714](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L714)
 
 ___
 
@@ -703,7 +703,7 @@ being processed, calling this function again will throw.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:791](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L791)
+[lib/throttled-fetch/index.ts:791](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L791)
 
 ___
 
@@ -722,7 +722,7 @@ In-flight requests will still complete unless
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:884](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L884)
+[lib/throttled-fetch/index.ts:884](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L884)
 
 ___
 
@@ -757,7 +757,7 @@ instead using per-request delays manually (e.g. via `setTimeout`) at the
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:772](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L772)
+[lib/throttled-fetch/index.ts:772](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L772)
 
 ___
 
@@ -779,7 +779,7 @@ Returns various statistics about the queue runtime.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:914](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L914)
+[lib/throttled-fetch/index.ts:914](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L914)
 
 ___
 
@@ -803,7 +803,7 @@ This function will throw if called when the queue is not being processed.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:824](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L824)
+[lib/throttled-fetch/index.ts:824](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L824)
 
 ___
 
@@ -830,7 +830,7 @@ This function will throw if called when the queue is not being processed.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:855](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L855)
+[lib/throttled-fetch/index.ts:855](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L855)
 
 ___
 
@@ -859,7 +859,7 @@ _prepended_ rather than appended to the queue.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:737](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L737)
+[lib/throttled-fetch/index.ts:737](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L737)
 
 ___
 
@@ -879,4 +879,4 @@ Returns a promise that resolves after queue processing stops. Before
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:906](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L906)
+[lib/throttled-fetch/index.ts:906](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L906)

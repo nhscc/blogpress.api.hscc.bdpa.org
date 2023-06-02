@@ -1,20 +1,20 @@
-[blogpress.api.hscc.bdpa.org](../README.md) / src/pages/api/v1/users
+[blogpress.api.hscc.bdpa.org](../README.md) / src/pages/api/v1/users/[usernameOrEmail]
 
-# Module: src/pages/api/v1/users
+# Module: src/pages/api/v1/users/[usernameOrEmail]
 
 ## Table of contents
 
 ### References
 
-- [config](src_pages_api_v1_users.md#config)
+- [config](src_pages_api_v1_users__usernameOrEmail_.md#config)
 
 ### Variables
 
-- [metadata](src_pages_api_v1_users.md#metadata)
+- [metadata](src_pages_api_v1_users__usernameOrEmail_.md#metadata)
 
 ### Functions
 
-- [default](src_pages_api_v1_users.md#default)
+- [default](src_pages_api_v1_users__usernameOrEmail_.md#default)
 
 ## References
 
@@ -36,7 +36,7 @@ Renames and re-exports [defaultConfig](src_backend_api.md#defaultconfig)
 
 #### Defined in
 
-[src/pages/api/v1/users/index.ts:9](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/pages/api/v1/users/index.ts#L9)
+[src/pages/api/v1/users/[usernameOrEmail]/index.ts:8](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/pages/api/v1/users/[usernameOrEmail]/index.ts#L8)
 
 ## Functions
 

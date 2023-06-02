@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[lib/next-adhesive/use-cors.ts:10](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/use-cors.ts#L10)
+[lib/next-adhesive/use-cors.ts:10](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/use-cors.ts#L10)
 
 ## Functions
 
@@ -58,4 +58,4 @@ and `DELETE`.
 
 #### Defined in
 
-[lib/next-adhesive/use-cors.ts:25](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/use-cors.ts#L25)
+[lib/next-adhesive/use-cors.ts:25](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/use-cors.ts#L25)

@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[lib/next-adhesive/auth-request.ts:22](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/auth-request.ts#L22)
+[lib/next-adhesive/auth-request.ts:22](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/auth-request.ts#L22)
 
 ## Functions
 
@@ -51,4 +51,4 @@ header).
 
 #### Defined in
 
-[lib/next-adhesive/auth-request.ts:47](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/auth-request.ts#L47)
+[lib/next-adhesive/auth-request.ts:47](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/auth-request.ts#L47)

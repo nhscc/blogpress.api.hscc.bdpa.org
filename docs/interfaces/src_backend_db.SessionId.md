@@ -1,30 +1,30 @@
-[blogpress.api.hscc.bdpa.org](../README.md) / [src/backend/db](../modules/src_backend_db.md) / QuestionId
+[blogpress.api.hscc.bdpa.org](../README.md) / [src/backend/db](../modules/src_backend_db.md) / SessionId
 
-# Interface: QuestionId
+# Interface: SessionId
 
-[src/backend/db](../modules/src_backend_db.md).QuestionId
+[src/backend/db](../modules/src_backend_db.md).SessionId
 
 ## Hierarchy
 
 - `ObjectId`
 
-  ↳ **`QuestionId`**
+  ↳ **`SessionId`**
 
 ## Table of contents
 
 ### Accessors
 
-- [\_bsontype](src_backend_db.QuestionId.md#_bsontype)
-- [id](src_backend_db.QuestionId.md#id)
+- [\_bsontype](src_backend_db.SessionId.md#_bsontype)
+- [id](src_backend_db.SessionId.md#id)
 
 ### Methods
 
-- [equals](src_backend_db.QuestionId.md#equals)
-- [getTimestamp](src_backend_db.QuestionId.md#gettimestamp)
-- [inspect](src_backend_db.QuestionId.md#inspect)
-- [toHexString](src_backend_db.QuestionId.md#tohexstring)
-- [toJSON](src_backend_db.QuestionId.md#tojson)
-- [toString](src_backend_db.QuestionId.md#tostring)
+- [equals](src_backend_db.SessionId.md#equals)
+- [getTimestamp](src_backend_db.SessionId.md#gettimestamp)
+- [inspect](src_backend_db.SessionId.md#inspect)
+- [toHexString](src_backend_db.SessionId.md#tohexstring)
+- [toJSON](src_backend_db.SessionId.md#tojson)
+- [toString](src_backend_db.SessionId.md#tostring)
 
 ## Accessors
 

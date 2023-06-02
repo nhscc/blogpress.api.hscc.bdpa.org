@@ -26,4 +26,4 @@
 
 #### Defined in
 
-[src/pages/_app.tsx:8](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/pages/_app.tsx#L8)
+[src/pages/_app.tsx:8](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/pages/_app.tsx#L8)

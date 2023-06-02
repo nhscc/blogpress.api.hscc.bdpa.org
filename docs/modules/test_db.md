@@ -29,13 +29,14 @@ The shape of the application database's test data.
 | Name | Type |
 | :------ | :------ |
 | `_generatedAt` | `number` |
-| `mail` | [`InternalMail`](src_backend_db.md#internalmail)[] |
-| `questions` | [`InternalQuestion`](src_backend_db.md#internalquestion)[] |
+| `info` | [[`InternalInfo`](src_backend_db.md#internalinfo)] |
+| `pages` | [`InternalPage`](src_backend_db.md#internalpage)[] |
+| `sessions` | [`InternalSession`](src_backend_db.md#internalsession)[] |
 | `users` | [`InternalUser`](src_backend_db.md#internaluser)[] |
 
 #### Defined in
 
-[test/db.ts:22](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/db.ts#L22)
+[test/db.ts:30](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/db.ts#L30)
 
 ## Variables
 
@@ -47,7 +48,7 @@ Test data for the application database.
 
 #### Defined in
 
-[test/db.ts:422](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/db.ts#L422)
+[test/db.ts:158](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/db.ts#L158)
 
 ## Functions
 
@@ -63,4 +64,4 @@ Returns data used to hydrate databases and their collections.
 
 #### Defined in
 
-[test/db.ts:15](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/db.ts#L15)
+[test/db.ts:23](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/db.ts#L23)

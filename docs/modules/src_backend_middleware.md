@@ -60,7 +60,7 @@ middleware for later implementation.
 
 #### Defined in
 
-[lib/next-api-glue/index.ts:349](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-glue/index.ts#L349)
+[lib/next-api-glue/index.ts:349](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-glue/index.ts#L349)
 
 ___
 
@@ -114,4 +114,4 @@ middleware for later implementation.
 
 #### Defined in
 
-[lib/next-api-glue/index.ts:349](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-glue/index.ts#L349)
+[lib/next-api-glue/index.ts:349](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-glue/index.ts#L349)

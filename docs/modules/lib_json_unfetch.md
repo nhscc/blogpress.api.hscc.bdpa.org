@@ -32,7 +32,7 @@
 
 #### Defined in
 
-[lib/json-unfetch/index.ts:29](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-unfetch/index.ts#L29)
+[lib/json-unfetch/index.ts:29](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-unfetch/index.ts#L29)
 
 ___
 
@@ -48,7 +48,7 @@ https://github.com/developit/unfetch#api
 
 #### Defined in
 
-[lib/json-unfetch/index.ts:36](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-unfetch/index.ts#L36)
+[lib/json-unfetch/index.ts:36](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-unfetch/index.ts#L36)
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 #### Defined in
 
-[lib/json-unfetch/index.ts:28](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-unfetch/index.ts#L28)
+[lib/json-unfetch/index.ts:28](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-unfetch/index.ts#L28)
 
 ___
 
@@ -68,7 +68,7 @@ ___
 
 #### Defined in
 
-[lib/json-unfetch/index.ts:27](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-unfetch/index.ts#L27)
+[lib/json-unfetch/index.ts:27](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-unfetch/index.ts#L27)
 
 ## Variables
 
@@ -89,7 +89,7 @@ https://github.com/developit/unfetch#api
 
 #### Defined in
 
-[lib/json-unfetch/index.ts:82](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-unfetch/index.ts#L82)
+[lib/json-unfetch/index.ts:82](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-unfetch/index.ts#L82)
 
 ## Functions
 
@@ -153,7 +153,7 @@ if (error) {
 
 #### Defined in
 
-[lib/json-unfetch/index.ts:124](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-unfetch/index.ts#L124)
+[lib/json-unfetch/index.ts:124](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-unfetch/index.ts#L124)
 
 ▸ **jsonFetch**<`JsonType`, `ErrorType`\>(`url`, `init`): `Promise`<{ `error`: `Partial`<`ErrorType`\> \| `undefined` ; `json`: `JsonType` \| `undefined` ; `res`: [`Response`](lib_json_unfetch.md#response)  }\>
 
@@ -217,7 +217,7 @@ try {
 
 #### Defined in
 
-[lib/json-unfetch/index.ts:182](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-unfetch/index.ts#L182)
+[lib/json-unfetch/index.ts:182](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-unfetch/index.ts#L182)
 
 ▸ **jsonFetch**<`JsonType`, `ErrorType`\>(`url`, `init`): `Promise`<{ `error`: `Partial`<`ErrorType`\> \| `undefined` ; `json`: `JsonType` \| `undefined` ; `res`: [`Response`](lib_json_unfetch.md#response)  }\>
 
@@ -278,7 +278,7 @@ try {
 
 #### Defined in
 
-[lib/json-unfetch/index.ts:237](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-unfetch/index.ts#L237)
+[lib/json-unfetch/index.ts:237](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-unfetch/index.ts#L237)
 
 ▸ **jsonFetch**<`JsonType`, `ErrorType`\>(`url`, `init`): `Promise`<{ `error`: `undefined` ; `json`: `JsonType` ; `res`: [`Response`](lib_json_unfetch.md#response)  }\>
 
@@ -335,7 +335,7 @@ try {
 
 #### Defined in
 
-[lib/json-unfetch/index.ts:288](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-unfetch/index.ts#L288)
+[lib/json-unfetch/index.ts:288](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-unfetch/index.ts#L288)
 
 ▸ **jsonFetch**<`JsonType`, `ErrorType`\>(`url`, `init`): `Promise`<`JsonType`\>
 
@@ -387,7 +387,7 @@ https://swr.vercel.app
 
 #### Defined in
 
-[lib/json-unfetch/index.ts:333](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-unfetch/index.ts#L333)
+[lib/json-unfetch/index.ts:333](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-unfetch/index.ts#L333)
 
 ___
 
@@ -452,4 +452,4 @@ https://swr.vercel.app
 
 #### Defined in
 
-[lib/json-unfetch/index.ts:445](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-unfetch/index.ts#L445)
+[lib/json-unfetch/index.ts:445](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-unfetch/index.ts#L445)

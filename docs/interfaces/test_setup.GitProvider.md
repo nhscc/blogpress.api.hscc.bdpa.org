@@ -18,4 +18,4 @@
 
 #### Defined in
 
-[test/setup.ts:803](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L803)
+[test/setup.ts:804](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L804)

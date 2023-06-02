@@ -39,7 +39,7 @@ Special middleware used to handle custom errors.
 
 #### Defined in
 
-[lib/next-adhesive/handle-error.ts:31](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/handle-error.ts#L31)
+[lib/next-adhesive/handle-error.ts:31](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/handle-error.ts#L31)
 
 ___
 
@@ -52,7 +52,7 @@ them.
 
 #### Defined in
 
-[lib/next-adhesive/handle-error.ts:41](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/handle-error.ts#L41)
+[lib/next-adhesive/handle-error.ts:41](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/handle-error.ts#L41)
 
 ___
 
@@ -68,7 +68,7 @@ ___
 
 #### Defined in
 
-[lib/next-adhesive/handle-error.ts:43](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/handle-error.ts#L43)
+[lib/next-adhesive/handle-error.ts:43](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/handle-error.ts#L43)
 
 ## Functions
 
@@ -93,4 +93,4 @@ middleware to run on the error handling middleware chain.**
 
 #### Defined in
 
-[lib/next-adhesive/handle-error.ts:54](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/handle-error.ts#L54)
+[lib/next-adhesive/handle-error.ts:54](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/handle-error.ts#L54)

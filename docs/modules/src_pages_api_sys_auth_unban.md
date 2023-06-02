@@ -39,4 +39,4 @@ An endpoint to test if the API is up and reachable.
 
 #### Defined in
 
-[lib/next-api-glue/index.ts:120](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-glue/index.ts#L120)
+[lib/next-api-glue/index.ts:120](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-glue/index.ts#L120)

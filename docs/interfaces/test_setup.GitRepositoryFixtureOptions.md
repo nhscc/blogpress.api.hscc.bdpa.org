@@ -32,4 +32,4 @@
 
 #### Defined in
 
-[test/setup.ts:769](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L769)
+[test/setup.ts:770](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L770)

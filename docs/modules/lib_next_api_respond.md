@@ -46,7 +46,7 @@ all other response functions.
 
 #### Defined in
 
-[lib/next-api-respond/index.ts:9](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-respond/index.ts#L9)
+[lib/next-api-respond/index.ts:9](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-respond/index.ts#L9)
 
 ___
 
@@ -70,7 +70,7 @@ Sends an HTTP 415 "unsupported media type" response with optional
 
 #### Defined in
 
-[lib/next-api-respond/index.ts:143](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-respond/index.ts#L143)
+[lib/next-api-respond/index.ts:143](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-respond/index.ts#L143)
 
 ___
 
@@ -93,7 +93,7 @@ Sends an HTTP 405 "bad method" response with optional `responseJson` data.
 
 #### Defined in
 
-[lib/next-api-respond/index.ts:116](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-respond/index.ts#L116)
+[lib/next-api-respond/index.ts:116](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-respond/index.ts#L116)
 
 ___
 
@@ -116,7 +116,7 @@ Sends an HTTP 400 "client error" response with optional `responseJson` data.
 
 #### Defined in
 
-[lib/next-api-respond/index.ts:62](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-respond/index.ts#L62)
+[lib/next-api-respond/index.ts:62](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-respond/index.ts#L62)
 
 ___
 
@@ -139,7 +139,7 @@ Sends an HTTP 555 "contrived" response with optional `responseJson` data.
 
 #### Defined in
 
-[lib/next-api-respond/index.ts:198](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-respond/index.ts#L198)
+[lib/next-api-respond/index.ts:198](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-respond/index.ts#L198)
 
 ___
 
@@ -163,7 +163,7 @@ Sends a generic HTTP 500 "error" response with `error` property and optional
 
 #### Defined in
 
-[lib/next-api-respond/index.ts:171](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-respond/index.ts#L171)
+[lib/next-api-respond/index.ts:171](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-respond/index.ts#L171)
 
 ___
 
@@ -189,7 +189,7 @@ functions.
 
 #### Defined in
 
-[lib/next-api-respond/index.ts:39](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-respond/index.ts#L39)
+[lib/next-api-respond/index.ts:39](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-respond/index.ts#L39)
 
 ___
 
@@ -212,7 +212,7 @@ Sends an HTTP 404 "not found" response with optional `responseJson` data.
 
 #### Defined in
 
-[lib/next-api-respond/index.ts:103](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-respond/index.ts#L103)
+[lib/next-api-respond/index.ts:103](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-respond/index.ts#L103)
 
 ___
 
@@ -235,7 +235,7 @@ Sends an HTTP 200 "ok" response with optional `responseJson` data.
 
 #### Defined in
 
-[lib/next-api-respond/index.ts:52](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-respond/index.ts#L52)
+[lib/next-api-respond/index.ts:52](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-respond/index.ts#L52)
 
 ___
 
@@ -259,7 +259,7 @@ data.
 
 #### Defined in
 
-[lib/next-api-respond/index.ts:157](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-respond/index.ts#L157)
+[lib/next-api-respond/index.ts:157](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-respond/index.ts#L157)
 
 ___
 
@@ -284,7 +284,7 @@ additional properties. This function is called by all 2xx response functions.
 
 #### Defined in
 
-[lib/next-api-respond/index.ts:24](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-respond/index.ts#L24)
+[lib/next-api-respond/index.ts:24](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-respond/index.ts#L24)
 
 ___
 
@@ -307,7 +307,7 @@ Sends an HTTP 413 "too big" response with optional `responseJson` data.
 
 #### Defined in
 
-[lib/next-api-respond/index.ts:129](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-respond/index.ts#L129)
+[lib/next-api-respond/index.ts:129](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-respond/index.ts#L129)
 
 ___
 
@@ -331,7 +331,7 @@ data.
 
 #### Defined in
 
-[lib/next-api-respond/index.ts:76](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-respond/index.ts#L76)
+[lib/next-api-respond/index.ts:76](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-respond/index.ts#L76)
 
 ___
 
@@ -355,7 +355,7 @@ Sends an HTTP 403 "forbidden" ("unauthorized") response with optional
 
 #### Defined in
 
-[lib/next-api-respond/index.ts:90](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-respond/index.ts#L90)
+[lib/next-api-respond/index.ts:90](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-respond/index.ts#L90)
 
 ___
 
@@ -379,4 +379,4 @@ data.
 
 #### Defined in
 
-[lib/next-api-respond/index.ts:185](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-respond/index.ts#L185)
+[lib/next-api-respond/index.ts:185](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-respond/index.ts#L185)

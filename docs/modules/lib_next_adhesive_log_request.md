@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[lib/next-adhesive/log-request.ts:12](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/log-request.ts#L12)
+[lib/next-adhesive/log-request.ts:12](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/log-request.ts#L12)
 
 ## Functions
 
@@ -44,4 +44,4 @@ Logs the response to each request after it is sent (i.e. `res.end()`).
 
 #### Defined in
 
-[lib/next-adhesive/log-request.ts:19](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/log-request.ts#L19)
+[lib/next-adhesive/log-request.ts:19](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/log-request.ts#L19)

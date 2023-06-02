@@ -27,7 +27,7 @@
 
 #### Defined in
 
-[test/setup.ts:820](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L820)
+[test/setup.ts:821](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L821)
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:819](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L819)
+[test/setup.ts:820](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L820)
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:821](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L821)
+[test/setup.ts:822](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L822)
 
 ___
 
@@ -57,4 +57,4 @@ ___
 
 #### Defined in
 
-[test/setup.ts:822](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L822)
+[test/setup.ts:823](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L823)

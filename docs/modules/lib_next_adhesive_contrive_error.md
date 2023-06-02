@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[lib/next-adhesive/contrive-error.ts:10](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/contrive-error.ts#L10)
+[lib/next-adhesive/contrive-error.ts:10](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/contrive-error.ts#L10)
 
 ## Functions
 
@@ -50,4 +50,4 @@ Rejects every Nth request with a dummy error (see .env.example).
 
 #### Defined in
 
-[lib/next-adhesive/contrive-error.ts:22](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/contrive-error.ts#L22)
+[lib/next-adhesive/contrive-error.ts:22](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/contrive-error.ts#L22)

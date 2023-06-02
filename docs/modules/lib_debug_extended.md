@@ -37,7 +37,7 @@ An `ExtendedDebug` instance that returns an `ExtendedDebugger` instance via
 
 #### Defined in
 
-[lib/debug-extended/index.ts:10](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/debug-extended/index.ts#L10)
+[lib/debug-extended/index.ts:10](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/debug-extended/index.ts#L10)
 
 ▸ **debugFactory**(`namespace`): [`Debugger`](../interfaces/lib_debug_extended.Debugger.md)
 
@@ -79,4 +79,4 @@ what would more accurately be called an `ExtendedDebugger` instance.
 
 #### Defined in
 
-[lib/debug-extended/index.ts:38](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/debug-extended/index.ts#L38)
+[lib/debug-extended/index.ts:38](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/debug-extended/index.ts#L38)

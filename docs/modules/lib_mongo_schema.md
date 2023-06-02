@@ -41,7 +41,7 @@ A configuration object representing a MongoDB collection.
 
 #### Defined in
 
-[lib/mongo-schema/index.ts:37](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-schema/index.ts#L37)
+[lib/mongo-schema/index.ts:37](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-schema/index.ts#L37)
 
 ___
 
@@ -61,7 +61,7 @@ aliases.
 
 #### Defined in
 
-[lib/mongo-schema/index.ts:61](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-schema/index.ts#L61)
+[lib/mongo-schema/index.ts:61](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-schema/index.ts#L61)
 
 ___
 
@@ -81,7 +81,7 @@ An internal cache of connection, server schema, and database state.
 
 #### Defined in
 
-[lib/mongo-schema/index.ts:19](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-schema/index.ts#L19)
+[lib/mongo-schema/index.ts:19](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-schema/index.ts#L19)
 
 ## Functions
 
@@ -98,7 +98,7 @@ clears internal memory.
 
 #### Defined in
 
-[lib/mongo-schema/index.ts:148](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-schema/index.ts#L148)
+[lib/mongo-schema/index.ts:148](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-schema/index.ts#L148)
 
 ___
 
@@ -125,7 +125,7 @@ from internal memory for performance reasons.
 
 #### Defined in
 
-[lib/mongo-schema/index.ts:262](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-schema/index.ts#L262)
+[lib/mongo-schema/index.ts:262](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-schema/index.ts#L262)
 
 ___
 
@@ -150,7 +150,7 @@ the schema, an error is thrown.
 
 #### Defined in
 
-[lib/mongo-schema/index.ts:185](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-schema/index.ts#L185)
+[lib/mongo-schema/index.ts:185](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-schema/index.ts#L185)
 
 ___
 
@@ -166,7 +166,7 @@ Lazily connects to the server on-demand, memoizing the result.
 
 #### Defined in
 
-[lib/mongo-schema/index.ts:132](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-schema/index.ts#L132)
+[lib/mongo-schema/index.ts:132](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-schema/index.ts#L132)
 
 ___
 
@@ -192,7 +192,7 @@ function. The latter can be prevented by setting `initialize` to `false`.
 
 #### Defined in
 
-[lib/mongo-schema/index.ts:216](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-schema/index.ts#L216)
+[lib/mongo-schema/index.ts:216](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-schema/index.ts#L216)
 
 ___
 
@@ -209,7 +209,7 @@ overwriting internal memory.
 
 #### Defined in
 
-[lib/mongo-schema/index.ts:87](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-schema/index.ts#L87)
+[lib/mongo-schema/index.ts:87](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-schema/index.ts#L87)
 
 ___
 
@@ -232,7 +232,7 @@ actual database is not listed in the schema, an error is thrown.
 
 #### Defined in
 
-[lib/mongo-schema/index.ts:162](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-schema/index.ts#L162)
+[lib/mongo-schema/index.ts:162](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-schema/index.ts#L162)
 
 ___
 
@@ -249,7 +249,7 @@ memoizes the result.
 
 #### Defined in
 
-[lib/mongo-schema/index.ts:99](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-schema/index.ts#L99)
+[lib/mongo-schema/index.ts:99](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-schema/index.ts#L99)
 
 ___
 
@@ -275,7 +275,7 @@ with pre-existing collections.**
 
 #### Defined in
 
-[lib/mongo-schema/index.ts:281](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-schema/index.ts#L281)
+[lib/mongo-schema/index.ts:281](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-schema/index.ts#L281)
 
 ___
 
@@ -297,4 +297,4 @@ Mutates internal memory. Used for testing purposes.
 
 #### Defined in
 
-[lib/mongo-schema/index.ts:124](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-schema/index.ts#L124)
+[lib/mongo-schema/index.ts:124](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-schema/index.ts#L124)

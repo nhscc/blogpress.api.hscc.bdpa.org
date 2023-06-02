@@ -1,20 +1,20 @@
-[blogpress.api.hscc.bdpa.org](../README.md) / src/pages/api/v1/mail/[username]
+[blogpress.api.hscc.bdpa.org](../README.md) / src/pages/api/v1/info
 
-# Module: src/pages/api/v1/mail/[username]
+# Module: src/pages/api/v1/info
 
 ## Table of contents
 
 ### References
 
-- [config](src_pages_api_v1_mail__username_.md#config)
+- [config](src_pages_api_v1_info.md#config)
 
 ### Variables
 
-- [metadata](src_pages_api_v1_mail__username_.md#metadata)
+- [metadata](src_pages_api_v1_info.md#metadata)
 
 ### Functions
 
-- [default](src_pages_api_v1_mail__username_.md#default)
+- [default](src_pages_api_v1_info.md#default)
 
 ## References
 
@@ -36,7 +36,7 @@ Renames and re-exports [defaultConfig](src_backend_api.md#defaultconfig)
 
 #### Defined in
 
-[src/pages/api/v1/mail/[username].ts:8](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/pages/api/v1/mail/[username].ts#L8)
+[src/pages/api/v1/info/index.ts:8](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/pages/api/v1/info/index.ts#L8)
 
 ## Functions
 
@@ -57,4 +57,4 @@ Renames and re-exports [defaultConfig](src_backend_api.md#defaultconfig)
 
 #### Defined in
 
-[lib/next-api-glue/index.ts:120](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-glue/index.ts#L120)
+[lib/next-api-glue/index.ts:120](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-glue/index.ts#L120)

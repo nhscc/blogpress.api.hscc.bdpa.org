@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[lib/next-adhesive/check-version.ts:10](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/check-version.ts#L10)
+[lib/next-adhesive/check-version.ts:10](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/check-version.ts#L10)
 
 ## Functions
 
@@ -50,4 +50,4 @@ Rejects requests to disabled versions of the API.
 
 #### Defined in
 
-[lib/next-adhesive/check-version.ts:20](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/check-version.ts#L20)
+[lib/next-adhesive/check-version.ts:20](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/check-version.ts#L20)

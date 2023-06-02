@@ -52,7 +52,7 @@ Error.constructor
 
 #### Defined in
 
-[test/setup.ts:511](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L511)
+[test/setup.ts:512](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L512)
 
 ## Properties
 
@@ -76,7 +76,7 @@ ___
 
 #### Defined in
 
-[test/setup.ts:511](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L511)
+[test/setup.ts:512](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L512)
 
 ___
 

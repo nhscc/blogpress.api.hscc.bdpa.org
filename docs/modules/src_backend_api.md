@@ -8,6 +8,10 @@
 
 - [defaultConfig](src_backend_api.md#defaultconfig)
 
+### Functions
+
+- [authorizationHeaderToOwnerAttribute](src_backend_api.md#authorizationheadertoownerattribute)
+
 ## Variables
 
 ### defaultConfig
@@ -22,4 +26,27 @@ https://nextjs.org/docs/api-routes/api-middlewares#custom-config
 
 #### Defined in
 
-[src/backend/api.ts:9](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/api.ts#L9)
+[src/backend/api.ts:14](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/api.ts#L14)
+
+## Functions
+
+### authorizationHeaderToOwnerAttribute
+
+▸ **authorizationHeaderToOwnerAttribute**(`authorizationHeader`): `Promise`<`string`\>
+
+Returns the owner token attribute cross-referenced by the
+`authorizationHeader`.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `authorizationHeader` | `Required`<`undefined` \| `string`\> |
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[src/backend/api.ts:28](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/api.ts#L28)

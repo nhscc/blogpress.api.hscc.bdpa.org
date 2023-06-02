@@ -1,30 +1,30 @@
-[blogpress.api.hscc.bdpa.org](../README.md) / [src/backend/db](../modules/src_backend_db.md) / MailId
+[blogpress.api.hscc.bdpa.org](../README.md) / [src/backend/db](../modules/src_backend_db.md) / PageId
 
-# Interface: MailId
+# Interface: PageId
 
-[src/backend/db](../modules/src_backend_db.md).MailId
+[src/backend/db](../modules/src_backend_db.md).PageId
 
 ## Hierarchy
 
 - `ObjectId`
 
-  ↳ **`MailId`**
+  ↳ **`PageId`**
 
 ## Table of contents
 
 ### Accessors
 
-- [\_bsontype](src_backend_db.MailId.md#_bsontype)
-- [id](src_backend_db.MailId.md#id)
+- [\_bsontype](src_backend_db.PageId.md#_bsontype)
+- [id](src_backend_db.PageId.md#id)
 
 ### Methods
 
-- [equals](src_backend_db.MailId.md#equals)
-- [getTimestamp](src_backend_db.MailId.md#gettimestamp)
-- [inspect](src_backend_db.MailId.md#inspect)
-- [toHexString](src_backend_db.MailId.md#tohexstring)
-- [toJSON](src_backend_db.MailId.md#tojson)
-- [toString](src_backend_db.MailId.md#tostring)
+- [equals](src_backend_db.PageId.md#equals)
+- [getTimestamp](src_backend_db.PageId.md#gettimestamp)
+- [inspect](src_backend_db.PageId.md#inspect)
+- [toHexString](src_backend_db.PageId.md#tohexstring)
+- [toJSON](src_backend_db.PageId.md#tojson)
+- [toString](src_backend_db.PageId.md#tostring)
 
 ## Accessors
 

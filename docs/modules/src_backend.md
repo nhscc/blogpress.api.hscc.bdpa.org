@@ -4,98 +4,71 @@
 
 ## Table of contents
 
-### Type Aliases
+### Variables
 
-- [SorterUpdateAggregationOp](src_backend.md#sorterupdateaggregationop)
-- [SubSpecifierObject](src_backend.md#subspecifierobject)
+- [defaultHomePage](src_backend.md#defaulthomepage)
+- [defaultNavLinks](src_backend.md#defaultnavlinks)
+- [navLinkUpperLimit](src_backend.md#navlinkupperlimit)
 
 ### Functions
 
-- [applyVotesUpdateOperation](src_backend.md#applyvotesupdateoperation)
 - [authAppUser](src_backend.md#authappuser)
-- [createAnswer](src_backend.md#createanswer)
-- [createComment](src_backend.md#createcomment)
-- [createMessage](src_backend.md#createmessage)
-- [createQuestion](src_backend.md#createquestion)
+- [createPage](src_backend.md#createpage)
+- [createSession](src_backend.md#createsession)
 - [createUser](src_backend.md#createuser)
-- [deleteAnswer](src_backend.md#deleteanswer)
-- [deleteComment](src_backend.md#deletecomment)
-- [deleteMessage](src_backend.md#deletemessage)
-- [deleteQuestion](src_backend.md#deletequestion)
+- [deletePage](src_backend.md#deletepage)
+- [deleteSession](src_backend.md#deletesession)
 - [deleteUser](src_backend.md#deleteuser)
 - [getAllUsers](src_backend.md#getallusers)
-- [getAnswers](src_backend.md#getanswers)
-- [getComments](src_backend.md#getcomments)
-- [getHowUserVoted](src_backend.md#gethowuservoted)
-- [getQuestion](src_backend.md#getquestion)
+- [getBlog](src_backend.md#getblog)
+- [getBlogPagesMetadata](src_backend.md#getblogpagesmetadata)
+- [getInfo](src_backend.md#getinfo)
+- [getPage](src_backend.md#getpage)
+- [getPageSessionsCount](src_backend.md#getpagesessionscount)
 - [getUser](src_backend.md#getuser)
-- [getUserAnswers](src_backend.md#getuseranswers)
-- [getUserMessages](src_backend.md#getusermessages)
-- [getUserQuestions](src_backend.md#getuserquestions)
-- [searchQuestions](src_backend.md#searchquestions)
-- [updateAnswer](src_backend.md#updateanswer)
-- [updateQuestion](src_backend.md#updatequestion)
+- [renewSession](src_backend.md#renewsession)
+- [updateBlog](src_backend.md#updateblog)
+- [updatePage](src_backend.md#updatepage)
 - [updateUser](src_backend.md#updateuser)
 
-## Type Aliases
+## Variables
 
-### SorterUpdateAggregationOp
+### defaultHomePage
 
-Ƭ **SorterUpdateAggregationOp**: `Object`
+• `Const` **defaultHomePage**: `Required`<[`NewPage`](src_backend_db.md#newpage)\>
 
-The shape of a specification used to construct $inc update operations to feed
-directly to MongoDB. Used for complex updates involving the `sorter.uvc` and
-`sorter.uvac` fields.
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `$add` | [original: string, nUpdate: number, sUpdates: Object[]] |
+The default home page for newly created blogs (users).
 
 #### Defined in
 
-[src/backend/index.ts:132](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L132)
+[src/backend/index.ts:349](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/index.ts#L349)
 
 ___
 
-### SubSpecifierObject
+### defaultNavLinks
 
-Ƭ **SubSpecifierObject**: { [subspecifier in "$gt" \| "$lt" \| "$gte" \| "$lte"]?: number }
+• `Const` **defaultNavLinks**: [`NavigationLink`](src_backend_db.md#navigationlink)[]
 
-Whitelisted MongoDB-esque sub-specifiers that can be used with
-`searchQuestions()` via the "$or" sub-matcher.
+The default `navLinks` value for newly created blogs (users).
 
 #### Defined in
 
-[src/backend/index.ts:123](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L123)
+[src/backend/index.ts:344](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/index.ts#L344)
+
+___
+
+### navLinkUpperLimit
+
+• `Const` **navLinkUpperLimit**: ``5``
+
+The maximum amount of navLinks that can be associated with a blog. This is a
+hardcoded limit.
+
+#### Defined in
+
+[src/backend/index.ts:339](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/index.ts#L339)
 
 ## Functions
-
-### applyVotesUpdateOperation
-
-▸ **applyVotesUpdateOperation**(`«destructured»`): `Promise`<`void`\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `«destructured»` | `Object` |
-| › `answer_id` | `undefined` \| `string` |
-| › `comment_id` | `undefined` \| `string` |
-| › `operation` | `undefined` \| `Partial`<[`VotesUpdateOperation`](src_backend_db.md#votesupdateoperation)\> |
-| › `question_id` | `undefined` \| `string` |
-| › `username` | `undefined` \| `string` |
-
-#### Returns
-
-`Promise`<`void`\>
-
-#### Defined in
-
-[src/backend/index.ts:1922](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L1922)
-
-___
 
 ### authAppUser
 
@@ -107,7 +80,7 @@ ___
 | :------ | :------ |
 | `«destructured»` | `Object` |
 | › `key` | `undefined` \| `string` |
-| › `username` | `undefined` \| `string` |
+| › `usernameOrEmail` | `undefined` \| `string` |
 
 #### Returns
 
@@ -115,94 +88,53 @@ ___
 
 #### Defined in
 
-[src/backend/index.ts:633](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L633)
+[src/backend/index.ts:969](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/index.ts#L969)
 
 ___
 
-### createAnswer
+### createPage
 
-▸ **createAnswer**(`«destructured»`): `Promise`<[`PublicAnswer`](src_backend_db.md#publicanswer)\>
+▸ **createPage**(`«destructured»`): `Promise`<[`PublicPage`](src_backend_db.md#publicpage)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `«destructured»` | `Object` |
-| › `data` | `undefined` \| [`NewAnswer`](src_backend_db.md#newanswer) |
-| › `question_id` | `undefined` \| `string` |
+| › `__provenance` | `string` |
+| › `blogName` | `undefined` \| `string` |
+| › `data` | `undefined` \| `Partial`<`Pick`<[`InternalPage`](src_backend_db.md#internalpage), ``"name"`` \| ``"contents"``\>\> |
 
 #### Returns
 
-`Promise`<[`PublicAnswer`](src_backend_db.md#publicanswer)\>
+`Promise`<[`PublicPage`](src_backend_db.md#publicpage)\>
 
 #### Defined in
 
-[src/backend/index.ts:1326](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L1326)
+[src/backend/index.ts:589](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/index.ts#L589)
 
 ___
 
-### createComment
+### createSession
 
-▸ **createComment**(`«destructured»`): `Promise`<[`PublicComment`](src_backend_db.md#publiccomment)\>
+▸ **createSession**(`«destructured»`): `Promise`<[`SessionId`](../interfaces/src_backend_db.SessionId.md)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `«destructured»` | `Object` |
-| › `answer_id` | `undefined` \| `string` |
-| › `data` | `undefined` \| [`NewComment`](src_backend_db.md#newcomment) |
-| › `question_id` | `undefined` \| `string` |
+| › `__provenance` | `string` |
+| › `blogName` | `undefined` \| `string` |
+| › `pageName` | `undefined` \| `string` |
 
 #### Returns
 
-`Promise`<[`PublicComment`](src_backend_db.md#publiccomment)\>
+`Promise`<[`SessionId`](../interfaces/src_backend_db.SessionId.md)\>
 
 #### Defined in
 
-[src/backend/index.ts:1675](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L1675)
-
-___
-
-### createMessage
-
-▸ **createMessage**(`«destructured»`): `Promise`<[`PublicMail`](src_backend_db.md#publicmail)\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `«destructured»` | `Object` |
-| › `data` | `undefined` \| `Partial`<`Omit`<`WithoutId`<[`InternalMail`](src_backend_db.md#internalmail)\>, ``"createdAt"``\>\> |
-
-#### Returns
-
-`Promise`<[`PublicMail`](src_backend_db.md#publicmail)\>
-
-#### Defined in
-
-[src/backend/index.ts:687](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L687)
-
-___
-
-### createQuestion
-
-▸ **createQuestion**(`«destructured»`): `Promise`<[`PublicQuestion`](src_backend_db.md#publicquestion)\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `«destructured»` | `Object` |
-| › `data` | `undefined` \| [`NewQuestion`](src_backend_db.md#newquestion) |
-
-#### Returns
-
-`Promise`<[`PublicQuestion`](src_backend_db.md#publicquestion)\>
-
-#### Defined in
-
-[src/backend/index.ts:1041](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L1041)
+[src/backend/index.ts:666](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/index.ts#L666)
 
 ___
 
@@ -215,7 +147,8 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `«destructured»` | `Object` |
-| › `data` | `undefined` \| `Partial`<`Omit`<`WithoutId`<[`InternalUser`](src_backend_db.md#internaluser)\>, ``"points"`` \| ``"questionIds"`` \| ``"answerIds"``\>\> |
+| › `__provenance` | `string` |
+| › `data` | `undefined` \| `Partial`<`Pick`<[`InternalUser`](src_backend_db.md#internaluser), ``"key"`` \| ``"username"`` \| ``"email"`` \| ``"blogName"`` \| ``"type"`` \| ``"salt"``\>\> |
 
 #### Returns
 
@@ -223,21 +156,21 @@ ___
 
 #### Defined in
 
-[src/backend/index.ts:452](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L452)
+[src/backend/index.ts:458](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/index.ts#L458)
 
 ___
 
-### deleteAnswer
+### deletePage
 
-▸ **deleteAnswer**(`«destructured»`): `Promise`<`void`\>
+▸ **deletePage**(`«destructured»`): `Promise`<`void`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `«destructured»` | `Object` |
-| › `answer_id` | `undefined` \| `string` |
-| › `question_id` | `undefined` \| `string` |
+| › `blogName` | `undefined` \| `string` |
+| › `pageName` | `undefined` \| `string` |
 
 #### Returns
 
@@ -245,22 +178,20 @@ ___
 
 #### Defined in
 
-[src/backend/index.ts:1511](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L1511)
+[src/backend/index.ts:926](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/index.ts#L926)
 
 ___
 
-### deleteComment
+### deleteSession
 
-▸ **deleteComment**(`«destructured»`): `Promise`<`void`\>
+▸ **deleteSession**(`«destructured»`): `Promise`<`void`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `«destructured»` | `Object` |
-| › `answer_id` | `undefined` \| `string` |
-| › `comment_id` | `undefined` \| `string` |
-| › `question_id` | `undefined` \| `string` |
+| › `sessionId` | `undefined` \| `string` |
 
 #### Returns
 
@@ -268,49 +199,7 @@ ___
 
 #### Defined in
 
-[src/backend/index.ts:1764](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L1764)
-
-___
-
-### deleteMessage
-
-▸ **deleteMessage**(`«destructured»`): `Promise`<`void`\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `«destructured»` | `Object` |
-| › `mail_id` | `undefined` \| `string` |
-
-#### Returns
-
-`Promise`<`void`\>
-
-#### Defined in
-
-[src/backend/index.ts:755](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L755)
-
-___
-
-### deleteQuestion
-
-▸ **deleteQuestion**(`«destructured»`): `Promise`<`void`\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `«destructured»` | `Object` |
-| › `question_id` | `undefined` \| `string` |
-
-#### Returns
-
-`Promise`<`void`\>
-
-#### Defined in
-
-[src/backend/index.ts:1221](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L1221)
+[src/backend/index.ts:953](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/index.ts#L953)
 
 ___
 
@@ -323,7 +212,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `«destructured»` | `Object` |
-| › `username` | `undefined` \| `string` |
+| › `usernameOrEmail` | `undefined` \| `string` |
 
 #### Returns
 
@@ -331,7 +220,7 @@ ___
 
 #### Defined in
 
-[src/backend/index.ts:615](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L615)
+[src/backend/index.ts:894](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/index.ts#L894)
 
 ___
 
@@ -352,97 +241,107 @@ ___
 
 #### Defined in
 
-[src/backend/index.ts:304](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L304)
+[src/backend/index.ts:354](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/index.ts#L354)
 
 ___
 
-### getAnswers
+### getBlog
 
-▸ **getAnswers**(`«destructured»`): `Promise`<[`PublicAnswer`](src_backend_db.md#publicanswer)[]\>
+▸ **getBlog**(`«destructured»`): `Promise`<[`PublicBlog`](src_backend_db.md#publicblog)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `«destructured»` | `Object` |
-| › `after_id` | `undefined` \| `string` |
-| › `question_id` | `undefined` \| `string` |
+| › `blogName` | `undefined` \| `string` |
 
 #### Returns
 
-`Promise`<[`PublicAnswer`](src_backend_db.md#publicanswer)[]\>
+`Promise`<[`PublicBlog`](src_backend_db.md#publicblog)\>
 
 #### Defined in
 
-[src/backend/index.ts:1256](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L1256)
+[src/backend/index.ts:408](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/index.ts#L408)
 
 ___
 
-### getComments
+### getBlogPagesMetadata
 
-▸ **getComments**(`«destructured»`): `Promise`<[`PublicComment`](src_backend_db.md#publiccomment)[]\>
+▸ **getBlogPagesMetadata**(`«destructured»`): `Promise`<[`PublicPageMetadata`](src_backend_db.md#publicpagemetadata)[]\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `«destructured»` | `Object` |
-| › `after_id` | `undefined` \| `string` |
-| › `answer_id` | `undefined` \| `string` |
-| › `question_id` | `undefined` \| `string` |
+| › `blogName` | `undefined` \| `string` |
 
 #### Returns
 
-`Promise`<[`PublicComment`](src_backend_db.md#publiccomment)[]\>
+`Promise`<[`PublicPageMetadata`](src_backend_db.md#publicpagemetadata)[]\>
 
 #### Defined in
 
-[src/backend/index.ts:1565](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L1565)
+[src/backend/index.ts:379](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/index.ts#L379)
 
 ___
 
-### getHowUserVoted
+### getInfo
 
-▸ **getHowUserVoted**(`«destructured»`): `Promise`<[`VoterStatus`](src_backend_db.md#voterstatus)\>
+▸ **getInfo**(): `Promise`<[`PublicInfo`](src_backend_db.md#publicinfo)\>
+
+#### Returns
+
+`Promise`<[`PublicInfo`](src_backend_db.md#publicinfo)\>
+
+#### Defined in
+
+[src/backend/index.ts:427](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/index.ts#L427)
+
+___
+
+### getPage
+
+▸ **getPage**(`«destructured»`): `Promise`<[`PublicPage`](src_backend_db.md#publicpage)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `«destructured»` | `Object` |
-| › `answer_id` | `undefined` \| `string` |
-| › `comment_id` | `undefined` \| `string` |
-| › `question_id` | `undefined` \| `string` |
-| › `username` | `undefined` \| `string` |
+| › `blogName` | `undefined` \| `string` |
+| › `pageName` | `undefined` \| `string` |
 
 #### Returns
 
-`Promise`<[`VoterStatus`](src_backend_db.md#voterstatus)\>
+`Promise`<[`PublicPage`](src_backend_db.md#publicpage)\>
 
 #### Defined in
 
-[src/backend/index.ts:1829](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L1829)
+[src/backend/index.ts:416](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/index.ts#L416)
 
 ___
 
-### getQuestion
+### getPageSessionsCount
 
-▸ **getQuestion**(`«destructured»`): `Promise`<[`PublicQuestion`](src_backend_db.md#publicquestion)\>
+▸ **getPageSessionsCount**(`«destructured»`): `Promise`<`number`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `«destructured»` | `Object` |
-| › `question_id` | `undefined` \| `string` |
+| › `blogName` | `undefined` \| `string` |
+| › `pageName` | `undefined` \| `string` |
 
 #### Returns
 
-`Promise`<[`PublicQuestion`](src_backend_db.md#publicquestion)\>
+`Promise`<`number`\>
 
 #### Defined in
 
-[src/backend/index.ts:1019](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L1019)
+[src/backend/index.ts:437](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/index.ts#L437)
 
 ___
 
@@ -455,7 +354,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `«destructured»` | `Object` |
-| › `username` | `undefined` \| `string` |
+| › `usernameOrEmail` | `undefined` \| `string` |
 
 #### Returns
 
@@ -463,112 +362,20 @@ ___
 
 #### Defined in
 
-[src/backend/index.ts:329](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L329)
+[src/backend/index.ts:400](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/index.ts#L400)
 
 ___
 
-### getUserAnswers
+### renewSession
 
-▸ **getUserAnswers**(`«destructured»`): `Promise`<[`PublicAnswer`](src_backend_db.md#publicanswer)[]\>
+▸ **renewSession**(`«destructured»`): `Promise`<`void`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `«destructured»` | `Object` |
-| › `after_id` | `undefined` \| `string` |
-| › `username` | `undefined` \| `string` |
-
-#### Returns
-
-`Promise`<[`PublicAnswer`](src_backend_db.md#publicanswer)[]\>
-
-#### Defined in
-
-[src/backend/index.ts:399](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L399)
-
-___
-
-### getUserMessages
-
-▸ **getUserMessages**(`«destructured»`): `Promise`<[`PublicMail`](src_backend_db.md#publicmail)[]\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `«destructured»` | `Object` |
-| › `after_id` | `undefined` \| `string` |
-| › `username` | `undefined` \| `string` |
-
-#### Returns
-
-`Promise`<[`PublicMail`](src_backend_db.md#publicmail)[]\>
-
-#### Defined in
-
-[src/backend/index.ts:648](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L648)
-
-___
-
-### getUserQuestions
-
-▸ **getUserQuestions**(`«destructured»`): `Promise`<[`PublicQuestion`](src_backend_db.md#publicquestion)[]\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `«destructured»` | `Object` |
-| › `after_id` | `undefined` \| `string` |
-| › `username` | `undefined` \| `string` |
-
-#### Returns
-
-`Promise`<[`PublicQuestion`](src_backend_db.md#publicquestion)[]\>
-
-#### Defined in
-
-[src/backend/index.ts:348](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L348)
-
-___
-
-### searchQuestions
-
-▸ **searchQuestions**(`«destructured»`): `Promise`<[`PublicQuestion`](src_backend_db.md#publicquestion)[]\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `«destructured»` | `Object` |
-| › `after_id` | `undefined` \| `string` |
-| › `match` | `Object` |
-| › `regexMatch` | `Object` |
-| › `sort` | `undefined` \| `string` |
-
-#### Returns
-
-`Promise`<[`PublicQuestion`](src_backend_db.md#publicquestion)[]\>
-
-#### Defined in
-
-[src/backend/index.ts:773](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L773)
-
-___
-
-### updateAnswer
-
-▸ **updateAnswer**(`«destructured»`): `Promise`<`void`\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `«destructured»` | `Object` |
-| › `answer_id` | `undefined` \| `string` |
-| › `data` | `undefined` \| `Partial`<`Omit`<`WithoutId`<[`InternalAnswer`](src_backend_db.md#internalanswer)\>, ``"creator"`` \| ``"createdAt"`` \| ``"upvoterUsernames"`` \| ``"downvoterUsernames"`` \| ``"commentItems"``\>\> |
-| › `question_id` | `undefined` \| `string` |
+| › `sessionId` | `undefined` \| `string` |
 
 #### Returns
 
@@ -576,21 +383,21 @@ ___
 
 #### Defined in
 
-[src/backend/index.ts:1407](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L1407)
+[src/backend/index.ts:875](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/index.ts#L875)
 
 ___
 
-### updateQuestion
+### updateBlog
 
-▸ **updateQuestion**(`«destructured»`): `Promise`<`void`\>
+▸ **updateBlog**(`«destructured»`): `Promise`<`void`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `«destructured»` | `Object` |
-| › `data` | `undefined` \| `Partial`<`Omit`<`WithoutId`<[`InternalQuestion`](src_backend_db.md#internalquestion)\>, ``"creator"`` \| ``"createdAt"`` \| ``"upvoterUsernames"`` \| ``"downvoterUsernames"`` \| ``"commentItems"`` \| ``"title-lowercase"`` \| ``"answers"`` \| ``"comments"`` \| ``"views"`` \| ``"hasAcceptedAnswer"`` \| ``"answerItems"`` \| ``"sorter"``\> & { `views`: `number` \| ``"increment"``  }\> |
-| › `question_id` | `undefined` \| `string` |
+| › `blogName` | `undefined` \| `string` |
+| › `data` | `undefined` \| `Partial`<`Pick`<[`InternalUser`](src_backend_db.md#internaluser), ``"navLinks"``\> & { `name`: `string` ; `rootPage`: `string`  }\> |
 
 #### Returns
 
@@ -598,7 +405,30 @@ ___
 
 #### Defined in
 
-[src/backend/index.ts:1101](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L1101)
+[src/backend/index.ts:779](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/index.ts#L779)
+
+___
+
+### updatePage
+
+▸ **updatePage**(`«destructured»`): `Promise`<`void`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `«destructured»` | `Object` |
+| › `blogName` | `undefined` \| `string` |
+| › `data` | `undefined` \| [`PatchPage`](src_backend_db.md#patchpage) |
+| › `pageName` | `undefined` \| `string` |
+
+#### Returns
+
+`Promise`<`void`\>
+
+#### Defined in
+
+[src/backend/index.ts:826](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/index.ts#L826)
 
 ___
 
@@ -611,8 +441,8 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `«destructured»` | `Object` |
-| › `data` | `undefined` \| `Partial`<`Omit`<`WithoutId`<[`InternalUser`](src_backend_db.md#internaluser)\>, ``"username"`` \| ``"points"`` \| ``"questionIds"`` \| ``"answerIds"``\> & { `points`: `number` \| { `amount?`: `number` ; `op?`: `string`  }  }\> |
-| › `username` | `undefined` \| `string` |
+| › `data` | `undefined` \| `Partial`<`Pick`<[`InternalUser`](src_backend_db.md#internaluser), ``"key"`` \| ``"email"`` \| ``"salt"`` \| ``"banned"``\>\> |
+| › `usernameOrEmail` | `undefined` \| `string` |
 
 #### Returns
 
@@ -620,4 +450,4 @@ ___
 
 #### Defined in
 
-[src/backend/index.ts:517](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/backend/index.ts#L517)
+[src/backend/index.ts:697](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/backend/index.ts#L697)

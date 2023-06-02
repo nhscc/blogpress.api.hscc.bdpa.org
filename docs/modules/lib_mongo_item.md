@@ -34,7 +34,7 @@ instance or is `null`/`undefined`.
 
 #### Defined in
 
-[lib/mongo-item/index.ts:114](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-item/index.ts#L114)
+[lib/mongo-item/index.ts:114](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-item/index.ts#L114)
 
 ___
 
@@ -53,7 +53,7 @@ The shape of an array of objects that can be translated into an array of
 
 #### Defined in
 
-[lib/mongo-item/index.ts:125](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-item/index.ts#L125)
+[lib/mongo-item/index.ts:125](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-item/index.ts#L125)
 
 ___
 
@@ -67,7 +67,7 @@ id: ... }` syntax.
 
 #### Defined in
 
-[lib/mongo-item/index.ts:11](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-item/index.ts#L11)
+[lib/mongo-item/index.ts:11](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-item/index.ts#L11)
 
 ___
 
@@ -87,7 +87,7 @@ Available options for the `itemExists` function.
 
 #### Defined in
 
-[lib/mongo-item/index.ts:19](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-item/index.ts#L19)
+[lib/mongo-item/index.ts:19](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-item/index.ts#L19)
 
 ## Functions
 
@@ -117,7 +117,7 @@ Checks if an item matching `{ _id: id }` exists within `collection`.
 
 #### Defined in
 
-[lib/mongo-item/index.ts:45](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-item/index.ts#L45)
+[lib/mongo-item/index.ts:45](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-item/index.ts#L45)
 
 ▸ **itemExists**<`T`\>(`collection`, `descriptor`, `options?`): `Promise`<`boolean`\>
 
@@ -146,7 +146,7 @@ within `collection`.
 
 #### Defined in
 
-[lib/mongo-item/index.ts:54](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-item/index.ts#L54)
+[lib/mongo-item/index.ts:54](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-item/index.ts#L54)
 
 ___
 
@@ -174,7 +174,7 @@ Reduces an `item` down to its `ObjectId` instance.
 
 #### Defined in
 
-[lib/mongo-item/index.ts:130](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-item/index.ts#L130)
+[lib/mongo-item/index.ts:130](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-item/index.ts#L130)
 
 ▸ **itemToObjectId**<`T`\>(`items`): `T`[]
 
@@ -202,7 +202,7 @@ objects.
 
 #### Defined in
 
-[lib/mongo-item/index.ts:138](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-item/index.ts#L138)
+[lib/mongo-item/index.ts:138](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-item/index.ts#L138)
 
 ___
 
@@ -231,7 +231,7 @@ instance.
 
 #### Defined in
 
-[lib/mongo-item/index.ts:185](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-item/index.ts#L185)
+[lib/mongo-item/index.ts:182](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-item/index.ts#L182)
 
 ▸ **itemToStringId**<`T`\>(`items`): `string`[]
 
@@ -256,4 +256,4 @@ respective `ObjectId` instances.
 
 #### Defined in
 
-[lib/mongo-item/index.ts:190](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-item/index.ts#L190)
+[lib/mongo-item/index.ts:187](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-item/index.ts#L187)

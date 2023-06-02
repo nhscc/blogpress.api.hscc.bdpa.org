@@ -65,7 +65,7 @@ Error.constructor
 
 #### Defined in
 
-[lib/json-unfetch/index.ts:17](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-unfetch/index.ts#L17)
+[lib/json-unfetch/index.ts:17](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-unfetch/index.ts#L17)
 
 ## Properties
 
@@ -89,7 +89,7 @@ ___
 
 #### Defined in
 
-[lib/json-unfetch/index.ts:19](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-unfetch/index.ts#L19)
+[lib/json-unfetch/index.ts:19](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-unfetch/index.ts#L19)
 
 ___
 
@@ -127,7 +127,7 @@ ___
 
 #### Defined in
 
-[lib/json-unfetch/index.ts:18](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-unfetch/index.ts#L18)
+[lib/json-unfetch/index.ts:18](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-unfetch/index.ts#L18)
 
 ___
 

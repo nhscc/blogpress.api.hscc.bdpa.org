@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[src/pages/index.tsx:17](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/pages/index.tsx#L17)
+[src/pages/index.tsx:19](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/pages/index.tsx#L19)
 
 ___
 
@@ -44,4 +44,4 @@ ___
 
 #### Defined in
 
-[src/pages/index.tsx:5](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/pages/index.tsx#L5)
+[src/pages/index.tsx:6](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/pages/index.tsx#L6)

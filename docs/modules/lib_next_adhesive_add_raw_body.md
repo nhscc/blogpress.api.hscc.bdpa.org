@@ -29,7 +29,7 @@
 
 #### Defined in
 
-[lib/next-adhesive/add-raw-body.ts:36](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/add-raw-body.ts#L36)
+[lib/next-adhesive/add-raw-body.ts:36](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/add-raw-body.ts#L36)
 
 ___
 
@@ -48,7 +48,7 @@ property.
 
 #### Defined in
 
-[lib/next-adhesive/add-raw-body.ts:28](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/add-raw-body.ts#L28)
+[lib/next-adhesive/add-raw-body.ts:28](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/add-raw-body.ts#L28)
 
 ## Functions
 
@@ -94,7 +94,7 @@ https://nextjs.org/docs/api-routes/api-middlewares#custom-config
 
 #### Defined in
 
-[lib/next-adhesive/add-raw-body.ts:98](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/add-raw-body.ts#L98)
+[lib/next-adhesive/add-raw-body.ts:98](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/add-raw-body.ts#L98)
 
 ___
 
@@ -118,7 +118,7 @@ req is WithRawBody<NextApiRequest\>
 
 #### Defined in
 
-[lib/next-adhesive/add-raw-body.ts:63](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/add-raw-body.ts#L63)
+[lib/next-adhesive/add-raw-body.ts:63](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/add-raw-body.ts#L63)
 
 ___
 
@@ -141,4 +141,4 @@ req is WithRawBody<NextApiRequest\>
 
 #### Defined in
 
-[lib/next-adhesive/add-raw-body.ts:52](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/add-raw-body.ts#L52)
+[lib/next-adhesive/add-raw-body.ts:52](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/add-raw-body.ts#L52)

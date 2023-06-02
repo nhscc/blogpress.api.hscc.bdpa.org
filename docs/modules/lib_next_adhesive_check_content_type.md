@@ -24,7 +24,7 @@ The shape of a simple configuration object.
 
 #### Defined in
 
-[lib/next-adhesive/check-content-type.ts:19](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/check-content-type.ts#L19)
+[lib/next-adhesive/check-content-type.ts:19](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/check-content-type.ts#L19)
 
 ___
 
@@ -36,7 +36,7 @@ The shape of a complex configuration object.
 
 #### Defined in
 
-[lib/next-adhesive/check-content-type.ts:24](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/check-content-type.ts#L24)
+[lib/next-adhesive/check-content-type.ts:24](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/check-content-type.ts#L24)
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 #### Defined in
 
-[lib/next-adhesive/check-content-type.ts:28](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/check-content-type.ts#L28)
+[lib/next-adhesive/check-content-type.ts:28](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/check-content-type.ts#L28)
 
 ## Functions
 
@@ -77,4 +77,4 @@ should usually come _after_ check-method.
 
 #### Defined in
 
-[lib/next-adhesive/check-content-type.ts:63](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/check-content-type.ts#L63)
+[lib/next-adhesive/check-content-type.ts:63](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/check-content-type.ts#L63)

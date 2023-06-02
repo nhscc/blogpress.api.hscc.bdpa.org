@@ -46,7 +46,7 @@ The shape of a custom middleware function.
 
 #### Defined in
 
-[lib/next-api-glue/index.ts:14](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-glue/index.ts#L14)
+[lib/next-api-glue/index.ts:14](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-glue/index.ts#L14)
 
 ___
 
@@ -85,7 +85,7 @@ its respective options are missing.
 
 #### Defined in
 
-[lib/next-api-glue/index.ts:34](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-glue/index.ts#L34)
+[lib/next-api-glue/index.ts:34](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-glue/index.ts#L34)
 
 ## Functions
 
@@ -161,7 +161,7 @@ of middleware every time you want to call `withMiddleware`.
 
 #### Defined in
 
-[lib/next-api-glue/index.ts:337](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-glue/index.ts#L337)
+[lib/next-api-glue/index.ts:337](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-glue/index.ts#L337)
 
 ___
 
@@ -212,4 +212,4 @@ middleware for later implementation.
 
 #### Defined in
 
-[lib/next-api-glue/index.ts:95](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-api-glue/index.ts#L95)
+[lib/next-api-glue/index.ts:95](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-api-glue/index.ts#L95)

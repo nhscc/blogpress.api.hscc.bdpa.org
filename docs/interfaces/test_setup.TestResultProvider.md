@@ -26,4 +26,4 @@
 
 #### Defined in
 
-[test/setup.ts:793](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/test/setup.ts#L793)
+[test/setup.ts:794](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/test/setup.ts#L794)

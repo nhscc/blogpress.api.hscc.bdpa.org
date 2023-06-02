@@ -51,7 +51,7 @@ A collection of possible error and warning messages.
 | `AuthFailure` | () => `string` |
 | `ClientValidationFailure` | () => `string` |
 | `DuplicateFieldValue` | (`property`: `string`) => `string` |
-| `DuplicateIncrementOperation` | () => `string` |
+| `EmptyJSONBody` | () => `string` |
 | `GuruMeditation` | () => `string` |
 | `HttpFailure` | (`error?`: `string`) => `string` |
 | `HttpSubFailure` | (`error`: ``null`` \| `string`, `statusCode`: `number`) => `string` |
@@ -60,40 +60,30 @@ A collection of possible error and warning messages.
 | `InvalidAppEnvironment` | (`details?`: `string`) => `string` |
 | `InvalidArrayValue` | (`property`: `string`, `value`: `string`, `validValues?`: readonly `string`[]) => `string` |
 | `InvalidClientConfiguration` | (`details?`: `string`) => `string` |
-| `InvalidDecrementOperation` | () => `string` |
-| `InvalidFieldValue` | (`property`: `string`, `value?`: `string`, `validValues?`: readonly `string`[]) => `string` |
+| `InvalidFieldValue` | (`property`: `string`, `value?`: ``null`` \| `string`, `validValues?`: readonly `string`[]) => `string` |
 | `InvalidItem` | (`item`: `unknown`, `itemName`: `string`) => `string` |
 | `InvalidJSON` | () => `string` |
-| `InvalidMatcher` | (`property`: `string`) => `string` |
 | `InvalidNumberValue` | (`property`: `string`, `min`: `string` \| `number`, `max`: ``null`` \| `string` \| `number`, `type`: ``"number"`` \| ``"integer"``, `nullable`: `boolean`, `isArray`: `boolean`) => `string` |
 | `InvalidObjectId` | (`id`: `string`) => `string` |
 | `InvalidObjectKeyValue` | (`property`: `string`, `value?`: `string`, `validValues?`: readonly `string`[]) => `string` |
-| `InvalidOrSpecifier` | () => `string` |
-| `InvalidOrSpecifierBadLength` | (`index`: `number`) => `string` |
-| `InvalidOrSpecifierInvalidKey` | (`index`: `number`, `key`: `string`) => `string` |
-| `InvalidOrSpecifierInvalidValueType` | (`index`: `number`, `key`: `string`) => `string` |
-| `InvalidOrSpecifierNonObject` | (`index`: `number`) => `string` |
 | `InvalidRegexString` | (`property`: `string`) => `string` |
 | `InvalidSecret` | (`secretType`: `string`) => `string` |
 | `InvalidSpecifierValueType` | (`property`: `string`, `type`: `string`, `sub`: `boolean`) => `string` |
-| `InvalidStringLength` | (`property`: `string`, `min`: `string` \| `number`, `max`: ``null`` \| `string` \| `number`, `syntax`: ``"string"`` \| ``"alphanumeric"`` \| ``"hexadecimal"`` \| ``"bytes"``, `nullable`: `boolean`, `isArray`: `boolean`) => `string` |
+| `InvalidStringLength` | (`property`: `string`, `min`: `string` \| `number`, `max`: ``null`` \| `string` \| `number`, `syntax`: `LiteralUnion`<``"string"`` \| ``"alphanumeric"`` \| ``"hexadecimal"`` \| ``"bytes"``, `string`\>, `nullable`: `boolean`, `isArray`: `boolean`) => `string` |
 | `ItemNotFound` | (`item`: `unknown`, `itemName`: `string`) => `string` |
 | `ItemOrItemsNotFound` | (`itemsName`: `string`) => `string` |
-| `MultipleIncrementTargets` | () => `string` |
-| `MultitargetDecrement` | () => `string` |
 | `NotAuthenticated` | () => `string` |
 | `NotAuthorized` | () => `string` |
 | `NotFound` | () => `string` |
 | `NotImplemented` | () => `string` |
-| `QuestionAlreadyAcceptedAnswer` | () => `string` |
+| `TooMany` | (`resource?`: `string`, `max?`: `string` \| `number`) => `string` |
 | `UnknownField` | (`property`: `string`) => `string` |
 | `UnknownSpecifier` | (`property`: `string`, `sub`: `boolean`) => `string` |
-| `UserAlreadyAnswered` | () => `string` |
 | `ValidationFailure` | () => `string` |
 
 #### Defined in
 
-[src/error.ts:9](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/error.ts#L9)
+[src/error.ts:10](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/error.ts#L10)
 
 ## Functions
 

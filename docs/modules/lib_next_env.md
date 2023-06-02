@@ -21,7 +21,7 @@
 
 #### Defined in
 
-[lib/next-env/index.ts:30](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-env/index.ts#L30)
+[lib/next-env/index.ts:30](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-env/index.ts#L30)
 
 ## Functions
 
@@ -45,7 +45,7 @@ array with all nullish members filtered out.
 
 #### Defined in
 
-[lib/next-env/index.ts:23](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-env/index.ts#L23)
+[lib/next-env/index.ts:23](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-env/index.ts#L23)
 
 ___
 
@@ -73,4 +73,4 @@ Returns an object representing the current runtime environment.
 
 #### Defined in
 
-[lib/next-env/index.ts:37](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-env/index.ts#L37)
+[lib/next-env/index.ts:37](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-env/index.ts#L37)

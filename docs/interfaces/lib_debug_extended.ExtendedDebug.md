@@ -30,7 +30,7 @@ A Debug factory interface that returns `ExtendedDebugger` instances.
 
 #### Defined in
 
-[lib/debug-extended/index.ts:10](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/debug-extended/index.ts#L10)
+[lib/debug-extended/index.ts:10](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/debug-extended/index.ts#L10)
 
 ### ExtendedDebug
 

@@ -53,7 +53,7 @@ A supported "auth" entry attribute (field name).
 
 #### Defined in
 
-[lib/next-auth/index.ts:77](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L77)
+[lib/next-auth/index.ts:77](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L77)
 
 ___
 
@@ -65,7 +65,7 @@ A supported authorization constraint.
 
 #### Defined in
 
-[lib/next-auth/index.ts:95](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L95)
+[lib/next-auth/index.ts:95](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L95)
 
 ___
 
@@ -77,7 +77,7 @@ A supported authentication scheme.
 
 #### Defined in
 
-[lib/next-auth/index.ts:72](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L72)
+[lib/next-auth/index.ts:72](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L72)
 
 ___
 
@@ -97,7 +97,7 @@ The shape of a bearer token object.
 
 #### Defined in
 
-[lib/next-auth/index.ts:183](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L183)
+[lib/next-auth/index.ts:183](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L183)
 
 ___
 
@@ -109,7 +109,7 @@ The shape of a bearer token entry in the well-known "auth" collection.
 
 #### Defined in
 
-[lib/next-auth/index.ts:199](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L199)
+[lib/next-auth/index.ts:199](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L199)
 
 ___
 
@@ -122,7 +122,7 @@ complex entry types must extend from or intersect with this base type.**
 
 #### Defined in
 
-[lib/next-auth/index.ts:153](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L153)
+[lib/next-auth/index.ts:153](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L153)
 
 ___
 
@@ -139,7 +139,7 @@ a new auth entry is `attributes`.
 
 #### Defined in
 
-[lib/next-auth/index.ts:170](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L170)
+[lib/next-auth/index.ts:170](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L170)
 
 ___
 
@@ -152,7 +152,7 @@ collection.
 
 #### Defined in
 
-[lib/next-auth/index.ts:176](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L176)
+[lib/next-auth/index.ts:176](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L176)
 
 ___
 
@@ -165,7 +165,7 @@ in the well-known "auth" collection.
 
 #### Defined in
 
-[lib/next-auth/index.ts:103](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L103)
+[lib/next-auth/index.ts:103](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L103)
 
 ___
 
@@ -185,7 +185,7 @@ the well-known "auth" collection.
 
 #### Defined in
 
-[lib/next-auth/index.ts:118](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L118)
+[lib/next-auth/index.ts:118](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L118)
 
 ___
 
@@ -206,7 +206,7 @@ collection. Each property must correspond to an array element in the
 
 #### Defined in
 
-[lib/next-auth/index.ts:135](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L135)
+[lib/next-auth/index.ts:135](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L135)
 
 ## Variables
 
@@ -220,7 +220,7 @@ authenticated HTTP access to the API in production.
 
 #### Defined in
 
-[lib/next-auth/index.ts:46](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L46)
+[lib/next-auth/index.ts:46](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L46)
 
 ___
 
@@ -234,7 +234,7 @@ for authenticated HTTP access to the API in production.
 
 #### Defined in
 
-[lib/next-auth/index.ts:53](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L53)
+[lib/next-auth/index.ts:53](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L53)
 
 ___
 
@@ -248,7 +248,7 @@ authenticated HTTP access to the API in production.
 
 #### Defined in
 
-[lib/next-auth/index.ts:39](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L39)
+[lib/next-auth/index.ts:39](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L39)
 
 ___
 
@@ -263,7 +263,7 @@ to the API.
 
 #### Defined in
 
-[lib/next-auth/index.ts:32](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L32)
+[lib/next-auth/index.ts:32](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L32)
 
 ___
 
@@ -276,7 +276,7 @@ correspond to a field in the [TokenAttributes](lib_next_auth.md#tokenattributes)
 
 #### Defined in
 
-[lib/next-auth/index.ts:67](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L67)
+[lib/next-auth/index.ts:67](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L67)
 
 ___
 
@@ -288,7 +288,7 @@ An array of supported authorization constraints.
 
 #### Defined in
 
-[lib/next-auth/index.ts:84](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L84)
+[lib/next-auth/index.ts:84](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L84)
 
 ___
 
@@ -300,7 +300,7 @@ An array of supported authentication schemes.
 
 #### Defined in
 
-[lib/next-auth/index.ts:61](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L61)
+[lib/next-auth/index.ts:61](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L61)
 
 ## Functions
 
@@ -328,7 +328,7 @@ only used for authentication, not authorization.
 
 #### Defined in
 
-[lib/next-auth/index.ts:402](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L402)
+[lib/next-auth/index.ts:402](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L402)
 
 ___
 
@@ -353,7 +353,7 @@ Authorizes a client via their Authorization header using the well-known
 
 #### Defined in
 
-[lib/next-auth/index.ts:447](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L447)
+[lib/next-auth/index.ts:447](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L447)
 
 ___
 
@@ -380,7 +380,7 @@ UUID "bearer tokens". This _implementation detail_ may change at any time.
 
 #### Defined in
 
-[lib/next-auth/index.ts:640](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L640)
+[lib/next-auth/index.ts:640](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L640)
 
 ___
 
@@ -404,7 +404,7 @@ against the target data. Throws on invalid/missing target data.
 
 #### Defined in
 
-[lib/next-auth/index.ts:677](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L677)
+[lib/next-auth/index.ts:677](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L677)
 
 ___
 
@@ -430,7 +430,7 @@ Throws on invalid/missing authentication string.
 
 #### Defined in
 
-[lib/next-auth/index.ts:259](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L259)
+[lib/next-auth/index.ts:259](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L259)
 
 ▸ **deriveSchemeAndToken**(`«destructured»`): `Promise`<[`BearerToken`](lib_next_auth.md#bearertoken)\>
 
@@ -451,7 +451,7 @@ invalid/missing authentication data.
 
 #### Defined in
 
-[lib/next-auth/index.ts:276](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L276)
+[lib/next-auth/index.ts:276](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L276)
 
 ___
 
@@ -481,7 +481,7 @@ well-known "auth" MongoDB collection. Throws on invalid/missing data.
 
 #### Defined in
 
-[lib/next-auth/index.ts:530](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L530)
+[lib/next-auth/index.ts:530](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L530)
 
 ___
 
@@ -505,7 +505,7 @@ Returns all entries with a matching `owner` attribute in the well-known
 
 #### Defined in
 
-[lib/next-auth/index.ts:597](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L597)
+[lib/next-auth/index.ts:597](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L597)
 
 ___
 
@@ -530,7 +530,7 @@ obj is "bearer"
 
 #### Defined in
 
-[lib/next-auth/index.ts:208](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L208)
+[lib/next-auth/index.ts:208](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L208)
 
 ___
 
@@ -553,7 +553,7 @@ obj is NewAuthEntry
 
 #### Defined in
 
-[lib/next-auth/index.ts:247](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L247)
+[lib/next-auth/index.ts:247](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L247)
 
 ___
 
@@ -578,7 +578,7 @@ obj is TokenAttributes
 
 #### Defined in
 
-[lib/next-auth/index.ts:219](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L219)
+[lib/next-auth/index.ts:219](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L219)
 
 ___
 
@@ -601,7 +601,7 @@ into one that is safe for public consumption.
 
 #### Defined in
 
-[lib/next-auth/index.ts:388](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L388)
+[lib/next-auth/index.ts:388](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L388)
 
 ___
 
@@ -630,4 +630,4 @@ object.**
 
 #### Defined in
 
-[lib/next-auth/index.ts:558](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-auth/index.ts#L558)
+[lib/next-auth/index.ts:558](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-auth/index.ts#L558)

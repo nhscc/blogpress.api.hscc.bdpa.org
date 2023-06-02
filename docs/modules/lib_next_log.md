@@ -23,7 +23,7 @@ The shape of an entry in the well-known "request log" collection.
 
 #### Defined in
 
-[lib/next-log/index.ts:13](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-log/index.ts#L13)
+[lib/next-log/index.ts:13](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-log/index.ts#L13)
 
 ___
 
@@ -35,7 +35,7 @@ The shape of a new entry in the well-known "request log" collection.
 
 #### Defined in
 
-[lib/next-log/index.ts:27](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-log/index.ts#L27)
+[lib/next-log/index.ts:27](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-log/index.ts#L27)
 
 ## Functions
 
@@ -72,4 +72,4 @@ doSomeOtherStuff();
 
 #### Defined in
 
-[lib/next-log/index.ts:42](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-log/index.ts#L42)
+[lib/next-log/index.ts:42](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-log/index.ts#L42)

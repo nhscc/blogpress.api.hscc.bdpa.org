@@ -29,7 +29,7 @@ Generic dummy data used to hydrate databases and their collections.
 
 #### Defined in
 
-[lib/mongo-test/index.ts:32](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-test/index.ts#L32)
+[lib/mongo-test/index.ts:32](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-test/index.ts#L32)
 
 ___
 
@@ -49,7 +49,7 @@ For use when mocking the contents of files containing `getDummyData` and/or
 
 #### Defined in
 
-[lib/mongo-test/index.ts:55](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-test/index.ts#L55)
+[lib/mongo-test/index.ts:55](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-test/index.ts#L55)
 
 ## Functions
 
@@ -65,7 +65,7 @@ Imports `getDummyData` from "configverse/get-dummy-data" and calls it.
 
 #### Defined in
 
-[lib/mongo-test/index.ts:63](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-test/index.ts#L63)
+[lib/mongo-test/index.ts:63](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-test/index.ts#L63)
 
 ___
 
@@ -89,7 +89,7 @@ before calling this function.
 
 #### Defined in
 
-[lib/mongo-test/index.ts:82](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-test/index.ts#L82)
+[lib/mongo-test/index.ts:82](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-test/index.ts#L82)
 
 ___
 
@@ -117,4 +117,4 @@ jest lifecycle hooks.
 
 #### Defined in
 
-[lib/mongo-test/index.ts:154](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-test/index.ts#L154)
+[lib/mongo-test/index.ts:154](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-test/index.ts#L154)

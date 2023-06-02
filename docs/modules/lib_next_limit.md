@@ -25,7 +25,7 @@ The shape of an entry in the well-known "limited log" collection.
 
 #### Defined in
 
-[lib/next-limit/index.ts:13](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-limit/index.ts#L13)
+[lib/next-limit/index.ts:13](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-limit/index.ts#L13)
 
 ___
 
@@ -37,7 +37,7 @@ The shape of a new entry in the well-known "limited log" collection.
 
 #### Defined in
 
-[lib/next-limit/index.ts:29](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-limit/index.ts#L29)
+[lib/next-limit/index.ts:29](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-limit/index.ts#L29)
 
 ## Functions
 
@@ -61,7 +61,7 @@ to retry their request after `retryAfter` milliseconds have passed.
 
 #### Defined in
 
-[lib/next-limit/index.ts:36](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-limit/index.ts#L36)
+[lib/next-limit/index.ts:36](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-limit/index.ts#L36)
 
 ___
 
@@ -77,7 +77,7 @@ Retrieve all active rate limits.
 
 #### Defined in
 
-[lib/next-limit/index.ts:107](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-limit/index.ts#L107)
+[lib/next-limit/index.ts:107](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-limit/index.ts#L107)
 
 ___
 
@@ -103,4 +103,4 @@ The number of rate limits removed.
 
 #### Defined in
 
-[lib/next-limit/index.ts:69](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-limit/index.ts#L69)
+[lib/next-limit/index.ts:69](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-limit/index.ts#L69)

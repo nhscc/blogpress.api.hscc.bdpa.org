@@ -54,7 +54,7 @@ data.
 
 #### Defined in
 
-[lib/mongo-common/index.ts:95](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-common/index.ts#L95)
+[lib/mongo-common/index.ts:95](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-common/index.ts#L95)
 
 ## Variables
 
@@ -66,7 +66,7 @@ Test data for the well-known `root` database.
 
 #### Defined in
 
-[lib/mongo-common/index.ts:105](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-common/index.ts#L105)
+[lib/mongo-common/index.ts:105](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-common/index.ts#L105)
 
 ## Functions
 
@@ -92,7 +92,7 @@ Well-known databases and their well-known collections currently include:
 
 #### Defined in
 
-[lib/mongo-common/index.ts:87](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-common/index.ts#L87)
+[lib/mongo-common/index.ts:87](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-common/index.ts#L87)
 
 ___
 
@@ -118,4 +118,4 @@ Well-known databases and their well-known collections currently include:
 
 #### Defined in
 
-[lib/mongo-common/index.ts:28](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/mongo-common/index.ts#L28)
+[lib/mongo-common/index.ts:28](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/mongo-common/index.ts#L28)

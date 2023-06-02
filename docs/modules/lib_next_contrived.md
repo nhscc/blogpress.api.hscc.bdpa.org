@@ -25,4 +25,4 @@ across all Vercel virtual machines.
 
 #### Defined in
 
-[lib/next-contrived/index.ts:13](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-contrived/index.ts#L13)
+[lib/next-contrived/index.ts:13](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-contrived/index.ts#L13)

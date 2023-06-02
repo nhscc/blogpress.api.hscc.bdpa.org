@@ -19,4 +19,4 @@ namespace.
 
 #### Defined in
 
-[src/constants.ts:8](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/src/constants.ts#L8)
+[src/constants.ts:8](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/src/constants.ts#L8)

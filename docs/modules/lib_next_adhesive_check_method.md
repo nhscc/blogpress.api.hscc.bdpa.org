@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[lib/next-adhesive/check-method.ts:11](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/check-method.ts#L11)
+[lib/next-adhesive/check-method.ts:11](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/check-method.ts#L11)
 
 ## Functions
 
@@ -51,4 +51,4 @@ allowed method.
 
 #### Defined in
 
-[lib/next-adhesive/check-method.ts:22](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/check-method.ts#L22)
+[lib/next-adhesive/check-method.ts:22](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/check-method.ts#L22)

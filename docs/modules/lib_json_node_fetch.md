@@ -35,7 +35,7 @@ https://github.com/node-fetch/node-fetch#options
 
 #### Defined in
 
-[lib/json-node-fetch/index.ts:37](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-node-fetch/index.ts#L37)
+[lib/json-node-fetch/index.ts:37](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-node-fetch/index.ts#L37)
 
 ## Variables
 
@@ -45,7 +45,7 @@ https://github.com/node-fetch/node-fetch#options
 
 #### Defined in
 
-[lib/json-node-fetch/index.ts:14](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-node-fetch/index.ts#L14)
+[lib/json-node-fetch/index.ts:14](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-node-fetch/index.ts#L14)
 
 ___
 
@@ -70,7 +70,7 @@ https://github.com/node-fetch/node-fetch#options
 
 #### Defined in
 
-[lib/json-node-fetch/index.ts:79](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-node-fetch/index.ts#L79)
+[lib/json-node-fetch/index.ts:79](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-node-fetch/index.ts#L79)
 
 ## Functions
 
@@ -134,7 +134,7 @@ if (error) {
 
 #### Defined in
 
-[lib/json-node-fetch/index.ts:121](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-node-fetch/index.ts#L121)
+[lib/json-node-fetch/index.ts:121](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-node-fetch/index.ts#L121)
 
 ▸ **jsonFetch**<`JsonType`, `ErrorType`\>(`url`, `init`): `Promise`<{ `error`: `Partial`<`ErrorType`\> \| `undefined` ; `json`: `JsonType` \| `undefined` ; `res`: `Response`  }\>
 
@@ -198,7 +198,7 @@ try {
 
 #### Defined in
 
-[lib/json-node-fetch/index.ts:175](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-node-fetch/index.ts#L175)
+[lib/json-node-fetch/index.ts:175](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-node-fetch/index.ts#L175)
 
 ▸ **jsonFetch**<`JsonType`, `ErrorType`\>(`url`, `init`): `Promise`<{ `error`: `Partial`<`ErrorType`\> \| `undefined` ; `json`: `JsonType` \| `undefined` ; `res`: `Response`  }\>
 
@@ -259,7 +259,7 @@ try {
 
 #### Defined in
 
-[lib/json-node-fetch/index.ts:226](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-node-fetch/index.ts#L226)
+[lib/json-node-fetch/index.ts:226](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-node-fetch/index.ts#L226)
 
 ▸ **jsonFetch**<`JsonType`, `ErrorType`\>(`url`, `init`): `Promise`<{ `error`: `undefined` ; `json`: `JsonType` ; `res`: `Response`  }\>
 
@@ -316,4 +316,4 @@ try {
 
 #### Defined in
 
-[lib/json-node-fetch/index.ts:273](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-node-fetch/index.ts#L273)
+[lib/json-node-fetch/index.ts:273](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-node-fetch/index.ts#L273)

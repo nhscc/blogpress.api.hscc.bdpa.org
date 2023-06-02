@@ -51,7 +51,7 @@ The shape of a FetchError-inspecting function.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:70](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L70)
+[lib/throttled-fetch/index.ts:70](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L70)
 
 ___
 
@@ -81,7 +81,7 @@ The shape of a request-inspecting function.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:49](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L49)
+[lib/throttled-fetch/index.ts:49](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L49)
 
 ___
 
@@ -112,7 +112,7 @@ The shape of a response-inspecting function.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:59](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L59)
+[lib/throttled-fetch/index.ts:59](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L59)
 
 ## Functions
 
@@ -140,7 +140,7 @@ otherwise configured. Re-throws the `FetchError` instance.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:70](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L70)
+[lib/throttled-fetch/index.ts:70](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L70)
 
 ___
 
@@ -167,7 +167,7 @@ otherwise configured. Simply passes through the given fetch parameters.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:49](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L49)
+[lib/throttled-fetch/index.ts:49](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L49)
 
 ___
 
@@ -195,4 +195,4 @@ otherwise configured. Simply passes through the `Response` instance.
 
 #### Defined in
 
-[lib/throttled-fetch/index.ts:59](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/throttled-fetch/index.ts#L59)
+[lib/throttled-fetch/index.ts:59](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/throttled-fetch/index.ts#L59)

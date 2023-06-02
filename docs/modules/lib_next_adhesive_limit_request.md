@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[lib/next-adhesive/limit-request.ts:14](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/limit-request.ts#L14)
+[lib/next-adhesive/limit-request.ts:14](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/limit-request.ts#L14)
 
 ## Functions
 
@@ -43,4 +43,4 @@ Rejects requests from clients that have sent too many previous requests.
 
 #### Defined in
 
-[lib/next-adhesive/limit-request.ts:21](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/next-adhesive/limit-request.ts#L21)
+[lib/next-adhesive/limit-request.ts:21](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/next-adhesive/limit-request.ts#L21)

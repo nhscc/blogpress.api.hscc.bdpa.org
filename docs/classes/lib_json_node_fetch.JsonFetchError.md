@@ -68,7 +68,7 @@ FetchError.constructor
 
 #### Defined in
 
-[lib/json-node-fetch/index.ts:22](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-node-fetch/index.ts#L22)
+[lib/json-node-fetch/index.ts:22](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-node-fetch/index.ts#L22)
 
 ## Properties
 
@@ -120,7 +120,7 @@ ___
 
 #### Defined in
 
-[lib/json-node-fetch/index.ts:24](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-node-fetch/index.ts#L24)
+[lib/json-node-fetch/index.ts:24](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-node-fetch/index.ts#L24)
 
 ___
 
@@ -158,7 +158,7 @@ ___
 
 #### Defined in
 
-[lib/json-node-fetch/index.ts:23](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/764312e/lib/json-node-fetch/index.ts#L23)
+[lib/json-node-fetch/index.ts:23](https://github.com/nhscc/blogpress.api.hscc.bdpa.org/blob/742232e/lib/json-node-fetch/index.ts#L23)
 
 ___
 
