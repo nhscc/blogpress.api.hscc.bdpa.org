@@ -117,7 +117,7 @@
     "auto-bind": "^4.0.0",
     "babel-jest": "^29.5.0",
     "babel-loader": "^9.1.2",
-    "chalk": "^4.1.2",
+    "chalk": "^5.2.0",
     "confusing-browser-globals": "^1.0.11",
     "conventional-changelog-cli": "^2.2.2",
     "del": "^7.0.0",
