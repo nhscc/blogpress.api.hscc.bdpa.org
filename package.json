@@ -212,7 +212,7 @@
     "unfetch": "^4.2.0",
     "unique-filename": "^3.0.0",
     "webpack": "^5.85.0",
-    "webpack-cli": "^5.1.1",
+    "webpack-cli": "^5.1.4",
     "webpack-node-externals": "^3.0.0"
   },
   "engines": {
